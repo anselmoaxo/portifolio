@@ -1,183 +1,219 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio de Anselmo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anselmo Xavier | Portfólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+      color: #333;
+    }
 
-        body {
-            background-color: #f9f9f9;
-            color: #222;
-            line-height: 1.6;
-        }
+    header {
+      background-color: #111827;
+      padding: 1rem;
+    }
 
-        header {
-            background-color: #1e1e2f;
-            color: #fff;
-            padding: 1.5rem 2rem;
-            text-align: center;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0;
+      margin: 0;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-        nav a:hover {
-            color: #fcb900;
-        }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-        section {
-            padding: 3rem 2rem;
-            max-width: 900px;
-            margin: auto;
-        }
+    #hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
 
-        h2 {
-            color: #1e1e2f;
-            margin-bottom: 1rem;
-        }
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .form-container {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
+    #hero p {
+      font-size: 1.25rem;
+      color: #4b5563;
+    }
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+    button {
+      background-color: #111827;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
 
-        input:focus,
-        textarea:focus {
-            border-color: #1e1e2f;
-            outline: none;
-            box-shadow: 0 0 5px rgba(30, 30, 47, 0.3);
-        }
+    button:hover {
+      background-color: #1f2937;
+    }
 
-        button {
-            background-color: #1e1e2f;
-            color: #fff;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    section {
+      margin-bottom: 4rem;
+    }
 
-        button:hover {
-            background-color: #34344f;
-        }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #111827;
+      display: inline-block;
+    }
 
-        .stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+    .stacks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-left: 0;
+      list-style: none;
+    }
 
-        .stack span {
-            background: #e0e0e0;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-    </style>
+    .stacks li {
+      background-color: #e0e7ff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    form button {
+      margin-top: 1.5rem;
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background-color: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <h1>Anselmo - Portfólio Profissional</h1>
-        <nav>
-            <a href="#sobre">Sobre Mim</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#contato">Contato</a>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>Anselmo Xavier</h1>
+      <p>Engenheiro de Dados em transição de carreira</p>
+    </section>
 
     <section id="sobre">
-        <h2>Sobre Mim</h2>
-        <p>Sou um profissional em transição de carreira com foco em Engenharia de Dados. Possuo experiência em vendas, atendimento ao cliente e atualmente desenvolvo projetos com ferramentas como Airflow, dbt, PostgreSQL, BigQuery, e Power BI.</p>
-        <div class="stack">
-            <span>Python</span>
-            <span>Airflow</span>
-            <span>dbt</span>
-            <span>PostgreSQL</span>
-            <span>BigQuery</span>
-            <span>Power BI</span>
-            <span>Docker</span>
-        </div>
+      <h2>Sobre mim</h2>
+      <p>Profissional com ampla experiência em Vendas, Planejamento Comercial e agora migrando para Engenharia de Dados. Apaixonado por tecnologia e por soluções que otimizem processos de negócios.</p>
+      <h3>Stacks</h3>
+      <ul class="stacks">
+        <li>Python</li>
+        <li>SQL</li>
+        <li>Airflow</li>
+        <li>dbt</li>
+        <li>PostgreSQL</li>
+        <li>Docker</li>
+        <li>Looker Studio</li>
+      </ul>
     </section>
 
     <section id="projetos">
-        <h2>Projetos</h2>
-        <ul>
-            <li>Pipeline ETL com Airflow e dbt integrando dados do PostgreSQL ao BigQuery</li>
-            <li>Criação de dashboards interativos com Power BI</li>
-            <li>Automação de processos com scripts Python</li>
-        </ul>
+      <h2>Projetos</h2>
+      <p>Confira abaixo alguns dos meus principais projetos desenvolvidos durante a formação em Engenharia de Dados.</p>
+      <ul>
+        <li>🚗 Projeto Concessionária: ETL com Airflow, transformação com dbt e visualização no Looker Studio.</li>
+        <li>☁️ Pipeline Meteorológico: Extração de dados de previsão do tempo com API e orquestração com Airflow.</li>
+      </ul>
     </section>
 
     <section id="contato">
-        <h2>Contato</h2>
-        <div class="form-container">
-            <form onsubmit="enviarMensagem(event)">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
+      <h2>Contato</h2>
+      <form id="form-contato">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
 
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
 
-                <button type="submit">Enviar Mensagem</button>
-            </form>
-        </div>
+        <button type="submit">Enviar</button>
+      </form>
     </section>
+    <button id="btn-gerar-pdf">📄 Baixar currículo em PDF</button>
+  </main>
 
-    <section style="text-align: center; padding-top: 1rem;">
-        <button onclick="baixarCurriculo()">Baixar Currículo em PDF</button>
-    </section>
+  <footer>
+    <p>&copy; 2025 Anselmo Xavier. Todos os direitos reservados.</p>
+  </footer>
 
-    <script>
-        function enviarMensagem(event) {
-            event.preventDefault();
-            alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-        }
+  <script>
+    document.getElementById("btn-gerar-pdf").addEventListener("click", () => {
+      alert("Funcionalidade de geração de PDF em construção. Em breve você poderá baixar seu currículo completo!");
+    });
 
-        function baixarCurriculo() {
-            alert('Funcionalidade de geração de PDF em construção.');
-        }
-    </script>
+    document.getElementById("form-contato").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Mensagem enviada com sucesso! Obrigado pelo contato, entrarei em breve.");
+      e.target.reset();
+    });
+  </script>
 </body>
 
 </html>
