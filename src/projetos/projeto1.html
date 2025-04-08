@@ -2,29 +2,55 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <title>Pipeline Concessionária</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto: Pipeline Concessionária</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Projeto: Concessionária</h1>
-    <p>Airflow + dbt + Power BI</p>
+
+<body class="bg-gray-50 text-slate-800 font-sans">
+
+  <header class="bg-white shadow p-6 text-center" data-aos="fade-down">
+    <h1 class="text-3xl font-bold text-blue-700">Projeto: Concessionária</h1>
+    <p class="text-slate-500 mt-2">Apache Airflow • dbt • Power BI</p>
+    <a href="../index.html" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">⬅️ Voltar ao Portfólio</a>
   </header>
 
-  <main class="projetos">
-    <h2>Descrição</h2>
-    <p>Pipeline completo para ETL de dados de vendas, clientes e produtos...</p>
+  <main class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+    
+    <section data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-2">📌 Descrição</h2>
+      <p>Pipeline completo para ETL de dados de vendas, clientes e produtos. Utiliza Airflow para orquestração, dbt para transformação e Power BI para visualização dos dados. Ideal para análise de desempenho de vendas por período, por modelo de carro e por região.</p>
+    </section>
 
-    <h2>Stack Utilizada</h2>
-    <ul>
-      <li>Apache Airflow</li>
-      <li>dbt</li>
-      <li>PostgreSQL</li>
-      <li>Power BI</li>
-    </ul>
+    <section data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-2">🧰 Stack Utilizada</h2>
+      <ul class="list-disc ml-6 space-y-1">
+        <li>Apache Airflow para orquestração</li>
+        <li>dbt para transformação de dados em camadas</li>
+        <li>PostgreSQL como Data Warehouse</li>
+        <li>Power BI para dashboards interativos</li>
+      </ul>
+    </section>
 
-    <h2>Prints</h2>
-    <img src="../assets/imagens/dag-airflow.png" alt="Airflow DAG" width="100%" />
+    <section data-aos="fade-up">
+      <h2 class="text-2xl font-semibold mb-2">🖼️ Prints</h2>
+      <img src="../assets/imagens/dag-airflow.png" alt="DAG no Airflow" class="rounded-lg shadow-md">
+    </section>
+
   </main>
+
+  <footer class="bg-white border-t text-center py-6 text-sm text-slate-500" data-aos="fade-up">
+    <p>Feito por Anselmo • 
+      <a href="mailto:anselmo@email.com" class="text-blue-600 hover:underline">Contato</a> • 
+      <a href="https://github.com/seuusuario" class="text-blue-600 hover:underline">GitHub</a>
+    </p>
+  </footer>
+
+  <!-- AOS Animation Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000 });
+  </script>
 </body>
 </html>

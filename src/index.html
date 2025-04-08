@@ -4,39 +4,116 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfólio de Dados - Anselmo</title>
-  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Anselmo • Engenheiro de Dados</h1>
-    <p>Airflow • dbt • PostgreSQL • Power BI • Snowflake</p>
-    <a href="assets/cv-anselmo.pdf" download class="btn">📄 Baixar Currículo</a>
+
+<body class="bg-gray-50 text-slate-800 font-sans leading-relaxed">
+
+  <!-- Header -->
+  <header class="text-center py-10 bg-white shadow" data-aos="fade-down">
+    <h1 class="text-3xl font-bold text-blue-700">Anselmo • Engenheiro de Dados</h1>
+    <p class="text-sm text-slate-500 mt-2">Airflow • dbt • PostgreSQL • Power BI • Snowflake</p>
+    <a href="assets/cv-anselmo.pdf" download class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">📄 Baixar Currículo</a>
   </header>
 
-  <section class="projetos">
-    <h2>Projetos em Destaque</h2>
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto p-6">
 
-    <div class="projeto">
-      <h3>🚗 Pipeline Concessionária</h3>
-      <p>ETL com Airflow e dbt, visualização com Power BI.</p>
-      <a href="projetos/projeto1.html">Ver detalhes</a>
-    </div>
+    <!-- Sobre -->
+    <section id="sobre" class="mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-4">Sobre</h2>
+      <p>Sou Anselmo Xavier, desenvolvedor com mais de 15 anos de experiência em sistemas e atualmente em transição para Engenharia de Dados. Tenho focado em projetos de Big Data, construção de pipelines com Apache Airflow, transformação de dados com dbt e visualizações em Power BI e Looker Studio.</p>
+    </section>
 
-    <div class="projeto">
-      <h3>🌦️ API de Previsão do Tempo</h3>
-      <p>Airflow + pandas + PostgreSQL com agendamento semanal.</p>
-      <a href="projetos/projeto2.html">Ver detalhes</a>
-    </div>
+    <!-- Experiência -->
+    <section id="experiencia" class="mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-4">Experiência</h2>
+      <p class="font-semibold">Desenvolvedor de Sistemas - Empresa XYZ (2010 - atual)</p>
+      <ul class="list-disc ml-5 mt-2 space-y-1">
+        <li>Modelagem e implantação de bancos de dados relacionais</li>
+        <li>Desenvolvimento de sistemas ERP utilizando low-code e SQL</li>
+        <li>Automação de processos com scripts para ETL</li>
+        <li>Treinamento de usuários</li>
+      </ul>
+    </section>
 
-    <div class="projeto">
-      <h3>🧊 Data Lake com Spark</h3>
-      <p>Pipeline em PySpark com particionamento e escrita em camadas.</p>
-      <a href="projetos/projeto3.html">Ver detalhes</a>
-    </div>
-  </section>
+    <!-- Tecnologias -->
+    <section id="stacks" class="mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-6">Tecnologias e Ferramentas</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Linguagens</h3>
+          <ul class="list-disc ml-5 space-y-1">
+            <li>Python</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Bancos de Dados</h3>
+          <ul class="list-disc ml-5 space-y-1">
+            <li>PostgreSQL</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Big Data / Pipelines</h3>
+          <ul class="list-disc ml-5 space-y-1">
+            <li>Apache Airflow</li>
+            <li>Apache Spark</li>
+            <li>Databricks</li>
+            <li>dbt</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Visualização de Dados</h3>
+          <ul class="list-disc ml-5 space-y-1">
+            <li>Power BI</li>
+            <li>Looker Studio</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>Feito por Anselmo • <a href="mailto:anselmo@email.com">Contato</a> • <a href="https://github.com/seuusuario">GitHub</a></p>
+    <!-- Projetos -->
+    <section class="mb-12" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-6">Projetos em Destaque</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition" data-aos="zoom-in">
+          <h3 class="text-lg font-semibold">🚗 Pipeline Concessionária</h3>
+          <p class="text-sm mt-2 mb-4">ETL com Airflow e dbt, visualização com Power BI.</p>
+          <a href="projetos/projeto1.html" class="text-blue-600 hover:underline text-sm">Ver detalhes</a>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition" data-aos="zoom-in">
+          <h3 class="text-lg font-semibold">🌦️ API de Previsão do Tempo</h3>
+          <p class="text-sm mt-2 mb-4">Airflow + pandas + PostgreSQL com agendamento semanal.</p>
+          <a href="projetos/projeto2.html" class="text-blue-600 hover:underline text-sm">Ver detalhes</a>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition" data-aos="zoom-in">
+          <h3 class="text-lg font-semibold">🧊 Data Lake com Spark</h3>
+          <p class="text-sm mt-2 mb-4">Pipeline em PySpark com particionamento e escrita em camadas.</p>
+          <a href="projetos/projeto3.html" class="text-blue-600 hover:underline text-sm">Ver detalhes</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t text-center py-6 text-sm text-slate-500" data-aos="fade-up">
+    <p>Feito por Anselmo • 
+      <a href="mailto:anselmo@email.com" class="text-blue-600 hover:underline">Contato</a> • 
+      <a href="https://github.com/seuusuario" class="text-blue-600 hover:underline">GitHub</a>
+    </p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000 });
+  </script>
+
 </body>
 </html>
