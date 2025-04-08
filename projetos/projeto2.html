@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto: Previsão do Tempo</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animation CDN -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => AOS.init());</script>
+</head>
+<body class="bg-[#0b0f19] text-slate-200 font-sans leading-relaxed tracking-wide">
+
+  <!-- Header -->
+  <header class="bg-[#111827] p-6 text-center shadow" data-aos="fade-down">
+    <h1 class="text-4xl font-bold text-cyan-400">API de Previsão do Tempo</h1>
+    <p class="mt-2 text-slate-300">Airflow + pandas + PostgreSQL</p>
+    <a href="../index.html" class="inline-block mt-4 px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-500 transition">⬅ Voltar</a>
+  </header>
+
+  <!-- Conteúdo -->
+  <main class="max-w-4xl mx-auto px-4 py-10 space-y-10">
+
+    <!-- Descrição -->
+    <section data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Descrição do Projeto</h2>
+      <p>
+        Este projeto realiza a extração semanal de previsões do tempo dos próximos 15 dias utilizando uma API pública. As previsões são armazenadas em um banco PostgreSQL para análise e visualização futura.
+      </p>
+    </section>
+
+    <!-- Stack Utilizada -->
+    <section data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Stack Utilizada</h2>
+      <ul class="list-disc list-inside text-slate-300">
+        <li>Apache Airflow para agendamento semanal</li>
+        <li>API pública de clima (Ex: OpenWeatherMap)</li>
+        <li>pandas para manipulação dos dados</li>
+        <li>PostgreSQL para armazenamento</li>
+      </ul>
+    </section>
+
+    <!-- Prints -->
+    <section data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Capturas de Tela</h2>
+      <img src="../assets/imagens/api-weather.png" alt="Resultado API de Clima" class="rounded-lg shadow-lg mb-6" />
+      <img src="../assets/imagens/dag-weather.png" alt="DAG Airflow Previsão" class="rounded-lg shadow-lg" />
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0b0f19] border-t border-slate-700 text-center py-6 text-slate-400 text-sm" data-aos="fade-up">
+    <p>
+      Projeto por Anselmo Xavier • 
+      <a href="mailto:anselmo@email.com" class="text-cyan-400 hover:underline">Contato</a> • 
+      <a href="https://github.com/seuusuario" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
+</body>
+</html>
