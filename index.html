@@ -1,219 +1,167 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anselmo Xavier | Portfólio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfólio - Anselmo Xavier de Oliveira</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f6f8;
-      color: #333;
+    html {
+      scroll-behavior: smooth;
     }
-
-    header {
-      background-color: #111827;
-      padding: 1rem;
+    .nav-link {
+      color: white !important;
     }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    nav a:hover {
+    .nav-link:hover {
       text-decoration: underline;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    #hero {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    #hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    #hero p {
-      font-size: 1.25rem;
-      color: #4b5563;
-    }
-
-    button {
-      background-color: #111827;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #1f2937;
-    }
-
-    section {
-      margin-bottom: 4rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #111827;
-      display: inline-block;
-    }
-
-    .stacks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding-left: 0;
-      list-style: none;
-    }
-
-    .stacks li {
-      background-color: #e0e7ff;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: 500;
-    }
-
-    form {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-    }
-
-    form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      margin-top: 1rem;
-      font-weight: 500;
-    }
-
-    form input,
-    form textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    form button {
-      margin-top: 1.5rem;
-      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    footer {
-      background-color: #111827;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
     }
   </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#sobre">Sobre mim</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
+  <!-- HEADER / MENU -->
+  <header class="sticky-top shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-slate-900">
+      <div class="container">
+        <div class="d-flex flex-column">
+          <a class="navbar-brand text-2xl fw-bold" href="#">Anselmo Xavier de Oliveira</a>
+          <p class="text-white text-sm ms-1">Engenheiro de Dados</p>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav ms-auto text-center">
+            <li class="nav-item"><a class="nav-link" href="#sobre" onclick="closeMenu()">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="#experiencia" onclick="closeMenu()">Experiência</a></li>
+            <li class="nav-item"><a class="nav-link" href="#stacks" onclick="closeMenu()">Stacks</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projetos" onclick="closeMenu()">Projetos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contato" onclick="closeMenu()">Contato</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <section id="hero">
-      <h1>Anselmo Xavier</h1>
-      <p>Engenheiro de Dados em transição de carreira</p>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    <section id="sobre" class="py-5">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Sobre</h2>
+      <p>Sou Anselmo Xavier, desenvolvedor com mais de 15 anos de experiência em sistemas e atualmente em transição para Engenharia de Dados. Tenho focado em projetos de Big Data, construção de pipelines com Apache Airflow, transformação de dados com dbt e visualizações em Power BI e Looker Studio.</p>
     </section>
 
-    <section id="sobre">
-      <h2>Sobre mim</h2>
-      <p>Profissional com ampla experiência em Vendas, Planejamento Comercial e agora migrando para Engenharia de Dados. Apaixonado por tecnologia e por soluções que otimizem processos de negócios.</p>
-      <h3>Stacks</h3>
-      <ul class="stacks">
-        <li>Python</li>
-        <li>SQL</li>
-        <li>Airflow</li>
-        <li>dbt</li>
-        <li>PostgreSQL</li>
-        <li>Docker</li>
-        <li>Looker Studio</li>
+    <section id="experiencia" class="py-5">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Experiência</h2>
+      <p><strong>Desenvolvedor de Sistemas - Empresa XYZ (2010 - atual)</strong></p>
+      <ul class="list-disc ms-4">
+        <li>Modelagem e implantação de bancos de dados relacionais</li>
+        <li>Desenvolvimento de sistemas ERP utilizando low-code e SQL</li>
+        <li>Automação de processos com scripts para ETL</li>
+        <li>Treinamento de usuários</li>
       </ul>
     </section>
 
-    <section id="projetos">
-      <h2>Projetos</h2>
-      <p>Confira abaixo alguns dos meus principais projetos desenvolvidos durante a formação em Engenharia de Dados.</p>
-      <ul>
-        <li>🚗 Projeto Concessionária: ETL com Airflow, transformação com dbt e visualização no Looker Studio.</li>
-        <li>☁️ Pipeline Meteorológico: Extração de dados de previsão do tempo com API e orquestração com Airflow.</li>
-      </ul>
+    <section id="stacks" class="py-5">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Tecnologias e Ferramentas</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Linguagens</h3>
+    <ul class="list-disc ms-5">
+      <li>Python</li>
+      <li>SQL</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Bancos de Dados</h3>
+    <ul class="list-disc ms-5">
+      <li>PostgreSQL</li>
+      <li>MongoDB</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Big Data / Pipelines</h3>
+    <ul class="list-disc ms-5">
+      <li>Apache Airflow</li>
+      <li>Apache Spark</li>
+      <li>Databricks</li>
+      <li>dbt</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Visualização de Dados</h3>
+    <ul class="list-disc ms-5">
+      <li>Power BI</li>
+      <li>Looker Studio</li>
+    </ul>
+  </div>
+</div>
+
     </section>
 
-    <section id="contato">
-      <h2>Contato</h2>
-      <form id="form-contato">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="mensagem">Mensagem</label>
-        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
+    <section id="projetos" class="py-5">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Projetos</h2>
+      <p><strong>Pipeline de Dados - 2023</strong></p>
+      <p>Criação de pipeline completo de ETL com múltiplas fontes de dados para Data Warehouse em PostgreSQL. Uso de Airflow para orquestração, dbt para transformação em camadas (bronze, silver, gold) e visualização dos dados com Power BI.</p>
     </section>
-    <button id="btn-gerar-pdf">📄 Baixar currículo em PDF</button>
+
+    <section id="contato" class="py-5">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Contato</h2>
+      <div class="flex gap-6 items-center">
+        <a href="https://github.com/anselmoaxo" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" class="w-8 h-8">
+        </a>
+        <a href="https://www.linkedin.com/in/anselmoaxo/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="w-8 h-8">
+        </a>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Anselmo Xavier. Todos os direitos reservados.</p>
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white text-center py-6 mt-8">
+    <div class="container">
+      <p class="mb-2">© 2024 Anselmo Xavier de Oliveira</p>
+      <div class="flex justify-center gap-6 mb-2">
+        <a href="mailto:anselmo.cstecnologia@gmail.com" class="hover:underline">anselmo.cstecnologia@gmail.com</a>
+        <span>|</span>
+        <a href="tel:+5511915796142" class="hover:underline">(11) 91579-6142</a>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="https://github.com/anselmoaxo" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" class="w-6 h-6">
+        </a>
+        <a href="https://www.linkedin.com/in/anselmoaxo/" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="w-6 h-6">
+        </a>
+      </div>
+    </div>
   </footer>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+AMvyTG2BzUg5U2rwx1gTw4CkQ0pF"
+    crossorigin="anonymous"></script>
+
+  <!-- Script para fechar o menu após clicar em um link no celular -->
   <script>
-    document.getElementById("btn-gerar-pdf").addEventListener("click", () => {
-      alert("Funcionalidade de geração de PDF em construção. Em breve você poderá baixar seu currículo completo!");
-    });
-
-    document.getElementById("form-contato").addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("Mensagem enviada com sucesso! Obrigado pelo contato, entrarei em breve.");
-      e.target.reset();
-    });
+    function closeMenu() {
+      const nav = document.querySelector('#navbarNav');
+      const bsCollapse = bootstrap.Collapse.getInstance(nav);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      }
+    }
   </script>
-</body>
 
+</body>
 </html>
