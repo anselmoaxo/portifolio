@@ -26,30 +26,62 @@
   <main class="max-w-4xl mx-auto px-4 py-10 space-y-10">
 
     <!-- Descrição -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Descrição do Projeto</h2>
-      <p>
-        Este projeto realiza a extração semanal de previsões do tempo dos próximos 15 dias utilizando uma API pública. As previsões são armazenadas em um banco PostgreSQL para análise e visualização futura.
-      </p>
-    </section>
+   <!-- README Completo -->
+<section data-aos="fade-up">
+  <h2 class="text-3xl font-bold text-cyan-300 mb-4">Projeto de Pipeline de Dados Meteorológicos</h2>
 
-    <!-- Stack Utilizada -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Stack Utilizada</h2>
-      <ul class="list-disc list-inside text-slate-300">
-        <li>Apache Airflow para agendamento semanal</li>
-        <li>API pública de clima (Ex: OpenWeatherMap)</li>
-        <li>pandas para manipulação dos dados</li>
-        <li>PostgreSQL para armazenamento</li>
-      </ul>
-    </section>
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">📌 Descrição</h3>
+  <p>Este projeto implementa um pipeline de dados meteorológicos que coleta automaticamente previsões de 7 dias para uma localidade específica, armazenando-as em um Data Lake local. O processo é orquestrado e agendado pelo Apache Airflow, sendo executado toda segunda-feira.</p>
 
-    <!-- Prints -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Capturas de Tela</h2>
-      <img src="../assets/imagens/api-weather.png" alt="Resultado API de Clima" class="rounded-lg shadow-lg mb-6" />
-      <img src="../assets/imagens/dag-weather.png" alt="DAG Airflow Previsão" class="rounded-lg shadow-lg" />
-    </section>
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🎯 Objetivo</h3>
+  <p>Automatizar a coleta e o armazenamento de dados meteorológicos, criando uma base consistente para análises climáticas e previsões futuras. O pipeline é modular e escalável, permitindo integração com novos destinos de armazenamento e visualização.</p>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🧱 Estrutura do Projeto</h3>
+  <ul class="list-disc list-inside text-slate-300">
+    <li><strong>Extração:</strong> Coleta de previsões via API.</li>
+    <li><strong>Armazenamento:</strong> Salvamento em um Data Lake local.</li>
+    <li><strong>Orquestração:</strong> Automatização via Apache Airflow com execução semanal.</li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🛠️ Tecnologias Utilizadas</h3>
+  <ul class="list-disc list-inside text-slate-300">
+    <li>Python 3.8+</li>
+    <li>Apache Airflow (v2.3.2+)</li>
+    <li>API Meteorológica Pública</li>
+    <li>Data Lake Local</li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">📦 Requisitos</h3>
+  <ul class="list-disc list-inside text-slate-300">
+    <li>Python 3.8 ou superior</li>
+    <li>Apache Airflow 2.3.2 ou superior</li>
+    <li>Dependências no arquivo <code>requirements.txt</code></li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🚀 Instalação</h3>
+  <pre class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-auto"><code>
+git clone https://github.com/anselmoaxo/pipeline_meteorologia_airflow
+cd pipeline_meteorologia_airflow
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+pip install -r requirements.txt
+airflow db init
+airflow webserver --port 8080
+airflow scheduler
+  </code></pre>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">📅 Agendamento</h3>
+  <p>Executado automaticamente toda segunda-feira às 08h (UTC).</p>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🙌 Contribuições</h3>
+  <p>Contribuições são bem-vindas! Crie um fork, envie um pull request ou abra uma issue com sugestões.</p>
+
+  <h3 class="text-2xl font-semibold text-cyan-200 mt-6 mb-2">🧑‍💻 Autor</h3>
+  <p><strong>Anselmo A. Xavier</strong> – Engenheiro de Dados</p>
+  <p>GitHub: <a href="https://github.com/anselmoaxo" class="text-cyan-400 hover:underline" target="_blank">@anselmoaxo</a></p>
+</section>
+
   </main>
 
   <!-- Footer -->
