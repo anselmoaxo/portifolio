@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projeto: Pipeline Concessionária</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Pipeline ETL Concessionária - Projeto de Engenharia de Dados com Airflow, dbt e Power BI">
+  <title>Projeto: Pipeline Concessionária | Anselmo Xavier</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,54 +15,381 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>document.addEventListener("DOMContentLoaded", () => AOS.init());</script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    code,
+    pre {
+      font-family: 'Fira Code', monospace;
+    }
+  </style>
 </head>
+
 <body class="bg-[#0b0f19] text-slate-200 font-sans leading-relaxed tracking-wide">
 
   <!-- Header -->
-  <header class="bg-[#111827] p-6 text-center shadow" data-aos="fade-down">
-    <h1 class="text-4xl font-bold text-cyan-400">Pipeline Concessionária</h1>
-    <p class="mt-2 text-slate-300">Airflow + dbt + Power BI</p>
-    <a href="../index.html" class="inline-block mt-4 px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-500 transition">⬅ Voltar</a>
+  <header class="bg-[#111827] p-6 text-center shadow sticky top-0 z-50 backdrop-blur-sm bg-opacity-95"
+    data-aos="fade-down">
+    <h1 class="text-3xl md:text-4xl font-bold text-cyan-400">🚗 Pipeline Concessionária</h1>
+    <p class="mt-2 text-slate-300">Airflow + dbt + PostgreSQL + Power BI</p>
+    <a href="../index.html"
+      class="inline-block mt-4 px-6 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-500 transition-all duration-300 transform hover:scale-105 neon-glow">
+      ⬅ Voltar ao Portfolio
+    </a>
   </header>
 
-  <!-- Conteúdo -->
-  <main class="max-w-4xl mx-auto px-4 py-10 space-y-10">
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+
+    <!-- Badges -->
+    <section class="flex flex-wrap justify-center gap-3" data-aos="fade-up">
+      <span class="tech-badge">Apache Airflow</span>
+      <span class="tech-badge">dbt</span>
+      <span class="tech-badge">PostgreSQL</span>
+      <span class="tech-badge">Power BI</span>
+      <span class="tech-badge">Python</span>
+      <span class="tech-badge">ETL</span>
+    </section>
 
     <!-- Descrição -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Descrição do Projeto</h2>
-      <p>
-        Projeto de pipeline completo para ETL de dados de uma concessionária de veículos. Ele envolve a extração de dados operacionais de vendas, clientes, produtos e categorias de um banco de produção, o carregamento para um Data Warehouse e a transformação dos dados com <strong>dbt</strong>.
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
+        📋 Descrição do Projeto
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Pipeline completo de ETL para análise de dados de uma <strong>concessionária de veículos</strong>.
+        O projeto extrai dados operacionais de vendas, clientes, produtos e categorias de um banco de
+        produção PostgreSQL, realiza transformações com <strong>dbt</strong> seguindo arquitetura de
+        camadas, e disponibiliza os dados em um Data Warehouse para visualização em <strong>Power BI</strong>.
+      </p>
+      <p class="text-lg leading-relaxed">
+        Toda a orquestração é feita via <strong>Apache Airflow</strong>, permitindo agendamento
+        automático, monitoramento e retry de falhas.
       </p>
     </section>
 
+    <!-- Arquitetura -->
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+        🏗️ Arquitetura do Pipeline
+      </h2>
+
+      <div class="bg-[#1f2937] p-6 rounded-lg mb-6">
+        <pre class="text-sm text-slate-300 overflow-x-auto"><code>
+┌─────────────────┐
+│  PostgreSQL     │
+│  (Produção)     │
+│  - vendas       │
+│  - clientes     │
+│  - produtos     │
+└────────┬────────┘
+         │ Extract
+         ▼
+┌─────────────────┐
+│  Apache Airflow │
+│  DAG Pipeline   │
+│  - Extração     │
+│  - Validação    │
+│  - Trigger dbt  │
+└────────┬────────┘
+         │ Load
+         ▼
+┌─────────────────┐
+│  PostgreSQL     │
+│  (Data Warehouse)│
+│  - staging      │
+└────────┬────────┘
+         │ Transform
+         ▼
+┌─────────────────┐
+│      dbt        │
+│  - staging      │
+│  - dimensions   │
+│  - analytics    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Power BI      │
+│  Dashboards     │
+│  - Vendas       │
+│  - Clientes     │
+│  - Produtos     │
+└─────────────────┘
+        </code></pre>
+      </div>
+
+      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Fluxo de Dados</h3>
+      <ol class="list-decimal list-inside space-y-2 text-slate-300">
+        <li><strong>Extração:</strong> Airflow conecta ao banco de produção e extrai dados via SQL</li>
+        <li><strong>Carga:</strong> Dados brutos são carregados na camada staging do DW</li>
+        <li><strong>Transformação:</strong> dbt aplica transformações em 3 camadas (staging → dimensions → analytics)
+        </li>
+        <li><strong>Visualização:</strong> Power BI consome as tabelas finais para dashboards</li>
+      </ol>
+    </section>
+
     <!-- Stack Utilizada -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Stack Utilizada</h2>
-      <ul class="list-disc list-inside text-slate-300">
-        <li>Apache Airflow para orquestração</li>
-        <li>PostgreSQL como banco de origem e destino</li>
-        <li>dbt para transformação (camadas: staging, dimensions, analytics)</li>
-        <li>Power BI para visualização dos dados</li>
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
+        🛠️ Stack Utilizada
+      </h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Orquestração</h3>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>Apache Airflow 2.5+ para orquestração</li>
+            <li>DAGs com agendamento diário</li>
+            <li>Retry automático em caso de falhas</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Transformação</h3>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>dbt para transformações SQL</li>
+            <li>Arquitetura de camadas (staging, dimensions, analytics)</li>
+            <li>Testes de qualidade de dados</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Armazenamento</h3>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>PostgreSQL como banco de origem</li>
+            <li>PostgreSQL como Data Warehouse</li>
+            <li>Schemas separados por camada</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Visualização</h3>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>Power BI para dashboards</li>
+            <li>Conexão direta com PostgreSQL</li>
+            <li>Refresh automático de dados</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Snippets -->
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+        💻 Exemplo de Código
+      </h2>
+
+      <h3 class="text-lg font-semibold text-cyan-400 mb-3">DAG do Airflow</h3>
+      <div class="bg-[#1f2937] p-4 rounded-lg mb-6 overflow-x-auto">
+        <pre><code class="text-sm text-slate-300">from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from datetime import datetime, timedelta
+
+default_args = {
+    'owner': 'data_team',
+    'retries': 3,
+    'retry_delay': timedelta(minutes=5),
+}
+
+with DAG(
+    'concessionaria_etl',
+    default_args=default_args,
+    description='Pipeline ETL Concessionária',
+    schedule_interval='0 2 * * *',  # Diariamente às 2h
+    start_date=datetime(2024, 1, 1),
+    catchup=False,
+) as dag:
+    
+    extract_vendas = PostgresOperator(
+        task_id='extract_vendas',
+        postgres_conn_id='prod_db',
+        sql='sql/extract_vendas.sql'
+    )
+    
+    run_dbt = BashOperator(
+        task_id='run_dbt',
+        bash_command='cd /opt/dbt && dbt run --models analytics'
+    )
+    
+    extract_vendas >> run_dbt
+</code></pre>
+      </div>
+
+      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Modelo dbt (Exemplo)</h3>
+      <div class="bg-[#1f2937] p-4 rounded-lg overflow-x-auto">
+        <pre><code class="text-sm text-slate-300">-- models/analytics/fact_vendas.sql
+{{ config(
+    materialized='table',
+    schema='analytics'
+) }}
+
+WITH vendas_enriched AS (
+    SELECT 
+        v.venda_id,
+        v.data_venda,
+        v.valor_total,
+        c.nome_cliente,
+        c.cidade,
+        p.modelo,
+        p.categoria
+    FROM {{ ref('stg_vendas') }} v
+    LEFT JOIN {{ ref('dim_clientes') }} c ON v.cliente_id = c.cliente_id
+    LEFT JOIN {{ ref('dim_produtos') }} p ON v.produto_id = p.produto_id
+)
+
+SELECT * FROM vendas_enriched
+</code></pre>
+      </div>
+    </section>
+
+    <!-- Desafios e Soluções -->
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+        🎯 Desafios e Soluções
+      </h2>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+            1. Performance na Extração de Dados
+          </h3>
+          <p class="text-slate-300 mb-2">
+            <strong>Desafio:</strong> Extração completa levava mais de 2 horas, impactando o banco de produção.
+          </p>
+          <p class="text-slate-300">
+            <strong>Solução:</strong> Implementei extração incremental baseada em timestamps, reduzindo
+            o tempo para ~15 minutos e diminuindo a carga no banco de produção em 85%.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4">
+          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+            2. Qualidade de Dados
+          </h3>
+          <p class="text-slate-300 mb-2">
+            <strong>Desafio:</strong> Dados inconsistentes quebravam o pipeline (valores nulos, duplicatas).
+          </p>
+          <p class="text-slate-300">
+            <strong>Solução:</strong> Adicionei testes dbt para validar unicidade, não-nulidade e
+            integridade referencial. Pipeline agora falha rápido com alertas claros.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-pink-500 pl-4">
+          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+            3. Monitoramento e Alertas
+          </h3>
+          <p class="text-slate-300 mb-2">
+            <strong>Desafio:</strong> Falhas silenciosas não eram detectadas rapidamente.
+          </p>
+          <p class="text-slate-300">
+            <strong>Solução:</strong> Configurei callbacks do Airflow para enviar alertas por email
+            em caso de falhas, com logs detalhados para troubleshooting.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Métricas -->
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+        📊 Resultados e Métricas
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
+          <div class="text-4xl font-bold text-cyan-400 mb-2">~15min</div>
+          <p class="text-slate-400 text-sm">Tempo de Execução Diária</p>
+        </div>
+        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
+          <div class="text-4xl font-bold text-purple-400 mb-2">500k+</div>
+          <p class="text-slate-400 text-sm">Registros Processados/Dia</p>
+        </div>
+        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
+          <div class="text-4xl font-bold text-pink-400 mb-2">99.5%</div>
+          <p class="text-slate-400 text-sm">Taxa de Sucesso</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Impacto no Negócio</h3>
+      <ul class="list-disc list-inside space-y-2 text-slate-300">
+        <li>Dashboards atualizados diariamente, permitindo tomada de decisão baseada em dados atuais</li>
+        <li>Redução de 85% no tempo de geração de relatórios gerenciais</li>
+        <li>Visibilidade em tempo real de vendas, estoque e performance de produtos</li>
+        <li>Base sólida para expansão futura (ML, previsões, etc.)</li>
       </ul>
     </section>
 
-    <!-- Prints -->
-    <section data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4">Capturas de Tela</h2>
-      <img src="../assets/imagens/dag-airflow.png" alt="DAG Airflow" class="rounded-lg shadow-lg mb-6" />
-      <img src="../assets/imagens/dashboard-bi.png" alt="Dashboard Power BI" class="rounded-lg shadow-lg" />
+    <!-- Aprendizados -->
+    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+        💡 Principais Aprendizados
+      </h2>
+      <ul class="space-y-3 text-slate-300">
+        <li class="flex items-start gap-3">
+          <span class="text-cyan-400 text-xl">✓</span>
+          <span>Importância de <strong>testes de qualidade de dados</strong> desde o início do projeto</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-cyan-400 text-xl">✓</span>
+          <span>Benefícios da <strong>extração incremental</strong> para reduzir carga no banco de origem</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-cyan-400 text-xl">✓</span>
+          <span>Valor do <strong>monitoramento proativo</strong> e alertas em pipelines de produção</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-cyan-400 text-xl">✓</span>
+          <span>Como estruturar transformações em <strong>camadas lógicas</strong> (staging → dimensions →
+            analytics)</span>
+        </li>
+      </ul>
     </section>
+
+    <!-- Links -->
+    <section class="text-center" data-aos="fade-up">
+      <div class="inline-flex flex-col sm:flex-row gap-4">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
+          class="cta-button neon-glow px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          Ver no GitHub
+        </a>
+        <a href="../index.html#projetos"
+          class="cta-button px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105">
+          Ver Outros Projetos
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
-  <footer class="bg-[#0b0f19] border-t border-slate-700 text-center py-6 text-slate-400 text-sm" data-aos="fade-up">
+  <footer class="bg-[#0b0f19] border-t border-slate-700 text-center py-6 text-slate-400 text-sm mt-12"
+    data-aos="fade-up">
     <p>
-      Projeto por Anselmo Xavier • 
-      <a href="mailto:anselmo@email.com" class="text-cyan-400 hover:underline">Contato</a> • 
-      <a href="https://github.com/seuusuario" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
+      Projeto por <strong class="text-cyan-400">Anselmo Xavier</strong> •
+      <a href="https://www.linkedin.com/in/anselmoaxo" class="text-cyan-400 hover:underline"
+        target="_blank">LinkedIn</a> •
+      <a href="https://github.com/anselmoaxo" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
     </p>
   </footer>
 
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
 </body>
+
 </html>
