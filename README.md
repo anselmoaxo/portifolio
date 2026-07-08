@@ -58,8 +58,10 @@ portifolio/
 ├── index.html              # Página principal
 ├── style.css               # Estilos customizados
 ├── script.js               # Interatividade e animações
+├── CONTRIBUTING.md       # Guia de contribuição
 ├── assets/
-│   └── curriculo.docx      # Currículo para download
+│   ├── curriculo.pdf       # Currículo em PDF (oferecido)
+│   └── curriculo.docx      # Currículo em Word
 ├── projetos/
 │   ├── projeto1.html       # Pipeline Concessionária
 │   ├── projeto2.html       # API Previsão do Tempo
@@ -173,9 +175,11 @@ http-server -p 8000
    - Estatísticas (anos de experiência, projetos, etc.)
    
 ### Adicionar Novo Projeto
-1. Crie `projetos/projeto4.html` baseado nos existentes
-2. Adicione card do projeto em `index.html` na seção `#projetos`
-3. Inclua badges de tecnologias e link
+1. Consulte o guia de contribuição em [`CONTRIBUTING.md`](CONTRIBUTING.md)
+2. Crie `projetos/projeto4.html` baseado nos existentes
+3. Adicione card do projeto em `index.html` na seção `#projetos`
+4. Inclua badges de tecnologias e link
+5. Para melhorias técnicas, abra uma Pull Request seguindo o guia
 
 ### Mudar Cores
 1. Edite `style.css` nas variáveis CSS (`:root`)

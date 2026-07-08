@@ -239,6 +239,47 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 200);
     });
   });
+
+  // Enhanced Button Interactions
+  const ctaButtons = document.querySelectorAll('.cta-button, .btn-primary, .btn-secondary');
+  ctaButtons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      // Subtle scale effect
+      this.style.transform = 'translateY(-2px)';
+    });
+
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+
+    // Click ripple effect
+    button.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement('span');
+      ripple.style.position = 'absolute';
+      ripple.style.width = '4px';
+      ripple.style.height = '4px';
+      ripple.style.borderRadius = '50%';
+      ripple.style.background = 'rgba(255, 255, 255, 0.4)';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.style.pointerEvents = 'none';
+      this.appendChild(ripple);
+
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Skill chip interaction
+  const skillChips = document.querySelectorAll('.skill-chip');
+  skillChips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      this.classList.toggle('skill-chip-active');
+    });
+  });
   
   
   // Performance: Reduce animations on low-end devices
