@@ -5,464 +5,601 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Portfólio de Anselmo Xavier - Engenheiro de Dados especializado em Apache Airflow, dbt, PySpark, PostgreSQL e Big Data. Confira meus projetos de pipelines ETL e Data Lakes.">
+    content="Anselmo Xavier — Engenheiro de Dados, Analista ERP e Analytics Engineer. 15+ anos de experiência em SQL, pipelines ETL/ELT com Airflow, dbt, PySpark, IA e automação.">
   <meta name="keywords"
-    content="Engenharia de Dados, Data Engineering, Apache Airflow, dbt, PySpark, PostgreSQL, Big Data, ETL, Data Lake">
+    content="Engenheiro de Dados, Data Engineering, Apache Airflow, dbt, PySpark, PostgreSQL, Analytics Engineer, n8n, LangChain, ETL, ERP">
   <meta name="author" content="Anselmo Xavier de Oliveira">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anselmo Xavier - Engenheiro de Dados">
+  <meta property="og:title" content="Anselmo Xavier | Engenheiro de Dados">
   <meta property="og:description"
-    content="Portfólio profissional de Engenharia de Dados com projetos em Apache Airflow, dbt, PySpark e Big Data.">
+    content="15+ anos transformando dados em insights. Pipelines ETL, ERP, Airflow, dbt e IA aplicada.">
   <meta property="og:url" content="https://anselmoaxo.github.io/portifolio">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Anselmo Xavier - Engenheiro de Dados">
-  <meta name="twitter:description" content="Portfólio profissional de Engenharia de Dados">
+  <meta name="twitter:title" content="Anselmo Xavier | Engenheiro de Dados">
+  <meta name="twitter:description" content="Portfólio profissional de Engenharia de Dados e Analytics">
 
-  <title>Anselmo Xavier | Engenheiro de Dados - Portfolio Profissional</title>
+  <title>Anselmo Xavier | Engenheiro de Dados · Analytics Engineer</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation CDN -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .hero-title, .section-title, .logo-text { font-family: 'Space Grotesk', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 
-<body class="bg-[#0b0f19] text-slate-200 font-sans leading-relaxed tracking-wide">
+<body class="bg-grid leading-relaxed">
   <div class="min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="bg-[#111827] p-6 shadow sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
-      <div class="max-w-6xl mx-auto flex items-center justify-between">
-        <h1 class="text-2xl md:text-3xl font-bold text-cyan-400 text-center md:text-left">
-          Anselmo Xavier
-        </h1>
+    <header class="site-header">
+      <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+        <a href="#" class="logo-mark">
+          <div class="logo-avatar">AX</div>
+          <span class="logo-text hidden sm:block">Anselmo Xavier</span>
+        </a>
 
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden">
-          <button id="menu-btn" class="flex flex-col justify-center items-center w-10 h-10 group">
-            <span
-              class="block w-6 h-0.5 bg-cyan-400 mb-1 transition-transform duration-300 ease-in-out group-[.open]:rotate-45 group-[.open]:translate-y-1.5"></span>
-            <span
-              class="block w-6 h-0.5 bg-cyan-400 mb-1 transition-opacity duration-300 ease-in-out group-[.open]:opacity-0"></span>
-            <span
-              class="block w-6 h-0.5 bg-cyan-400 transition-transform duration-300 ease-in-out group-[.open]:-rotate-45 group-[.open]:-translate-y-1.5"></span>
-          </button>
-        </div>
+        <button id="menu-btn" class="menu-btn md:hidden flex flex-col justify-center w-10 h-10" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
 
-        <!-- Desktop Menu -->
-        <nav id="menu"
-          class="hidden md:flex flex-row gap-6 mt-4 md:mt-0 text-slate-300 text-sm font-medium tracking-wide">
-          <a href="#sobre" class="relative group">
-            <span class="group-hover:text-cyan-400 transition-colors">SOBRE MIM</span>
-            <span
-              class="absolute left-0 -bottom-1 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#experiencia" class="relative group">
-            <span class="group-hover:text-cyan-400 transition-colors">EXPERIÊNCIA</span>
-            <span
-              class="absolute left-0 -bottom-1 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#stacks" class="relative group">
-            <span class="group-hover:text-cyan-400 transition-colors">TECNOLOGIAS</span>
-            <span
-              class="absolute left-0 -bottom-1 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#projetos" class="relative group">
-            <span class="group-hover:text-cyan-400 transition-colors">PROJETOS</span>
-            <span
-              class="absolute left-0 -bottom-1 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <nav id="menu" class="hidden md:flex items-center gap-6">
+          <a href="#sobre" class="nav-link">Sobre</a>
+          <a href="#experiencia" class="nav-link">Experiência</a>
+          <a href="#stacks" class="nav-link">Stack</a>
+          <a href="#projetos" class="nav-link">Projetos</a>
+          <a href="#formacao" class="nav-link">Formação</a>
+          <a href="#contato" class="nav-cta">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Contato
           </a>
         </nav>
       </div>
 
-      <!-- Mobile Menu -->
-      <nav id="mobile-menu"
-        class="md:hidden hidden flex-col gap-4 mt-4 text-center text-slate-300 text-sm font-medium tracking-wide transition-all duration-300 ease-in-out">
-        <a href="#sobre" class="hover:text-cyan-400 transition-colors">SOBRE MIM</a>
-        <a href="#experiencia" class="hover:text-cyan-400 transition-colors">EXPERIÊNCIA</a>
-        <a href="#stacks" class="hover:text-cyan-400 transition-colors">TECNOLOGIAS</a>
-        <a href="#projetos" class="hover:text-cyan-400 transition-colors">PROJETOS</a>
+      <nav id="mobile-menu" class="mobile-nav md:hidden hidden flex-col gap-1 px-4 py-4">
+        <a href="#sobre" class="nav-link py-3 px-2">Sobre</a>
+        <a href="#experiencia" class="nav-link py-3 px-2">Experiência</a>
+        <a href="#stacks" class="nav-link py-3 px-2">Stack</a>
+        <a href="#projetos" class="nav-link py-3 px-2">Projetos</a>
+        <a href="#formacao" class="nav-link py-3 px-2">Formação</a>
+        <a href="#contato" class="nav-cta mt-2 justify-center">Contato</a>
       </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient py-20 md:py-32 relative overflow-hidden">
-      <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+    <!-- Hero -->
+    <section class="hero-section">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
 
-        <!-- Profile Image -->
-        <div class="profile-img-container mb-8" data-aos="fade-down">
-          <div class="profile-img-border"></div>
-          <img src="https://ui-avatars.com/api/?name=Anselmo+Xavier&size=200&background=06b6d4&color=fff&bold=true"
-            alt="Anselmo Xavier" class="profile-img">
-        </div>
+      <div class="max-w-6xl mx-auto px-4 relative z-10">
+        <div class="hero-grid">
 
-        <!-- Main Title -->
-        <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl mb-6" data-aos="fade-up">
-          Engenheiro de Dados
-        </h1>
+          <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-right">
+              <span class="hero-badge-dot"></span>
+              Disponível para oportunidades · Guarulhos, SP
+            </div>
 
-        <!-- Typing Effect Subtitle -->
-        <p class="text-xl md:text-2xl text-slate-300 mb-4 typing-effect" data-aos="fade-up" data-aos-delay="200">
-          Transformando Dados em Insights Valiosos
-        </p>
+            <h1 class="hero-title" data-aos="fade-right" data-aos-delay="100">
+              <span class="gradient-text">Anselmo Xavier</span>
+            </h1>
 
-        <p class="text-md md:text-lg text-slate-400 max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="400">
-          Especializado em Apache Airflow, dbt, PySpark e construção de pipelines ETL escaláveis
-        </p>
+            <p class="hero-roles" data-aos="fade-right" data-aos-delay="150">
+              <span id="role-rotator" class="role-rotator mono">Engenheiro de Dados</span>
+            </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up"
-          data-aos-delay="600">
-          <a href="#projetos"
-            class="cta-button neon-glow px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
-            Ver Projetos
-          </a>
-          <a href="assets/curriculo.docx" download
-            class="cta-button px-8 py-4 bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
-            Download CV
-          </a>
+            <p class="hero-description text-left sm:text-left" data-aos="fade-right" data-aos-delay="200">
+              15+ anos unindo <strong class="text-[var(--text-primary)]">ERP, SQL avançado e regras de negócio</strong>
+              a pipelines modernos de dados. Especialista em ETL/ELT com Airflow e dbt — expandindo para
+              <strong class="text-[var(--accent-secondary)]">IA, automação e agentes autônomos</strong>.
+            </p>
+
+            <div class="hero-contact-strip" data-aos="fade-right" data-aos-delay="250">
+              <a href="mailto:anselmo.cstecnologia@gmail.com" class="hero-contact-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                anselmo.cstecnologia@gmail.com
+              </a>
+              <a href="tel:+5511915796142" class="hero-contact-item">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                (11) 91579-6142
+              </a>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 mt-8" data-aos="fade-right" data-aos-delay="300">
+              <a href="#projetos" class="btn-primary cta-button">
+                Ver Projetos
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="assets/curriculo.docx" download class="btn-secondary cta-button">
+                Baixar Currículo
+              </a>
+            </div>
+          </div>
+
+          <!-- Pipeline visual -->
+          <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+            <div class="pipeline-card">
+              <div class="pipeline-header mono">
+                <span class="pipeline-dot pipeline-dot-red"></span>
+                <span class="pipeline-dot pipeline-dot-yellow"></span>
+                <span class="pipeline-dot pipeline-dot-green"></span>
+                <span class="pipeline-filename">pipeline_etl.py</span>
+              </div>
+              <div class="pipeline-body mono">
+                <div class="pipeline-line"><span class="code-kw">from</span> airflow <span class="code-kw">import</span> DAG</div>
+                <div class="pipeline-line"><span class="code-kw">import</span> dbt, pyspark</div>
+                <div class="pipeline-line">&nbsp;</div>
+                <div class="pipeline-line"><span class="code-fn">extract</span>(<span class="code-str">"postgresql"</span>)</div>
+                <div class="pipeline-line pipeline-line-active"><span class="code-fn">transform</span>(<span class="code-str">"bronze → gold"</span>)<span class="code-cursor">|</span></div>
+                <div class="pipeline-line"><span class="code-fn">load</span>(<span class="code-str">"data_warehouse"</span>)</div>
+                <div class="pipeline-line">&nbsp;</div>
+                <div class="pipeline-line"><span class="code-comment"># n8n · LangChain · LLMs</span></div>
+              </div>
+              <div class="pipeline-flow">
+                <div class="flow-node flow-node-1">
+                  <span class="flow-icon">📥</span>
+                  <span>Ingestão</span>
+                </div>
+                <div class="flow-arrow"><div class="flow-particle"></div></div>
+                <div class="flow-node flow-node-2">
+                  <span class="flow-icon">⚙️</span>
+                  <span>Transform</span>
+                </div>
+                <div class="flow-arrow"><div class="flow-particle flow-particle-delay"></div></div>
+                <div class="flow-node flow-node-3">
+                  <span class="flow-icon">📊</span>
+                  <span>Insights</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <!-- Decorative Elements -->
-      <div class="absolute top-10 left-10 w-20 h-20 bg-cyan-500 rounded-full opacity-10 blur-3xl"></div>
-      <div class="absolute bottom-10 right-10 w-32 h-32 bg-purple-500 rounded-full opacity-10 blur-3xl"></div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 bg-[#111827]">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-
-          <div class="glass-card p-8 rounded-xl reveal" data-aos="fade-up">
-            <div class="stat-number mb-2" data-target="14">0</div>
-            <p class="text-slate-400 text-sm uppercase tracking-wider">Anos de Experiência</p>
-          </div>
-
-          <div class="glass-card p-8 rounded-xl reveal" data-aos="fade-up" data-aos-delay="100">
-            <div class="stat-number mb-2" data-target="3">0</div>
-            <p class="text-slate-400 text-sm uppercase tracking-wider">Projetos de Dados</p>
-          </div>
-
-          <div class="glass-card p-8 rounded-xl reveal" data-aos="fade-up" data-aos-delay="200">
-            <div class="stat-number mb-2" data-target="15">0</div>
-            <p class="text-slate-400 text-sm uppercase tracking-wider">Tecnologias Dominadas</p>
-          </div>
-
+    <!-- Tech Marquee -->
+    <section class="tech-marquee-section" aria-hidden="true">
+      <div class="tech-marquee">
+        <div class="tech-marquee-track">
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/apacheairflow/017CEE" alt=""> Airflow</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/dbt/F36F2F" alt=""> dbt</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/python/3776AB" alt=""> Python</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql/336791" alt=""> PostgreSQL</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/apachespark/E25A1C" alt=""> PySpark</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/snowflake/29B5E8" alt=""> Snowflake</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt=""> AWS</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt=""> Docker</span>
+          <span class="marquee-item mono">n8n</span>
+          <span class="marquee-item mono">LangChain</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/googlebigquery/4285F4" alt=""> BigQuery</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/databricks/E36209" alt=""> Databricks</span>
+          <!-- duplicate for seamless loop -->
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/apacheairflow/017CEE" alt=""> Airflow</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/dbt/F36F2F" alt=""> dbt</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/python/3776AB" alt=""> Python</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql/336791" alt=""> PostgreSQL</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/apachespark/E25A1C" alt=""> PySpark</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/snowflake/29B5E8" alt=""> Snowflake</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt=""> AWS</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker/2496ED" alt=""> Docker</span>
+          <span class="marquee-item mono">n8n</span>
+          <span class="marquee-item mono">LangChain</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/googlebigquery/4285F4" alt=""> BigQuery</span>
+          <span class="marquee-item"><img src="https://cdn.simpleicons.org/databricks/E36209" alt=""> Databricks</span>
         </div>
       </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 py-10 flex-grow">
+    <!-- Stats -->
+    <section class="stats-section py-4">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
+          <div class="stat-card reveal" data-aos="fade-up">
+            <div class="stat-number" data-target="15">0</div>
+            <p class="stat-label">Anos de XP</p>
+          </div>
+          <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="80">
+            <div class="stat-number" data-target="3">0</div>
+            <p class="stat-label">Projetos</p>
+          </div>
+          <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="160">
+            <div class="stat-number" data-target="180">0</div>
+            <p class="stat-label">Horas de Cursos</p>
+          </div>
+          <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="240">
+            <div class="stat-number" data-target="20">0</div>
+            <p class="stat-label">Tecnologias</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Sobre Section -->
-      <section id="sobre" class="mb-16 scroll-mt-20 reveal" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold text-cyan-300 mt-10 mb-6 flex items-center gap-3">
-          <span>👋</span> Sobre Mim
-        </h2>
+    <main class="max-w-5xl mx-auto px-4 py-16 flex-grow">
 
-        <div class="glass-card p-6 rounded-xl space-y-4">
-          <p class="text-slate-200 leading-relaxed">
-            Sou Anselmo Xavier, profissional em transição de carreira com forte interesse em Engenharia de Dados. Após
-            anos trabalhando como Analista Desenvolvedor de ERP, decidi focar em soluções baseadas em dados, motivado
-            pelo
-            impacto que análises bem estruturadas podem gerar.
+      <!-- Sobre -->
+      <section id="sobre" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
+        <span class="section-label">Resumo Profissional</span>
+        <h2 class="section-title">Sobre Mim</h2>
+        <div class="section-divider"></div>
+
+        <div class="glass-card p-8 space-y-5 glow-border">
+          <p class="text-[var(--text-secondary)] leading-relaxed text-lg">
+            Profissional com <strong class="text-[var(--text-primary)]">mais de 15 anos</strong> em desenvolvimento de
+            sistemas, modelagem de bancos relacionais e regras de negócio complexas (ERP). Sólida bagagem em
+            <strong class="text-[var(--accent-secondary)]">SQL avançado</strong> e infraestrutura on-premise, unindo
+            experiência como Analista ERP ao domínio de pipelines de dados modernos.
           </p>
-          <p class="text-slate-200 leading-relaxed">
-            Tenho estudado e colocado em prática ferramentas como Apache Airflow, dbt, PostgreSQL, PySpark e Databricks.
-            Por meio de projetos próprios, venho aprendendo sobre ingestão, transformação de dados e construção de
-            dashboards que geram valor.
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            Especialista em sustentação de sistemas e construção de pipelines ETL/ELT otimizados com
+            <strong class="text-[var(--text-primary)]">Python, Apache Airflow e dbt</strong>. Atualmente aprofundando
+            estudos em IA e Automação — <strong class="text-[var(--accent-tertiary)]">n8n, LangChain</strong> e
+            orquestração de agentes autônomos para transformar dados brutos em eficiência operacional e insights estratégicos.
           </p>
-          <p class="text-slate-200 leading-relaxed">
-            Meu objetivo é seguir aprendendo e contribuindo com times de dados, construindo pipelines organizados,
-            eficientes e sustentáveis. Valorizo boas práticas, documentação e clareza nos processos.
-          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="skill-chip skill-chip-highlight">SQL Avançado</span>
+            <span class="skill-chip">ERP &amp; NF-e</span>
+            <span class="skill-chip">ETL/ELT</span>
+            <span class="skill-chip">Medallion Architecture</span>
+            <span class="skill-chip skill-chip-ai">IA &amp; Agentes</span>
+          </div>
         </div>
       </section>
 
-      <!-- Experiência Section -->
-      <section id="experiencia" class="mb-16 scroll-mt-20 reveal" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-          <span>💼</span> Experiência
-        </h2>
+      <!-- Experiência -->
+      <section id="experiencia" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
+        <span class="section-label">Trajetória</span>
+        <h2 class="section-title">Experiência Profissional</h2>
+        <div class="section-divider"></div>
 
-        <div class="timeline-item glass-card p-6 rounded-xl">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-            <h3 class="text-xl font-bold text-cyan-400">Analista de Desenvolvimento</h3>
-            <span class="text-sm text-slate-400">2010 - Atual</span>
+        <div class="timeline-item glass-card p-8 glow-border">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+            <div>
+              <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-2">Analista de Desenvolvimento / Especialista ERP</h3>
+              <span class="experience-company">CSTecnologia</span>
+            </div>
+            <span class="experience-date">2010 — Atual</span>
           </div>
-          <p class="text-slate-300 font-semibold mb-3">CSTecnologia</p>
-          <ul class="list-disc list-inside space-y-2 text-slate-300">
-            <li>Modelagem e implantação de bancos de dados relacionais</li>
-            <li>Desenvolvimento de sistemas ERP utilizando low-code e SQL</li>
-            <li>Implantação de sistemas on-premise (Linux e Windows)</li>
-            <li>Instalação e configuração de Apache Tomcat, PostgreSQL e pgAdmin</li>
-            <li>Criação de relatórios com dados extraídos do banco PostgreSQL</li>
-            <li>Treinamento de usuários e Suporte técnico</li>
+          <ul class="space-y-3 text-[var(--text-secondary)]">
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent-secondary)] mt-1">▸</span>
+              Desenvolvimento e sustentação de sistemas ERP — faturamento (NF-e), controle de estoque e gestão financeira
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent-secondary)] mt-1">▸</span>
+              Modelagem, implantação e otimização de PostgreSQL — performance, indexação e tuning de consultas complexas
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent-secondary)] mt-1">▸</span>
+              Extração, tratamento e consolidação de dados para relatórios gerenciais e dashboards
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent-secondary)] mt-1">▸</span>
+              Administração de servidores on-premise (Linux/Windows) e Apache Tomcat
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent-secondary)] mt-1">▸</span>
+              Treinamento de usuários e suporte técnico diário
+            </li>
           </ul>
         </div>
       </section>
 
-      <!-- Stacks Section -->
-      <section id="stacks" class="mb-16 scroll-mt-20 reveal" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-          <span>🛠️</span> Tecnologias e Ferramentas
-        </h2>
+      <!-- Stack -->
+      <section id="stacks" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
+        <span class="section-label">Habilidades Técnicas</span>
+        <h2 class="section-title">Stack &amp; Ferramentas</h2>
+        <div class="section-divider"></div>
 
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bento-grid">
 
-          <!-- Linguagens -->
-          <div class="glass-card p-6 rounded-xl">
-            <h3 class="text-xl font-semibold mb-4 text-cyan-400">Linguagens</h3>
-            <div class="space-y-3">
+          <div class="bento-card bento-large glass-card p-6">
+            <h3 class="skill-category-title">
+              <img src="https://cdn.simpleicons.org/apacheairflow/017CEE" class="w-5 h-5" alt="">
+              Orquestração &amp; ETL
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/apacheairflow/017CEE" class="w-4 h-4" alt=""> Airflow</span>
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/dbt/F36F2F" class="w-4 h-4" alt=""> dbt</span>
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/apachespark/E25A1C" class="w-4 h-4" alt=""> PySpark</span>
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/databricks/E36209" class="w-4 h-4" alt=""> Databricks</span>
+              <span class="skill-chip">Airbyte</span>
+              <span class="skill-chip">Apache HOP</span>
+              <span class="skill-chip">Astro CLI</span>
+            </div>
+            <p class="text-xs text-[var(--text-muted)] mt-4">Camadas Bronze / Silver / Gold</p>
+          </div>
+
+          <div class="bento-card glass-card p-6">
+            <h3 class="skill-category-title">Linguagens</h3>
+            <div class="space-y-4">
               <div class="flex items-center gap-3">
-                <img src="https://cdn.simpleicons.org/python/3776AB" class="w-6 h-6 tech-icon">
-                <span class="flex-1">Python</span>
-                <div class="skill-bar w-32">
-                  <div class="skill-progress" data-width="85" style="width: 0%"></div>
-                </div>
+                <span class="text-sm flex-1">SQL <span class="text-[var(--accent-secondary)] text-xs">Avançado</span></span>
+                <div class="skill-bar"><div class="skill-progress" data-width="95" style="width:0%"></div></div>
               </div>
               <div class="flex items-center gap-3">
-                <img src="https://cdn.simpleicons.org/sqlite/003B57" class="w-6 h-6 tech-icon">
-                <span class="flex-1">SQL</span>
-                <div class="skill-bar w-32">
-                  <div class="skill-progress" data-width="90" style="width: 0%"></div>
-                </div>
+                <span class="text-sm flex-1">Python <span class="text-xs text-[var(--text-muted)]">Intermediário</span></span>
+                <div class="skill-bar"><div class="skill-progress" data-width="75" style="width:0%"></div></div>
               </div>
             </div>
           </div>
 
-          <!-- Bancos de Dados -->
-          <div class="glass-card p-6 rounded-xl">
-            <h3 class="text-xl font-semibold mb-4 text-cyan-400">Bancos de Dados</h3>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <img src="https://cdn.simpleicons.org/postgresql/336791" class="w-6 h-6 tech-icon">
-                <span class="flex-1">PostgreSQL</span>
-                <div class="skill-bar w-32">
-                  <div class="skill-progress" data-width="85" style="width: 0%"></div>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <img src="https://cdn.simpleicons.org/mongodb/47A248" class="w-6 h-6 tech-icon">
-                <span class="flex-1">MongoDB</span>
-                <div class="skill-bar w-32">
-                  <div class="skill-progress" data-width="70" style="width: 0%"></div>
-                </div>
-              </div>
+          <div class="bento-card glass-card p-6 bento-ai">
+            <h3 class="skill-category-title">
+              <span class="ai-spark">✦</span> IA &amp; Automação
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip skill-chip-ai">n8n</span>
+              <span class="skill-chip skill-chip-ai">LangChain</span>
+              <span class="skill-chip skill-chip-ai">LLMs via API</span>
+              <span class="skill-chip skill-chip-ai">Agentes Autônomos</span>
+            </div>
+            <p class="text-xs text-[var(--accent-tertiary)] mt-3">Em estudo e desenvolvimento</p>
+          </div>
+
+          <div class="bento-card glass-card p-6">
+            <h3 class="skill-category-title">
+              <img src="https://cdn.simpleicons.org/postgresql/336791" class="w-5 h-5" alt="">
+              Bancos de Dados
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">PostgreSQL</span>
+              <span class="skill-chip">Snowflake</span>
+              <span class="skill-chip">BigQuery</span>
+              <span class="skill-chip">MongoDB</span>
+              <span class="skill-chip">DuckDB</span>
             </div>
           </div>
 
-          <!-- Big Data / Pipelines -->
-          <div class="glass-card p-6 rounded-xl md:col-span-2">
-            <h3 class="text-xl font-semibold mb-4 text-cyan-400">Big Data / Pipelines</h3>
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/apacheairflow/017CEE" class="w-5 h-5 tech-icon">
-                <span>Apache Airflow</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/apachespark/E25A1C" class="w-5 h-5 tech-icon">
-                <span>Apache Spark</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/databricks/E36209" class="w-5 h-5 tech-icon">
-                <span>Databricks</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/dbt/F36F2F" class="w-5 h-5 tech-icon">
-                <span>dbt</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/duckdb/FFA500" class="w-5 h-5 tech-icon">
-                <span>DuckDB</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <img src="https://cdn.simpleicons.org/googlebigquery/4285F4" class="w-5 h-5 tech-icon">
-                <span>BigQuery</span>
-              </div>
+          <div class="bento-card glass-card p-6">
+            <h3 class="skill-category-title">Cloud &amp; Infra</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">AWS (EC2, S3, RDS, Glue)</span>
+              <span class="skill-chip">GCP</span>
+              <span class="skill-chip">Azure</span>
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/docker/2496ED" class="w-4 h-4" alt=""> Docker</span>
+              <span class="skill-chip">Linux · WSL</span>
             </div>
           </div>
 
-          <!-- Cloud -->
-          <div class="glass-card p-6 rounded-xl">
-            <h3 class="text-xl font-semibold mb-4 text-cyan-400">Cloud</h3>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <img src="https://img.icons8.com/color/48/000000/amazon-web-services.png" class="w-6 h-6 tech-icon"
-                  alt="AWS">
-                <span>AWS (intermediário)</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <img src="https://img.icons8.com/color/48/000000/azure-1.png" class="w-6 h-6 tech-icon" alt="Azure">
-                <span>Azure (básico)</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <img src="https://img.icons8.com/color/48/000000/google-cloud.png" class="w-6 h-6 tech-icon" alt="GCP">
-                <span>GCP (básico)</span>
-              </div>
+          <div class="bento-card glass-card p-6">
+            <h3 class="skill-category-title">ERP &amp; Negócios</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">Sistemas ERP</span>
+              <span class="skill-chip">NF-e</span>
+              <span class="skill-chip">Estoque</span>
+              <span class="skill-chip">Financeiro</span>
             </div>
           </div>
 
-          <!-- Visualização -->
-          <div class="glass-card p-6 rounded-xl">
-            <h3 class="text-xl font-semibold mb-4 text-cyan-400">Visualização de Dados</h3>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"
-                  class="w-6 h-6 tech-icon" alt="Power BI">
-                <span>Power BI</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <img src="https://cdn.simpleicons.org/google/4285F4" class="w-6 h-6 tech-icon" alt="Looker Studio">
-                <span>Looker Studio</span>
-              </div>
+          <div class="bento-card glass-card p-6">
+            <h3 class="skill-category-title">Visualização</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">Power BI</span>
+              <span class="skill-chip">Looker Studio</span>
+              <span class="skill-chip"><img src="https://cdn.simpleicons.org/git/FFFFFF" class="w-4 h-4" alt=""> Git/GitHub</span>
             </div>
           </div>
 
         </div>
       </section>
 
+      <!-- Projetos -->
+      <section id="projetos" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
+        <span class="section-label">Portfólio</span>
+        <h2 class="section-title">Projetos em Destaque</h2>
+        <div class="section-divider"></div>
 
-      <!-- Projetos Section -->
-      <section id="projetos" class="mb-16 scroll-mt-20 reveal" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold text-cyan-300 mb-8 flex items-center gap-3">
-          <span>🚀</span> Projetos em Destaque
-        </h2>
+        <div class="grid md:grid-cols-3 gap-5">
 
-        <div class="grid md:grid-cols-2 gap-6">
-
-          <!-- Projeto 1 -->
-          <div class="project-card glass-card p-6 rounded-xl">
-            <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold text-cyan-400">🚗 Pipeline Concessionária</h3>
+          <article class="project-card glass-card p-6 glow-border">
+            <div class="project-card-accent project-accent-indigo"></div>
+            <div class="project-card-header">
+              <div>
+                <h3>Pipeline Concessionária</h3>
+                <p class="text-xs text-[var(--text-muted)] mt-1">ETL · dbt · Data Warehouse</p>
+              </div>
+              <div class="project-icon">🚗</div>
             </div>
-            <p class="text-slate-300 mb-4">
-              ETL completo com Airflow e dbt para análise de vendas, com visualização em Power BI.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <p>Automação para extrair vendas do PostgreSQL, transformar com dbt e visualizar no Looker Studio.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
               <span class="tech-badge">Airflow</span>
               <span class="tech-badge">dbt</span>
               <span class="tech-badge">PostgreSQL</span>
-              <span class="tech-badge">Power BI</span>
+              <span class="tech-badge">Looker</span>
             </div>
-            <a href="projetos/projeto1.html"
-              class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105">
-              Ver detalhes →
-            </a>
-          </div>
+            <a href="projetos/projeto1.html" class="btn-link">Ver detalhes →</a>
+          </article>
 
-          <!-- Projeto 2 -->
-          <div class="project-card glass-card p-6 rounded-xl">
-            <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold text-cyan-400">📊 Previsão do Tempo</h3>
+          <article class="project-card glass-card p-6 glow-border">
+            <div class="project-card-accent project-accent-teal"></div>
+            <div class="project-card-header">
+              <div>
+                <h3>Data Lake Meteorologia</h3>
+                <p class="text-xs text-[var(--text-muted)] mt-1">API · Airflow · Data Lake</p>
+              </div>
+              <div class="project-icon">🌦️</div>
             </div>
-            <p class="text-slate-300 mb-4">
-              Automatização com Airflow para extrair dados de previsão do tempo e gerar relatórios semanais.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
+            <p>Coleta de previsões de 7 dias via API, ingestão em Data Lake local e orquestração semanal com Airflow.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
               <span class="tech-badge">Airflow</span>
               <span class="tech-badge">Python</span>
               <span class="tech-badge">API</span>
               <span class="tech-badge">Data Lake</span>
             </div>
-            <a href="projetos/projeto2.html"
-              class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105">
-              Ver detalhes →
+            <a href="projetos/projeto2.html" class="btn-link">Ver detalhes →</a>
+          </article>
+
+          <article class="project-card glass-card p-6 glow-border">
+            <div class="project-card-accent project-accent-purple"></div>
+            <div class="project-card-header">
+              <div>
+                <h3>Dados de Ações</h3>
+                <p class="text-xs text-[var(--text-muted)] mt-1">yfinance · dbt · PostgreSQL</p>
+              </div>
+              <div class="project-icon">📈</div>
+            </div>
+            <p>Pipeline Python consumindo dados históricos via API (yfinance), com transformações automatizadas via dbt.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">dbt</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">yfinance</span>
+            </div>
+            <a href="projetos/projeto3.html" class="btn-link">Ver detalhes →</a>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Formação & Certificações -->
+      <section id="formacao" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
+        <span class="section-label">Qualificação</span>
+        <h2 class="section-title">Formação &amp; Certificações</h2>
+        <div class="section-divider"></div>
+
+        <div class="grid md:grid-cols-2 gap-5 mb-5">
+          <div class="glass-card p-6 glow-border">
+            <div class="cert-icon">🎓</div>
+            <h3 class="font-semibold text-[var(--text-primary)] mb-1">Bacharelado em Ciência da Computação</h3>
+            <p class="text-[var(--accent-tertiary)] text-sm mb-2">Universidade de Guarulhos</p>
+            <span class="experience-date">2007 — 2010</span>
+          </div>
+          <div class="glass-card p-6 glow-border bento-ai">
+            <div class="cert-icon">✦</div>
+            <h3 class="font-semibold text-[var(--text-primary)] mb-1">Engenharia de Agentes de IA</h3>
+            <p class="text-[var(--accent-tertiary)] text-sm mb-2">LLMs e Sistemas Autônomos</p>
+            <span class="cert-badge-inprogress">Em andamento</span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="cert-card glass-card p-5 flex items-center justify-between gap-4">
+            <div>
+              <h4 class="font-medium text-[var(--text-primary)]">Engenharia de Analytics</h4>
+              <p class="text-sm text-[var(--text-muted)]">Alura</p>
+            </div>
+            <span class="cert-hours mono">37h</span>
+          </div>
+          <div class="cert-card glass-card p-5 flex items-center justify-between gap-4">
+            <div>
+              <h4 class="font-medium text-[var(--text-primary)]">AWS Data Lake: Pipelines na AWS</h4>
+              <p class="text-sm text-[var(--text-muted)]">EC2, S3, RDS, Glue, LakeFormation — Alura</p>
+            </div>
+            <span class="cert-hours mono">86h</span>
+          </div>
+          <div class="cert-card glass-card p-5 flex items-center justify-between gap-4">
+            <div>
+              <h4 class="font-medium text-[var(--text-primary)]">Começando na AWS</h4>
+              <p class="text-sm text-[var(--text-muted)]">Lightsail, EC2, S3, VPC, RDS — Alura</p>
+            </div>
+            <span class="cert-hours mono">47h</span>
+          </div>
+          <div class="cert-card glass-card p-5 flex items-center justify-between gap-4">
+            <div>
+              <h4 class="font-medium text-[var(--text-primary)]">Apache Airflow: Transformação com Spark</h4>
+              <p class="text-sm text-[var(--text-muted)]">Alura</p>
+            </div>
+            <span class="cert-hours mono">10h</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section id="contato" class="scroll-mt-24 reveal" data-aos="fade-up">
+        <div class="contact-card glow-border-strong">
+          <span class="section-label">Vamos conversar?</span>
+          <h2 class="section-title mb-3">Entre em Contato</h2>
+          <p class="text-[var(--text-secondary)] max-w-lg mx-auto mb-6">
+            Aberto a oportunidades em <strong class="text-[var(--text-primary)]">Engenharia de Dados</strong>,
+            Analytics Engineering e projetos que unam dados, automação e IA.
+          </p>
+
+          <div class="contact-info-grid mb-8">
+            <a href="mailto:anselmo.cstecnologia@gmail.com" class="contact-info-item">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              anselmo.cstecnologia@gmail.com
             </a>
+            <a href="tel:+5511915796142" class="contact-info-item">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              (11) 91579-6142
+            </a>
+            <span class="contact-info-item">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Guarulhos, SP
+            </span>
           </div>
 
-          <!-- Projeto 3 -->
-          <div class="project-card glass-card p-6 rounded-xl md:col-span-2">
-            <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold text-cyan-400">🧊 Data Lake com Spark</h3>
-            </div>
-            <p class="text-slate-300 mb-4">
-              Pipeline em PySpark com arquitetura medallion (Bronze, Silver, Gold) e particionamento otimizado.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="tech-badge">PySpark</span>
-              <span class="tech-badge">Data Lake</span>
-              <span class="tech-badge">Parquet</span>
-              <span class="tech-badge">Medallion</span>
-            </div>
-            <a href="projetos/projeto3.html"
-              class="inline-block px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105">
-              Ver detalhes →
+          <div class="flex flex-wrap justify-center gap-3">
+            <a href="https://www.linkedin.com/in/anselmoaxo" target="_blank" rel="noopener noreferrer"
+              class="social-btn social-btn-linkedin">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
+              class="social-btn social-btn-github">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="assets/anselmo_xavier_curriculo.pdf" download class="social-btn social-btn-github">
+              Baixar Currículo
             </a>
           </div>
-
         </div>
       </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-wave bg-[#111827] py-8 mt-10 text-center">
-      <div class="max-w-4xl mx-auto px-4">
-        <p class="text-slate-400 mb-6 text-lg">Vamos conversar? 👇</p>
-
-        <div class="flex flex-wrap justify-center gap-4 mb-6">
-          <a href="https://www.linkedin.com/in/anselmoaxo" target="_blank" rel="noopener noreferrer"
-            class="cta-button neon-glow bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-            LinkedIn
-          </a>
-
-          <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
-            class="cta-button bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            GitHub
-          </a>
-        </div>
-
-        <p class="text-slate-500 text-sm">
-          © 2026 Anselmo Xavier de Oliveira. Feito com 💙 e muitos dados.
-        </p>
-      </div>
+    <footer class="footer-wave py-6 text-center">
+      <p class="text-[var(--text-muted)] text-sm">
+        © 2026 Anselmo Xavier de Oliveira · Engenheiro de Dados · Analytics Engineer
+      </p>
     </footer>
 
   </div>
 
-  <!-- Scripts -->
   <script>
-    // Initialize AOS
     document.addEventListener("DOMContentLoaded", () => {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out',
-        once: true,
-        offset: 100
-      });
+      AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
     });
   </script>
   <script src="script.js"></script>

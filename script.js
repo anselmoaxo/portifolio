@@ -22,7 +22,27 @@ document.addEventListener('DOMContentLoaded', function() {
     type();
   }
   
-  // Initialize typing effect if element exists
+  // Role rotator for hero
+  const roleRotator = document.getElementById('role-rotator');
+  if (roleRotator) {
+    const roles = [
+      'Engenheiro de Dados',
+      'Analista de ERP',
+      'Analytics Engineer'
+    ];
+    let roleIndex = 0;
+
+    setInterval(() => {
+      roleRotator.style.opacity = '0';
+      setTimeout(() => {
+        roleIndex = (roleIndex + 1) % roles.length;
+        roleRotator.textContent = roles[roleIndex];
+        roleRotator.style.opacity = '1';
+      }, 300);
+    }, 3500);
+  }
+
+  // Typing effect (legacy support)
   const typingElement = document.querySelector('.typing-effect');
   if (typingElement) {
     const originalText = typingElement.textContent;
@@ -116,41 +136,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   
-  // Add active state to navigation on scroll
+  // Active nav + header scroll state
+  const siteHeader = document.querySelector('.site-header');
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
-  
-  function highlightNavigation() {
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+  function onScroll() {
     const scrollY = window.pageYOffset;
-    
+
+    if (siteHeader) {
+      siteHeader.classList.toggle('scrolled', scrollY > 20);
+    }
+
     sections.forEach(section => {
       const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 100;
+      const sectionTop = section.offsetTop - 120;
       const sectionId = section.getAttribute('id');
-      
+
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         navLinks.forEach(link => {
-          link.classList.remove('text-cyan-400');
+          link.classList.remove('active');
           if (link.getAttribute('href') === '#' + sectionId) {
-            link.classList.add('text-cyan-400');
+            link.classList.add('active');
           }
         });
       }
     });
   }
-  
-  window.addEventListener('scroll', highlightNavigation);
-  
-  
-  // Parallax Effect on Hero
-  const heroSection = document.querySelector('.hero-gradient');
-  if (heroSection) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const parallax = scrolled * 0.5;
-      heroSection.style.transform = `translateY(${parallax}px)`;
-    });
-  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
   
   
   // Add hover sound effect (optional, commented out by default)
