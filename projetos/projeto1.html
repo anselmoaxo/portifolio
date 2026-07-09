@@ -5,384 +5,368 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Pipeline ETL Concessionária - Projeto de Engenharia de Dados com Airflow, dbt e Looker Studio">
-  <title>Projeto: Pipeline Concessionária | Anselmo Xavier</title>
+    content="Pipeline ETL Concessionária — Projeto de Engenharia de Dados com Airflow, dbt e Looker Studio">
+  <meta property="og:title" content="Pipeline Concessionária | Anselmo Xavier">
+  <meta property="og:description"
+    content="Pipeline completo de ETL com Airflow + dbt + PostgreSQL. Extração incremental, 3 camadas de transformação e dashboards no Looker Studio.">
+  <title>Pipeline Concessionária | Anselmo Xavier</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation CDN -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", () => AOS.init());</script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="../style.css">
 
-  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <style>
     body { font-family: 'Inter', sans-serif; }
     h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-    code, pre { font-family: 'Fira Code', monospace; }
+    code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 
 <body class="bg-grid leading-relaxed">
 
-  <header class="project-page-header sticky top-0 z-50 backdrop-blur-sm" data-aos="fade-down">
-    <h1>Pipeline Concessionária</h1>
-    <p class="mt-2 text-[var(--text-secondary)]">Airflow + dbt + PostgreSQL + Looker Studio</p>
-    <a href="../index.html" class="btn-secondary inline-flex mt-5">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-      </svg>
-      Voltar ao Portfólio
-    </a>
+  <header class="site-header" data-aos="fade-down">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <a href="../index.html" class="logo-mark">
+        <div class="logo-avatar">AX</div>
+        <span class="logo-text hidden sm:block">Anselmo Xavier</span>
+      </a>
+      <a href="../index.html" class="btn-secondary" style="font-size:0.8125rem;padding:0.5rem 1rem;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar
+      </a>
+    </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+  <div class="project-page-header">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+      <h1>Pipeline Concessionária</h1>
+      <p class="mt-2 text-[var(--text-secondary)]">Airflow + dbt + PostgreSQL + Looker Studio</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="tech-badge">Apache Airflow</span>
+        <span class="tech-badge">dbt</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">Looker Studio</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">ETL</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Ver no GitHub
+        </a>
+      </div>
+    </div>
+  </div>
 
-    <!-- Badges -->
-    <section class="flex flex-wrap justify-center gap-3" data-aos="fade-up">
-      <span class="tech-badge">Apache Airflow</span>
-      <span class="tech-badge">dbt</span>
-      <span class="tech-badge">PostgreSQL</span>
-      <span class="tech-badge">Looker Studio</span>
-      <span class="tech-badge">Python</span>
-      <span class="tech-badge">ETL</span>
-    </section>
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-10">
 
-    <!-- Descrição -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
-        📋 Descrição do Projeto
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Descrição do Projeto
       </h2>
-      <p class="text-lg leading-relaxed mb-4">
-        Pipeline completo de ETL para análise de dados de uma <strong>concessionária de veículos</strong>.
+      <div class="section-divider"></div>
+      <p class="text-[var(--text-secondary)] leading-relaxed mb-3">
+        Pipeline completo de ETL para análise de dados de uma <strong class="text-[var(--text-primary)]">concessionária de veículos</strong>.
         O projeto extrai dados operacionais de vendas, clientes, produtos e categorias de um banco de
-        produção PostgreSQL, realiza transformações com <strong>dbt</strong> seguindo arquitetura de
-        camadas, e disponibiliza os dados em um Data Warehouse para visualização em <strong>Looker Studio</strong>.
+        produção PostgreSQL, realiza transformações com <strong class="text-[var(--accent-secondary)]">dbt</strong> seguindo arquitetura de
+        camadas, e disponibiliza os dados em um Data Warehouse para visualização em <strong class="text-[var(--accent-secondary)]">Looker Studio</strong>.
       </p>
-      <p class="text-lg leading-relaxed">
-        Toda a orquestração é feita via <strong>Apache Airflow</strong>, permitindo agendamento
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        Toda a orquestração é feita via <strong class="text-[var(--accent-primary)]">Apache Airflow</strong>, permitindo agendamento
         automático, monitoramento e retry de falhas.
       </p>
     </section>
 
-    <!-- Arquitetura -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🏗️ Arquitetura do Pipeline
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        Arquitetura do Pipeline
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="bg-[#1f2937] p-6 rounded-lg mb-6">
-        <pre class="text-sm text-slate-300 overflow-x-auto"><code>
-┌─────────────────┐
+      <div class="code-panel mono text-xs mb-5 overflow-x-auto">
+<pre>┌─────────────────┐
 │  PostgreSQL     │
 │  (Produção)     │
-│  - vendas       │
-│  - clientes     │
-│  - produtos     │
+│  · vendas       │
+│  · clientes     │
+│  · produtos     │
 └────────┬────────┘
          │ Extract
          ▼
 ┌─────────────────┐
-│  Apache Airflow │
+│ Apache Airflow  │
 │  DAG Pipeline   │
-│  - Extração     │
-│  - Validação    │
-│  - Trigger dbt  │
+│  · Extração     │
+│  · Validação    │
+│  · Trigger dbt  │
 └────────┬────────┘
          │ Load
          ▼
 ┌─────────────────┐
 │  PostgreSQL     │
-│  (Data Warehouse)│
-│  - staging      │
+│ (Data Warehouse)│
+│  · staging      │
 └────────┬────────┘
          │ Transform
          ▼
 ┌─────────────────┐
 │      dbt        │
-│  - staging      │
-│  - dimensions   │
-│  - analytics    │
+│  · staging      │
+│  · dimensions   │
+│  · analytics    │
 └────────┬────────┘
          │
          ▼
 ┌─────────────────┐
-│   Looker Studio      │
+│  Looker Studio  │
 │  Dashboards     │
-│  - Vendas       │
-│  - Clientes     │
-│  - Produtos     │
-└─────────────────┘
-        </code></pre>
+│  · Vendas       │
+│  · Clientes     │
+│  · Produtos     │
+└─────────────────┘</pre>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Fluxo de Dados</h3>
-      <ol class="list-decimal list-inside space-y-2 text-slate-300">
-        <li><strong>Extração:</strong> Airflow conecta ao banco de produção e extrai dados via SQL</li>
-        <li><strong>Carga:</strong> Dados brutos são carregados na camada staging do DW</li>
-        <li><strong>Transformação:</strong> dbt aplica transformações em 3 camadas (staging → dimensions → analytics)
-        </li>
-        <li><strong>Visualização:</strong> Looker Studio consome as tabelas finais para dashboards</li>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Fluxo de Dados</h3>
+      <ol class="list-decimal list-inside space-y-2 text-[var(--text-secondary)]">
+        <li><strong class="text-[var(--text-primary)]">Extração:</strong> Airflow conecta ao banco de produção e extrai dados via SQL</li>
+        <li><strong class="text-[var(--text-primary)]">Carga:</strong> Dados brutos são carregados na camada staging do DW</li>
+        <li><strong class="text-[var(--text-primary)]">Transformação:</strong> dbt aplica transformações em 3 camadas (staging → dimensions → analytics)</li>
+        <li><strong class="text-[var(--text-primary)]">Visualização:</strong> Looker Studio consome as tabelas finais para dashboards</li>
       </ol>
     </section>
 
-    <!-- Stack Utilizada -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
-        🛠️ Stack Utilizada
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Stack Utilizada
       </h2>
+      <div class="section-divider"></div>
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Orquestração</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>Apache Airflow 2.5+ para orquestração</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Orquestração</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>Apache Airflow 2.5+</li>
             <li>DAGs com agendamento diário</li>
-            <li>Retry automático em caso de falhas</li>
+            <li>Retry automático em falhas</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Transformação</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Transformação</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>dbt para transformações SQL</li>
-            <li>Arquitetura de camadas (staging, dimensions, analytics)</li>
+            <li>Camadas: staging, dimensions, analytics</li>
             <li>Testes de qualidade de dados</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Armazenamento</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>PostgreSQL como banco de origem</li>
-            <li>PostgreSQL como Data Warehouse</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Armazenamento</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>PostgreSQL (origem e DW)</li>
             <li>Schemas separados por camada</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-2">Visualização</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>Looker Studio para dashboards</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Visualização</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>Looker Studio</li>
             <li>Conexão direta com PostgreSQL</li>
-            <li>Refresh automático de dados</li>
+            <li>Refresh automático</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Code Snippets -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💻 Exemplo de Código
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        Exemplo de Código
       </h2>
+      <div class="section-divider"></div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">DAG do Airflow</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg mb-6 overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.providers.postgres.operators.postgres import PostgresOperator
-from datetime import datetime, timedelta
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">DAG do Airflow</h3>
+      <div class="code-panel mono text-xs overflow-x-auto mb-5">
+<pre><span class="code-kw">from</span> airflow <span class="code-kw">import</span> DAG
+<span class="code-kw">from</span> airflow.operators.python <span class="code-kw">import</span> PythonOperator
+<span class="code-kw">from</span> airflow.operators.bash <span class="code-kw">import</span> BashOperator
+<span class="code-kw">from</span> datetime <span class="code-kw">import</span> datetime, timedelta
 
 default_args = {
-    'owner': 'data_team',
-    'retries': 3,
-    'retry_delay': timedelta(minutes=5),
+    <span class="code-str">'owner'</span>: <span class="code-str">'data_team'</span>,
+    <span class="code-str">'retries'</span>: 3,
+    <span class="code-str">'retry_delay'</span>: timedelta(minutes=5),
 }
 
-with DAG(
-    'concessionaria_etl',
+<span class="code-kw">with</span> DAG(
+    <span class="code-str">'concessionaria_etl'</span>,
     default_args=default_args,
-    description='Pipeline ETL Concessionária',
-    schedule_interval='0 2 * * *',  # Diariamente às 2h
+    schedule_interval=<span class="code-str">'0 2 * * *'</span>,
     start_date=datetime(2024, 1, 1),
-    catchup=False,
-) as dag:
-    
-    extract_vendas = PostgresOperator(
-        task_id='extract_vendas',
-        postgres_conn_id='prod_db',
-        sql='sql/extract_vendas.sql'
+    catchup=<span class="code-kw">False</span>,
+) <span class="code-kw">as</span> dag:
+
+    extract = PostgresOperator(
+        task_id=<span class="code-str">'extract_vendas'</span>,
+        sql=<span class="code-str">'sql/extract_vendas.sql'</span>
     )
-    
+
     run_dbt = BashOperator(
-        task_id='run_dbt',
-        bash_command='cd /opt/dbt && dbt run --models analytics'
+        task_id=<span class="code-str">'run_dbt'</span>,
+        bash_command=<span class="code-str">'dbt run --models analytics'</span>
     )
-    
-    extract_vendas >> run_dbt
-</code></pre>
+
+    extract >> run_dbt</pre>
       </div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Modelo dbt (Exemplo)</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">-- models/analytics/fact_vendas.sql
-{{ config(
-    materialized='table',
-    schema='analytics'
-) }}
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Modelo dbt — fact_vendas.sql</h3>
+      <div class="code-panel mono text-xs overflow-x-auto">
+<pre><span class="code-comment">-- models/analytics/fact_vendas.sql</span>
+{{ config(materialized=<span class="code-str">'table'</span>, schema=<span class="code-str">'analytics'</span>) }}
 
-WITH vendas_enriched AS (
-    SELECT 
-        v.venda_id,
-        v.data_venda,
-        v.valor_total,
-        c.nome_cliente,
-        c.cidade,
-        p.modelo,
-        p.categoria
-    FROM {{ ref('stg_vendas') }} v
-    LEFT JOIN {{ ref('dim_clientes') }} c ON v.cliente_id = c.cliente_id
-    LEFT JOIN {{ ref('dim_produtos') }} p ON v.produto_id = p.produto_id
+<span class="code-kw">WITH</span> vendas_enriched <span class="code-kw">AS</span> (
+    <span class="code-kw">SELECT</span>
+        v.venda_id, v.data_venda, v.valor_total,
+        c.nome_cliente, c.cidade,
+        p.modelo, p.categoria
+    <span class="code-kw">FROM</span> {{ ref(<span class="code-str">'stg_vendas'</span>) }} v
+    <span class="code-kw">LEFT JOIN</span> {{ ref(<span class="code-str">'dim_clientes'</span>) }} c
+      <span class="code-kw">ON</span> v.cliente_id = c.cliente_id
+    <span class="code-kw">LEFT JOIN</span> {{ ref(<span class="code-str">'dim_produtos'</span>) }} p
+      <span class="code-kw">ON</span> v.produto_id = p.produto_id
 )
-
-SELECT * FROM vendas_enriched
-</code></pre>
+<span class="code-kw">SELECT</span> * <span class="code-kw">FROM</span> vendas_enriched</pre>
       </div>
     </section>
 
-    <!-- Desafios e Soluções -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🎯 Desafios e Soluções
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Desafios e Soluções
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="space-y-6">
-        <div class="border-l-4 border-cyan-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            1. Performance na Extração de Dados
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Extração completa levava mais de 2 horas, impactando o banco de produção.
+      <div class="space-y-5">
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Performance na Extração</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
+            <strong class="text-[var(--text-primary)]">Desafio:</strong> Extração completa levava mais de 2 horas, impactando o banco de produção.
           </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Implementei extração incremental baseada em timestamps, reduzindo
-            o tempo para ~15 minutos e diminuindo a carga no banco de produção em 85%.
+          <p class="text-[var(--text-secondary)] text-sm">
+            <strong class="text-[var(--text-primary)]">Solução:</strong> Extração incremental baseada em timestamps, reduzindo tempo para ~15 minutos e carga no banco em 85%.
           </p>
         </div>
 
-        <div class="border-l-4 border-purple-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            2. Qualidade de Dados
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Dados inconsistentes quebravam o pipeline (valores nulos, duplicatas).
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Qualidade de Dados</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
+            <strong class="text-[var(--text-primary)]">Desafio:</strong> Dados inconsistentes quebravam o pipeline (nulos, duplicatas).
           </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Adicionei testes dbt para validar unicidade, não-nulidade e
-            integridade referencial. Pipeline agora falha rápido com alertas claros.
+          <p class="text-[var(--text-secondary)] text-sm">
+            <strong class="text-[var(--text-primary)]">Solução:</strong> Testes dbt para validar unicidade, não-nulidade e integridade referencial. Pipeline falha rápido com alertas claros.
           </p>
         </div>
 
-        <div class="border-l-4 border-pink-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            3. Monitoramento e Alertas
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Falhas silenciosas não eram detectadas rapidamente.
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Monitoramento e Alertas</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
+            <strong class="text-[var(--text-primary)]">Desafio:</strong> Falhas silenciosas não eram detectadas rapidamente.
           </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Configurei callbacks do Airflow para enviar alertas por email
-            em caso de falhas, com logs detalhados para troubleshooting.
+          <p class="text-[var(--text-secondary)] text-sm">
+            <strong class="text-[var(--text-primary)]">Solução:</strong> Callbacks do Airflow para enviar alertas por email com logs detalhados.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Métricas -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        📊 Resultados e Métricas
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Resultados e Métricas
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-6">
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-cyan-400 mb-2">~15min</div>
-          <p class="text-slate-400 text-sm">Tempo de Execução Diária</p>
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="stat-panel">
+          <div class="stat-value">~15min</div>
+          <p class="text-[var(--text-muted)] text-sm">Tempo de Execução Diária</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-purple-400 mb-2">500k+</div>
-          <p class="text-slate-400 text-sm">Registros Processados/Dia</p>
+        <div class="stat-panel">
+          <div class="stat-value">500k+</div>
+          <p class="text-[var(--text-muted)] text-sm">Registros Processados/Dia</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-pink-400 mb-2">99.5%</div>
-          <p class="text-slate-400 text-sm">Taxa de Sucesso</p>
+        <div class="stat-panel">
+          <div class="stat-value">99.5%</div>
+          <p class="text-[var(--text-muted)] text-sm">Taxa de Sucesso</p>
         </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Impacto no Negócio</h3>
-      <ul class="list-disc list-inside space-y-2 text-slate-300">
-        <li>Dashboards atualizados diariamente, permitindo tomada de decisão baseada em dados atuais</li>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Impacto no Negócio</h3>
+      <ul class="list-disc list-inside space-y-1.5 text-[var(--text-secondary)] text-sm">
+        <li>Dashboards atualizados diariamente com dados atuais</li>
         <li>Redução de 85% no tempo de geração de relatórios gerenciais</li>
-        <li>Visibilidade em tempo real de vendas, estoque e performance de produtos</li>
-        <li>Base sólida para expansão futura (ML, previsões, etc.)</li>
+        <li>Visibilidade em tempo real de vendas, estoque e performance</li>
+        <li>Base sólida para expansão futura (ML, previsões)</li>
       </ul>
     </section>
 
-    <!-- Aprendizados -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💡 Principais Aprendizados
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        Aprendizados
       </h2>
-      <ul class="space-y-3 text-slate-300">
+      <div class="section-divider"></div>
+      <ul class="space-y-2 text-[var(--text-secondary)]">
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Importância de <strong>testes de qualidade de dados</strong> desde o início do projeto</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Importância de <strong class="text-[var(--text-primary)]">testes de qualidade</strong> desde o início do projeto</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Benefícios da <strong>extração incremental</strong> para reduzir carga no banco de origem</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Benefícios da <strong class="text-[var(--text-primary)]">extração incremental</strong> para reduzir carga</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Valor do <strong>monitoramento proativo</strong> e alertas em pipelines de produção</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Valor do <strong class="text-[var(--text-primary)]">monitoramento proativo</strong> em pipelines de produção</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Como estruturar transformações em <strong>camadas lógicas</strong> (staging → dimensions →
-            analytics)</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Estruturação de transformações em <strong class="text-[var(--text-primary)]">camadas lógicas</strong> (staging → dimensions → analytics)</span>
         </li>
       </ul>
     </section>
 
-    <!-- Links -->
-    <section class="text-center" data-aos="fade-up">
-      <div class="inline-flex flex-col sm:flex-row gap-4">
-        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
-          class="cta-button neon-glow px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
+    <div class="text-center" data-aos="fade-up">
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
-        <a href="../index.html#projetos"
-          class="btn-primary cta-button">
-          Ver Outros Projetos
-        </a>
+        <a href="../index.html#projetos" class="btn-primary cta-button">Ver Outros Projetos</a>
       </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="project-footer"
-    data-aos="fade-up">
-    <p>
-      Projeto por <strong class="text-cyan-400">Anselmo Xavier</strong> •
-      <a href="https://www.linkedin.com/in/anselmoaxo" class="text-cyan-400 hover:underline"
-        target="_blank">LinkedIn</a> •
-      <a href="https://github.com/anselmoaxo" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
+  <footer class="footer-wave py-6 text-center mt-10">
+    <p class="text-[var(--text-muted)] text-sm">
+      Projeto por <strong class="text-[var(--accent-primary)]">Anselmo Xavier</strong> ·
+      <a href="https://www.linkedin.com/in/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">LinkedIn</a> ·
+      <a href="https://github.com/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">GitHub</a>
     </p>
   </footer>
 
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
   </script>
 
 </body>

@@ -4,120 +4,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pipeline Meteorológico - Projeto de Engenharia de Dados com Airflow e Python">
-  <title>Projeto: Previsão do Tempo | Anselmo Xavier</title>
+  <meta name="description"
+    content="Pipeline de Previsão do Tempo — Coleta automatizada de dados meteorológicos com Airflow, Python e Data Lake">
+  <meta property="og:title" content="Previsão do Tempo | Anselmo Xavier">
+  <meta property="og:description"
+    content="Pipeline automatizado com Airflow + Python. Coleta previsões de 7 dias via API, armazena em Data Lake e orquestração semanal.">
+  <title>Previsão do Tempo | Anselmo Xavier</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation CDN -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", () => AOS.init());</script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="../style.css">
 
-  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <style>
     body { font-family: 'Inter', sans-serif; }
     h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-    code, pre { font-family: 'Fira Code', monospace; }
+    code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 
 <body class="bg-grid leading-relaxed">
 
-  <header class="project-page-header sticky top-0 z-50 backdrop-blur-sm" data-aos="fade-down">
-    <h1>API de Previsão do Tempo</h1>
-    <p class="mt-2 text-[var(--text-secondary)]">Airflow + Python + Data Lake + Automação</p>
-    <a href="../index.html" class="btn-secondary inline-flex mt-5">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-      </svg>
-      Voltar ao Portfólio
-    </a>
+  <header class="site-header" data-aos="fade-down">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <a href="../index.html" class="logo-mark">
+        <div class="logo-avatar">AX</div>
+        <span class="logo-text hidden sm:block">Anselmo Xavier</span>
+      </a>
+      <a href="../index.html" class="btn-secondary" style="font-size:0.8125rem;padding:0.5rem 1rem;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar
+      </a>
+    </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+  <div class="project-page-header">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+      <h1>Previsão do Tempo</h1>
+      <p class="mt-2 text-[var(--text-secondary)]">Airflow + Python + API REST + Data Lake</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="tech-badge">Apache Airflow</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">API REST</span>
+        <span class="tech-badge">Data Lake</span>
+        <span class="tech-badge">Pandas</span>
+        <span class="tech-badge">JSON</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Ver no GitHub
+        </a>
+      </div>
+    </div>
+  </div>
 
-    <!-- Badges -->
-    <section class="flex flex-wrap justify-center gap-3" data-aos="fade-up">
-      <span class="tech-badge">Apache Airflow</span>
-      <span class="tech-badge">Python</span>
-      <span class="tech-badge">API REST</span>
-      <span class="tech-badge">Data Lake</span>
-      <span class="tech-badge">Pandas</span>
-      <span class="tech-badge">JSON</span>
-    </section>
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-10">
 
-    <!-- Descrição -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
-        📋 Descrição do Projeto
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Descrição do Projeto
       </h2>
-      <p class="text-lg leading-relaxed mb-4">
-        Pipeline automatizado que coleta previsões meteorológicas de <strong>7 dias</strong> para
-        localidades específicas via API pública, armazena os dados em um <strong>Data Lake local</strong>,
+      <div class="section-divider"></div>
+      <p class="text-[var(--text-secondary)] leading-relaxed mb-3">
+        Pipeline automatizado que coleta previsões meteorológicas de <strong class="text-[var(--text-primary)]">7 dias</strong> para
+        localidades específicas via API pública, armazena os dados em um <strong class="text-[var(--accent-secondary)]">Data Lake local</strong>,
         e os organiza para análises futuras.
       </p>
-      <p class="text-lg leading-relaxed">
-        O processo é completamente orquestrado pelo <strong>Apache Airflow</strong>, executando
-        automaticamente toda <strong>segunda-feira às 8h</strong>, garantindo consistência e
+      <p class="text-[var(--text-secondary)] leading-relaxed">
+        O processo é completamente orquestrado pelo <strong class="text-[var(--accent-primary)]">Apache Airflow</strong>, executando
+        automaticamente toda <strong class="text-[var(--text-primary)]">segunda-feira às 8h</strong>, garantindo consistência e
         rastreabilidade dos dados climáticos ao longo do tempo.
       </p>
     </section>
 
-    <!-- Objetivos -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🎯 Objetivos
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+        Objetivos
       </h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="border-l-4 border-cyan-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">Automação</h3>
-          <p class="text-slate-300">
-            Eliminar processos manuais de coleta, garantindo dados atualizados semanalmente
-            sem intervenção humana.
-          </p>
+      <div class="section-divider"></div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Automação</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Eliminar processos manuais de coleta, garantindo dados atualizados semanalmente sem intervenção humana.</p>
         </div>
-        <div class="border-l-4 border-purple-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">Histórico</h3>
-          <p class="text-slate-300">
-            Construir uma base histórica de previsões para análises de acurácia e tendências
-            climáticas ao longo do tempo.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Histórico</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Construir uma base histórica de previsões para análises de acurácia e tendências climáticas.</p>
         </div>
-        <div class="border-l-4 border-pink-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">Escalabilidade</h3>
-          <p class="text-slate-300">
-            Arquitetura modular que permite fácil expansão para novas localidades, métricas
-            ou fontes de dados.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Escalabilidade</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Arquitetura modular que permite fácil expansão para novas localidades e fontes de dados.</p>
         </div>
-        <div class="border-l-4 border-yellow-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">Aprendizado</h3>
-          <p class="text-slate-300">
-            Praticar conceitos de ETL, orquestração, consumo de APIs e armazenamento em Data Lake.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-primary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Aprendizado</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Praticar conceitos de ETL, orquestração, consumo de APIs e armazenamento em Data Lake.</p>
         </div>
       </div>
     </section>
 
-    <!-- Arquitetura -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🏗️ Arquitetura do Pipeline
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        Arquitetura do Pipeline
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="bg-[#1f2937] p-6 rounded-lg mb-6">
-        <pre class="text-sm text-slate-300 overflow-x-auto"><code>
-┌──────────────────┐
+      <div class="code-panel mono text-xs mb-5 overflow-x-auto">
+<pre>┌──────────────────┐
 │   API Pública    │
 │  (Meteorologia)  │
 │  OpenWeather/    │
@@ -127,10 +131,10 @@
          ▼
 ┌──────────────────┐
 │ Apache Airflow   │
-│  - Scheduler     │
-│  - Extração      │
-│  - Validação     │
-│  - Transformação │
+│  · Scheduler     │
+│  · Extração      │
+│  · Validação     │
+│  · Transformação │
 └────────┬─────────┘
          │ Save JSON
          ▼
@@ -138,7 +142,7 @@
 │   Data Lake      │
 │    (Local)       │
 │ /data/weather/   │
-│  └── 2024-01-15/ │
+│  └── YYYY-MM-DD/ │
 │      └── data.json
 └────────┬─────────┘
          │ Read
@@ -147,311 +151,236 @@
 │  Pandas/Python   │
 │   Análises       │
 │  (Futuro: BI)    │
-└──────────────────┘
-        </code></pre>
+└──────────────────┘</pre>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Fluxo Passo a Passo</h3>
-      <ol class="list-decimal list-inside space-y-2 text-slate-300">
-        <li><strong>Agendamento:</strong> DAG executa toda segunda-feira às 8h UTC</li>
-        <li><strong>Extração:</strong> Requisição GET para API de previsão do tempo</li>
-        <li><strong>Validação:</strong> Verifica status 200 e estrutura JSON válida</li>
-        <li><strong>Transformação:</strong> Extrai campos relevantes e formata datas</li>
-        <li><strong>Armazenamento:</strong> Salva JSON particionado por data no Data Lake</li>
-        <li><strong>Logging:</strong> Registra status da execução para monitoramento</li>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Fluxo Passo a Passo</h3>
+      <ol class="list-decimal list-inside space-y-2 text-[var(--text-secondary)]">
+        <li><strong class="text-[var(--text-primary)]">Agendamento:</strong> DAG executa toda segunda-feira às 8h</li>
+        <li><strong class="text-[var(--text-primary)]">Extração:</strong> Requisição GET para API de previsão do tempo</li>
+        <li><strong class="text-[var(--text-primary)]">Validação:</strong> Verifica status 200 e estrutura JSON válida</li>
+        <li><strong class="text-[var(--text-primary)]">Transformação:</strong> Extrai campos relevantes e formata datas</li>
+        <li><strong class="text-[var(--text-primary)]">Armazenamento:</strong> Salva JSON particionado por data no Data Lake</li>
+        <li><strong class="text-[var(--text-primary)]">Logging:</strong> Registra status da execução para monitoramento</li>
       </ol>
     </section>
 
-    <!-- Stack Utilizada -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🛠️ Tecnologias Utilizadas
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Tecnologias Utilizadas
       </h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="section-divider"></div>
+      <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Orquestração</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>Apache Airflow 2.3.2+</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Orquestração</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>Apache Airflow 2.3+</li>
             <li>DAG com schedule semanal</li>
-            <li>PythonOperator para tasks customizadas</li>
+            <li>PythonOperator</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Linguagem</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Linguagem</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>Python 3.8+</li>
-            <li>Requests para chamadas HTTP</li>
-            <li>Pandas para manipulação de dados</li>
+            <li>Requests (HTTP)</li>
+            <li>Pandas</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Armazenamento</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Armazenamento</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>Data Lake local (file system)</li>
             <li>Formato JSON</li>
-            <li>Particionamento por data (YYYY-MM-DD)</li>
+            <li>Particionamento YYYY-MM-DD</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">API</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>OpenWeatherMap API ou similar</li>
-            <li>Endpoint de previsão de 7 dias</li>
-            <li>Formato de resposta em JSON</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">API</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>OpenWeatherMap API</li>
+            <li>Previsão de 7 dias</li>
+            <li>Resposta em JSON</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Code Snippets -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💻 Exemplo de Código
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        Exemplo de Código
       </h2>
+      <div class="section-divider"></div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">DAG do Airflow</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg mb-6 overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">from airflow import DAG
-from airflow.operators.python import PythonOperator
-from datetime import datetime, timedelta
-import requests
-import json
-import os
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">DAG do Airflow</h3>
+      <div class="code-panel mono text-xs overflow-x-auto mb-5">
+<pre><span class="code-kw">from</span> airflow <span class="code-kw">import</span> DAG
+<span class="code-kw">from</span> airflow.operators.python <span class="code-kw">import</span> PythonOperator
+<span class="code-kw">from</span> datetime <span class="code-kw">import</span> datetime, timedelta
+<span class="code-kw">import</span> requests, json, os
 
 default_args = {
-    'owner': 'data_team',
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
+    <span class="code-str">'owner'</span>: <span class="code-str">'data_team'</span>,
+    <span class="code-str">'retries'</span>: 2,
+    <span class="code-str">'retry_delay'</span>: timedelta(minutes=5),
 }
 
-def extract_weather_data(**context):
-    """Extrai previsão de 7 dias da API"""
-    API_KEY = os.getenv('WEATHER_API_KEY')
-    CITY = 'Sao Paulo'
-    BASE_URL = f'https://api.openweathermap.org/data/2.5/forecast'
-    
-    params = {
-        'q': CITY,
-        'appid': API_KEY,
-        'units': 'metric',
-        'cnt': 56  # 7 dias * 8 previsões/dia
-    }
-    
-    response = requests.get(BASE_URL, params=params)
+<span class="code-kw">def</span> <span class="code-fn">extract_weather_data</span>(**context):
+    API_KEY = os.getenv(<span class="code-str">'WEATHER_API_KEY'</span>)
+    CITY = <span class="code-str">'Sao Paulo'</span>
+    url = f<span class="code-str">'https://api.openweathermap.org/data/2.5/forecast'</span>
+    params = {<span class="code-str">'q'</span>: CITY, <span class="code-str">'appid'</span>: API_KEY, <span class="code-str">'units'</span>: <span class="code-str">'metric'</span>}
+    response = requests.get(url, params=params)
     response.raise_for_status()
-    
-    return response.json()
+    <span class="code-kw">return</span> response.json()
 
-def save_to_datalake(**context):
-    """Salva dados no Data Lake com particionamento por data"""
-    ti = context['ti']
-    data = ti.xcom_pull(task_ids='extract_weather')
-    
-    # Criar diretório com data atual
-    today = datetime.now().strftime('%Y-%m-%d')
-    data_dir = f'/opt/data_lake/weather/{today}'
-    os.makedirs(data_dir, exist_ok=True)
-    
-    # Salvar JSON
-    filepath = f'{data_dir}/forecast.json'
-    with open(filepath, 'w') as f:
+<span class="code-kw">def</span> <span class="code-fn">save_to_datalake</span>(**context):
+    data = context[<span class="code-str">'ti'</span>].xcom_pull(task_ids=<span class="code-str">'extract_weather'</span>)
+    today = datetime.now().strftime(<span class="code-str">'%Y-%m-%d'</span>)
+    path = f<span class="code-str">'/opt/data_lake/weather/{today}'</span>
+    os.makedirs(path, exist_ok=<span class="code-kw">True</span>)
+    <span class="code-kw">with</span> open(f<span class="code-str">'{path}/forecast.json'</span>, <span class="code-str">'w'</span>) <span class="code-kw">as</span> f:
         json.dump(data, f, indent=2)
-    
-    print(f'Dados salvos em: {filepath}')
 
-with DAG(
-    'weather_pipeline',
+<span class="code-kw">with</span> DAG(
+    <span class="code-str">'weather_pipeline'</span>,
     default_args=default_args,
-    description='Pipeline de dados meteorológicos',
-    schedule_interval='0 8 * * 1',  # Segunda-feira 8h
+    schedule_interval=<span class="code-str">'0 8 * * 1'</span>,
     start_date=datetime(2024, 1, 1),
-    catchup=False,
-) as dag:
-    
-    extract = PythonOperator(
-        task_id='extract_weather',
-        python_callable=extract_weather_data
-    )
-    
-    save = PythonOperator(
-        task_id='save_to_datalake',
-        python_callable=save_to_datalake
-    )
-    
-    extract >> save
-</code></pre>
+    catchup=<span class="code-kw">False</span>,
+) <span class="code-kw">as</span> dag:
+    extract = PythonOperator(task_id=<span class="code-str">'extract_weather'</span>, python_callable=extract_weather_data)
+    save = PythonOperator(task_id=<span class="code-str">'save_to_datalake'</span>, python_callable=save_to_datalake)
+    extract >> save</pre>
       </div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Exemplo de Resposta da API</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">{
-  "city": {
-    "name": "São Paulo",
-    "country": "BR"
-  },
-  "list": [
-    {
-      "dt": 1704096000,
-      "main": {
-        "temp": 25.3,
-        "feels_like": 26.1,
-        "humidity": 72
-      },
-      "weather": [
-        {
-          "main": "Clouds",
-          "description": "poucas nuvens"
-        }
-      ],
-      "wind": {
-        "speed": 3.5
-      },
-      "dt_txt": "2024-01-01 12:00:00"
-    }
-    // ... mais 55 registros
-  ]
-}
-</code></pre>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Exemplo de Resposta da API</h3>
+      <div class="code-panel mono text-xs overflow-x-auto">
+<pre>{
+  <span class="code-str">"city"</span>: { <span class="code-str">"name"</span>: <span class="code-str">"São Paulo"</span>, <span class="code-str">"country"</span>: <span class="code-str">"BR"</span> },
+  <span class="code-str">"list"</span>: [{
+    <span class="code-str">"dt"</span>: 1704096000,
+    <span class="code-str">"main"</span>: {
+      <span class="code-str">"temp"</span>: 25.3,
+      <span class="code-str">"feels_like"</span>: 26.1,
+      <span class="code-str">"humidity"</span>: 72
+    },
+    <span class="code-str">"weather"</span>: [{ <span class="code-str">"main"</span>: <span class="code-str">"Clouds"</span>, <span class="code-str">"description"</span>: <span class="code-str">"nuvens dispersas"</span> }],
+    <span class="code-str">"wind"</span>: { <span class="code-str">"speed"</span>: 3.5 },
+    <span class="code-str">"dt_txt"</span>: <span class="code-str">"2024-01-01 12:00:00"</span>
+  }]
+}</pre>
       </div>
     </section>
 
-    <!-- Desafios e Soluções -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🎯 Desafios e Soluções
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Desafios e Soluções
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="space-y-6">
-        <div class="border-l-4 border-cyan-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            1. Rate Limiting da API
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> API gratuita tem limite de chamadas/minuto.
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Implementei retry com backoff exponencial e cache local
-            para evitar chamadas redundantes no mesmo dia.
-          </p>
+      <div class="space-y-5">
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Rate Limiting da API</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> API gratuita tem limite de chamadas/minuto.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Retry com backoff exponencial e cache local para evitar chamadas redundantes no mesmo dia.</p>
         </div>
-
-        <div class="border-l-4 border-purple-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            2. Gerenciamento de Credenciais
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> API key não pode estar hardcoded no código.
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Usei Airflow Variables e environment variables para
-            gerenciar credenciais de forma segura.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Gerenciamento de Credenciais</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> API key não pode estar hardcoded no código.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Airflow Variables + environment variables para gerenciamento seguro.</p>
         </div>
-
-        <div class="border-l-4 border-pink-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            3. Organização do Data Lake
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Como organizar dados para fácil recuperação futura?
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Particionamento por data (YYYY-MM-DD) permite queries
-            eficientes e limpeza de dados antigos.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Organização do Data Lake</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Como organizar dados para fácil recuperação futura?</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Particionamento por data (YYYY-MM-DD) permite queries eficientes.</p>
         </div>
       </div>
     </section>
 
-    <!-- Métricas -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        📊 Resultados
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Resultados
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-6">
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-cyan-400 mb-2">~30s</div>
-          <p class="text-slate-400 text-sm">Tempo de Execução</p>
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="stat-panel">
+          <div class="stat-value">~30s</div>
+          <p class="text-[var(--text-muted)] text-sm">Tempo de Execução</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-purple-400 mb-2">56</div>
-          <p class="text-slate-400 text-sm">Previsões por Execução</p>
+        <div class="stat-panel">
+          <div class="stat-value">56</div>
+          <p class="text-[var(--text-muted)] text-sm">Previsões por Execução</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-pink-400 mb-2">100%</div>
-          <p class="text-slate-400 text-sm">Taxa de Sucesso</p>
+        <div class="stat-panel">
+          <div class="stat-value">100%</div>
+          <p class="text-[var(--text-muted)] text-sm">Taxa de Sucesso</p>
         </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Possíveis Expansões</h3>
-      <ul class="list-disc list-inside space-y-2 text-slate-300">
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Possíveis Expansões</h3>
+      <ul class="list-disc list-inside space-y-1.5 text-[var(--text-secondary)] text-sm">
         <li>Adicionar múltiplas cidades para comparação regional</li>
         <li>Integrar com PostgreSQL para queries SQL estruturadas</li>
-        <li>Criar dashboard de visualização com histórico de temperatura</li>
+        <li>Criar dashboard de visualização com histórico</li>
         <li>Implementar alertas para condições climáticas extremas</li>
         <li>Análise de acurácia: comparar previsões com dados reais</li>
       </ul>
     </section>
 
-    <!-- Aprendizados -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💡 Principais Aprendizados
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        Aprendizados
       </h2>
-      <ul class="space-y-3 text-slate-300">
+      <div class="section-divider"></div>
+      <ul class="space-y-2 text-[var(--text-secondary)]">
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Como <strong>consumir APIs REST</strong> de forma confiável com tratamento de erros</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Como <strong class="text-[var(--text-primary)]">consumir APIs REST</strong> de forma confiável com tratamento de erros</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Importância do <strong>particionamento de dados</strong> para organização e performance</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Importância do <strong class="text-[var(--text-primary)]">particionamento de dados</strong> para organização e performance</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Uso de <strong>Airflow XComs</strong> para passar dados entre tasks</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Uso de <strong class="text-[var(--text-primary)]">Airflow XComs</strong> para passar dados entre tasks</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Boas práticas de <strong>gerenciamento de credenciais</strong> em pipelines</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Boas práticas de <strong class="text-[var(--text-primary)]">gerenciamento de credenciais</strong> em pipelines</span>
         </li>
       </ul>
     </section>
 
-    <!-- Links -->
-    <section class="text-center" data-aos="fade-up">
-      <div class="inline-flex flex-col sm:flex-row gap-4">
-        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
-          class="cta-button neon-glow px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3. 006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
+    <div class="text-center" data-aos="fade-up">
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
-        <a href="../index.html#projetos"
-          class="btn-primary cta-button">
-          Ver Outros Projetos
-        </a>
+        <a href="../index.html#projetos" class="btn-primary cta-button">Ver Outros Projetos</a>
       </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="project-footer"
-    data-aos="fade-up">
-    <p>
-      Projeto por <strong class="text-cyan-400">Anselmo Xavier</strong> •
-      <a href="https://www.linkedin.com/in/anselmoaxo" class="text-cyan-400 hover:underline"
-        target="_blank">LinkedIn</a> •
-      <a href="https://github.com/anselmoaxo" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
+  <footer class="footer-wave py-6 text-center mt-10">
+    <p class="text-[var(--text-muted)] text-sm">
+      Projeto por <strong class="text-[var(--accent-primary)]">Anselmo Xavier</strong> ·
+      <a href="https://www.linkedin.com/in/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">LinkedIn</a> ·
+      <a href="https://github.com/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">GitHub</a>
     </p>
   </footer>
 
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
   </script>
 
 </body>

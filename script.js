@@ -3,54 +3,7 @@
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-  
-  // Typing Effect
-  function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, speed);
-      } else {
-        element.classList.remove('typing-text');
-      }
-    }
-    
-    type();
-  }
-  
-  // Role rotator for hero
-  const roleRotator = document.getElementById('role-rotator');
-  if (roleRotator) {
-    const roles = [
-      'Engenheiro de Dados',
-      'Analista de ERP',
-      'Analytics Engineer'
-    ];
-    let roleIndex = 0;
 
-    setInterval(() => {
-      roleRotator.style.opacity = '0';
-      setTimeout(() => {
-        roleIndex = (roleIndex + 1) % roles.length;
-        roleRotator.textContent = roles[roleIndex];
-        roleRotator.style.opacity = '1';
-      }, 300);
-    }, 3500);
-  }
-
-  // Typing effect (legacy support)
-  const typingElement = document.querySelector('.typing-effect');
-  if (typingElement) {
-    const originalText = typingElement.textContent;
-    typingElement.classList.add('typing-text');
-    setTimeout(() => typeWriter(typingElement, originalText, 80), 500);
-  }
-  
-  
   // Animated Counter
   function animateCounter(element, target, duration = 2000) {
     let start = 0;

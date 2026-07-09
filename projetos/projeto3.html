@@ -4,84 +4,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Integração de Dados de Ações - Pipeline Python com yfinance, dbt e PostgreSQL">
-  <title>Projeto: Dados de Ações | Anselmo Xavier</title>
+  <meta name="description"
+    content="Data Lake com PySpark — Arquitetura Medallion (Bronze/Silver/Gold) usando Apache Spark, Parquet e particionamento">
+  <meta property="og:title" content="Data Lake com PySpark | Anselmo Xavier">
+  <meta property="og:description"
+    content="Implementação de Data Lake com Apache Spark (PySpark) seguindo arquitetura Medallion. 3 camadas, particionamento inteligente e formato Parquet.">
+  <title>Data Lake com PySpark | Anselmo Xavier</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation CDN -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", () => AOS.init());</script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="../style.css">
 
-  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <style>
     body { font-family: 'Inter', sans-serif; }
     h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-    code, pre { font-family: 'Fira Code', monospace; }
+    code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 
 <body class="bg-grid leading-relaxed">
 
-  <header class="project-page-header sticky top-0 z-50 backdrop-blur-sm" data-aos="fade-down">
-    <h1>Integração de Dados de Ações</h1>
-    <p class="mt-2 text-[var(--text-secondary)]">Python · yfinance · dbt · PostgreSQL</p>
-    <a href="../index.html" class="btn-secondary inline-flex mt-5">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-      </svg>
-      Voltar ao Portfólio
-    </a>
+  <header class="site-header" data-aos="fade-down">
+    <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+      <a href="../index.html" class="logo-mark">
+        <div class="logo-avatar">AX</div>
+        <span class="logo-text hidden sm:block">Anselmo Xavier</span>
+      </a>
+      <a href="../index.html" class="btn-secondary" style="font-size:0.8125rem;padding:0.5rem 1rem;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Voltar
+      </a>
+    </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+  <div class="project-page-header">
+    <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+      <h1>Data Lake com PySpark</h1>
+      <p class="mt-2 text-[var(--text-secondary)]">Apache Spark · PySpark · Parquet · Medallion Architecture</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="tech-badge">Apache Spark</span>
+        <span class="tech-badge">PySpark</span>
+        <span class="tech-badge">Data Lake</span>
+        <span class="tech-badge">Parquet</span>
+        <span class="tech-badge">Medallion</span>
+        <span class="tech-badge">Python</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Ver no GitHub
+        </a>
+      </div>
+    </div>
+  </div>
 
-    <!-- Badges -->
-    <section class="flex flex-wrap justify-center gap-3" data-aos="fade-up">
-      <span class="tech-badge">Apache Spark</span>
-      <span class="tech-badge">PySpark</span>
-      <span class="tech-badge">Data Lake</span>
-      <span class="tech-badge">Parquet</span>
-      <span class="tech-badge">Medallion</span>
-      <span class="tech-badge">Python</span>
-    </section>
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-10">
 
-    <!-- Descrição -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-4 flex items-center gap-3">
-        📋 Descrição do Projeto
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Descrição do Projeto
       </h2>
-      <p class="text-lg leading-relaxed mb-4">
-        Implementação de um <strong>Data Lake</strong> utilizando <strong>Apache Spark (PySpark)</strong>
-        seguindo a arquitetura <strong>Medallion</strong> com três camadas distintas: Bronze (raw),
+      <div class="section-divider"></div>
+      <p class="text-[var(--text-secondary)] leading-relaxed mb-3">
+        Implementação de um <strong class="text-[var(--text-primary)]">Data Lake</strong> utilizando <strong class="text-[var(--accent-secondary)]">Apache Spark (PySpark)</strong>
+        seguindo a arquitetura <strong class="text-[var(--accent-tertiary)]">Medallion</strong> com três camadas distintas: Bronze (raw),
         Silver (curated) e Gold (analytics).
       </p>
-      <p class="text-lg leading-relaxed">
+      <p class="text-[var(--text-secondary)] leading-relaxed">
         O projeto demonstra o fluxo completo de ingestão, transformação progressiva e otimização de dados,
-        com particionamento inteligente e armazenamento em formato <strong>Parquet</strong> para alta
+        com particionamento inteligente e armazenamento em formato <strong class="text-[var(--accent-secondary)]">Parquet</strong> para alta
         performance em queries analíticas.
       </p>
     </section>
 
-    <!-- Arquitetura Medallion -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🏗️ Arquitetura Medallion
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        Arquitetura Medallion
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="bg-[#1f2937] p-6 rounded-lg mb-6">
-        <pre class="text-sm text-slate-300 overflow-x-auto"><code>
-┌─────────────────────────────────────────────────────┐
+      <div class="code-panel mono text-xs mb-5 overflow-x-auto">
+<pre>┌─────────────────────────────────────────────────────┐
 │                   FONTE DE DADOS                    │
 │          CSV / JSON / APIs / Databases              │
 └──────────────────────┬──────────────────────────────┘
@@ -90,126 +104,93 @@
         ┌──────────────────────────────┐
         │     🥉 CAMADA BRONZE         │
         │  (Dados Brutos / Raw Data)   │
-        │                              │
-        │  - Dados como recebidos      │
-        │  - Sem transformações        │
-        │  - Schema-on-read            │
-        │  - Formato: Parquet          │
-        │  - Partição: ano/mes/dia     │
+        │  · Dados como recebidos      │
+        │  · Sem transformações        │
+        │  · Schema-on-read            │
+        │  · Formato: Parquet          │
+        │  · Partição: ano/mes/dia     │
         └──────────────┬───────────────┘
-                       │ PySpark
-                       │ Limpeza,
-                       │ Validação
+                       │ PySpark · Limpeza · Validação
                        ▼
         ┌──────────────────────────────┐
         │     🥈 CAMADA SILVER         │
         │ (Dados Limpos / Curated)     │
-        │                              │
-        │  - Dados limpos              │
-        │  - Schema definido           │
-        │  - Deduplicação              │
-        │  - Tipo de dados corretos    │
-        │  - Formato: Parquet          │
-        │  - Partição: ano/mes         │
+        │  · Dados limpos              │
+        │  · Schema definido           │
+        │  · Deduplicação              │
+        │  · Formato: Parquet          │
+        │  · Partição: ano/mes         │
         └──────────────┬───────────────┘
-                       │ PySpark  
-                       │ Agregações,
-                       │ Joins
+                       │ PySpark · Agregações · Joins
                        ▼
         ┌──────────────────────────────┐
         │     🥇 CAMADA GOLD           │
         │  (Dados Analytics-Ready)     │
-        │                              │
-        │  - Dados agregados           │
-        │  - Business metrics          │
-        │  - Otimizado para BI         │
-        │  - Desnormalizado            │
-        │  - Formato: Parquet          │
-        │  - Partição: categoria       │
+        │  · Dados agregados           │
+        │  · Business metrics          │
+        │  · Otimizado para BI         │
+        │  · Formato: Parquet          │
+        │  · Partição: categoria       │
         └──────────────┬───────────────┘
                        │
                        ▼
         ┌──────────────────────────────┐
         │    CONSUMO                   │
         │  BI Tools / ML / Analytics   │
-        └──────────────────────────────┘
-        </code></pre>
+        └──────────────────────────────┘</pre>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-4">Detalhamento das Camadas</h3>
-
-      <div class="space-y-4">
-        <div class="border-l-4 border-yellow-600 pl-4">
-          <h4 class="text-lg font-semibold text-yellow-400 mb-2">🥉 Bronze - Raw Data</h4>
-          <p class="text-slate-300 mb-2">
-            Dados brutos exatamente como recebidos da fonte, sem nenhuma transformação.
-          </p>
-          <ul class="list-disc list-inside text-slate-300 text-sm space-y-1">
-            <li>Preserva dados originais para auditoria e reprocessamento</li>
-            <li>Schema-on-read: estrutura flexível</li>
-            <li>Particionamento temporal para otimizar leitura</li>
-          </ul>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Detalhamento das Camadas</h3>
+      <div class="space-y-3">
+        <div class="border-l-4 pl-4" style="border-color:#b45309">
+          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Bronze — Raw Data</h4>
+          <p class="text-[var(--text-secondary)] text-sm">Dados brutos exatamente como recebidos. Preserva dados originais para auditoria e reprocessamento. Schema-on-read com particionamento temporal.</p>
         </div>
-
-        <div class="border-l-4 border-gray-400 pl-4">
-          <h4 class="text-lg font-semibold text-gray-300 mb-2">🥈 Silver - Curated Data</h4>
-          <p class="text-slate-300 mb-2">
-            Dados limpos, validados e estruturados, prontos para uso confiável.
-          </p>
-          <ul class="list-disc list-inside text-slate-300 text-sm space-y-1">
-            <li>Remoção de duplicatas e dados inválidos</li>
-            <li>Padronização de tipos e formatos</li>
-            <li>Enrichment com dados de referência</li>
-          </ul>
+        <div class="border-l-4 pl-4" style="border-color:var(--text-muted)">
+          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Silver — Curated Data</h4>
+          <p class="text-[var(--text-secondary)] text-sm">Dados limpos e validados. Remoção de duplicatas, padronização de tipos, enrichment com dados de referência.</p>
         </div>
-
-        <div class="border-l-4 border-yellow-400 pl-4">
-          <h4 class="text-lg font-semibold text-yellow-300 mb-2">🥇 Gold - Analytics-Ready</h4>
-          <p class="text-slate-300 mb-2">
-            Dados agregados e otimizados para análises de negócio e BI.
-          </p>
-          <ul class="list-disc list-inside text-slate-300 text-sm space-y-1">
-            <li>Métricas calculadas (KPIs, agregações)</li>
-            <li>Desnormalização para performance</li>
-            <li>Otimizado para ferramentas de visualização</li>
-          </ul>
+        <div class="border-l-4 pl-4" style="border-color:#eab308">
+          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Gold — Analytics-Ready</h4>
+          <p class="text-[var(--text-secondary)] text-sm">Dados agregados e otimizados para BI. Métricas calculadas (KPIs), desnormalização e otimização para ferramentas de visualização.</p>
         </div>
       </div>
     </section>
 
-    <!-- Stack Utilizada -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🛠️ Stack Utilizada
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Stack Utilizada
       </h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="section-divider"></div>
+      <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Processamento</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Processamento</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>Apache Spark 3.x</li>
-            <li>PySpark para transformações</li>
-            <li>Spark SQL para queries</li>
+            <li>PySpark</li>
+            <li>Spark SQL</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Armazenamento</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>Data Lake local (HDFS ou S3)</li>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Armazenamento</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
+            <li>Data Lake (S3/HDFS)</li>
             <li>Formato Parquet (colunar)</li>
             <li>Compressão Snappy</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Otimização</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Otimização</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>Particionamento inteligente</li>
-            <li>Bucketing para joins eficientes</li>
+            <li>Bucketing para joins</li>
             <li>Cache para dados frequentes</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-cyan-400 mb-3">Qualidade</h3>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Qualidade</h3>
+          <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
             <li>Validação de schema</li>
             <li>Detecção de anomalias</li>
             <li>Logging de transformações</li>
@@ -218,299 +199,251 @@
       </div>
     </section>
 
-    <!-- Code Snippets -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💻 Exemplos de Código
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        Exemplos de Código
       </h2>
+      <div class="section-divider"></div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Camada Bronze - Ingestão</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg mb-6 overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">from pyspark.sql import SparkSession
-from pyspark.sql.functions import current_timestamp, year, month, dayofmonth
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Bronze — Ingestão</h3>
+      <div class="code-panel mono text-xs overflow-x-auto mb-5">
+<pre><span class="code-kw">from</span> pyspark.sql <span class="code-kw">import</span> SparkSession
+<span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> current_timestamp, year, month, dayofmonth
 
-# Inicializar Spark
 spark = SparkSession.builder \
-    .appName("DataLake_Bronze") \
+    .appName(<span class="code-str">"DataLake_Bronze"</span>) \
     .getOrCreate()
 
-# Ler dados brutos (CSV)
 df_raw = spark.read \
-    .option("header", "true") \
-    .option("inferSchema", "true") \
-    .csv("s3://input/vendas_*.csv")
+    .option(<span class="code-str">"header"</span>, <span class="code-str">"true"</span>) \
+    .option(<span class="code-str">"inferSchema"</span>, <span class="code-str">"true"</span>) \
+    .csv(<span class="code-str">"s3://input/vendas_*.csv"</span>)
 
-# Adicionar metadata
 df_bronze = df_raw \
-    .withColumn("ingestion_timestamp", current_timestamp()) \
-    .withColumn("year", year("data_venda")) \
-    .withColumn("month", month("data_venda")) \
-    .withColumn("day", dayofmonth("data_venda"))
+    .withColumn(<span class="code-str">"ingestion_timestamp"</span>, current_timestamp()) \
+    .withColumn(<span class="code-str">"year"</span>, year(<span class="code-str">"data_venda"</span>)) \
+    .withColumn(<span class="code-str">"month"</span>, month(<span class="code-str">"data_venda"</span>)) \
+    .withColumn(<span class="code-str">"day"</span>, dayofmonth(<span class="code-str">"data_venda"</span>))
 
-# Escrever em Bronze (particionado)
 df_bronze.write \
-    .mode("append") \
-    .partitionBy("year", "month", "day") \
-    .parquet("s3://datalake/bronze/vendas")
-</code></pre>
+    .mode(<span class="code-str">"append"</span>) \
+    .partitionBy(<span class="code-str">"year"</span>, <span class="code-str">"month"</span>, <span class="code-str">"day"</span>) \
+    .parquet(<span class="code-str">"s3://datalake/bronze/vendas"</span>)</pre>
       </div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Camada Silver - Limpeza e Curação</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg mb-6 overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">from pyspark.sql.functions import col, trim, upper, when
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Silver — Limpeza e Curação</h3>
+      <div class="code-panel mono text-xs overflow-x-auto mb-5">
+<pre><span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> col, trim, upper, when
 
-# Ler da Bronze
-df_bronze = spark.read.parquet("s3://datalake/bronze/vendas")
+df_bronze = spark.read.parquet(<span class="code-str">"s3://datalake/bronze/vendas"</span>)
 
-# Limpeza e transformação
 df_silver = df_bronze \
-    .dropDuplicates(["id_venda"]) \
-    .filter(col("valor_total") > 0) \
-    .filter(col("data_venda").isNotNull()) \
-    .withColumn("nome_cliente", trim(upper(col("nome_cliente")))) \
-    .withColumn("status", when(col("status").isNull(), "PENDENTE")
-                          .otherwise(col("status"))) \
-    .withColumn("processing_timestamp", current_timestamp())
+    .dropDuplicates([<span class="code-str">"id_venda"</span>]) \
+    .filter(col(<span class="code-str">"valor_total"</span>) > 0) \
+    .filter(col(<span class="code-str">"data_venda"</span>).isNotNull()) \
+    .withColumn(<span class="code-str">"nome_cliente"</span>, trim(upper(col(<span class="code-str">"nome_cliente"</span>)))) \
+    .withColumn(<span class="code-str">"status"</span>, when(col(<span class="code-str">"status"</span>).isNull(), <span class="code-str">"PENDENTE"</span>)
+                          .otherwise(col(<span class="code-str">"status"</span>)))) \
+    .withColumn(<span class="code-str">"processing_timestamp"</span>, current_timestamp())
 
-# Validação de schema
-expected_columns = ["id_venda", "data_venda", "valor_total", "nome_cliente"]
-assert all(col in df_silver.columns for col in expected_columns)
+<span class="code-comment"># Validação de schema</span>
+expected_cols = [<span class="code-str">"id_venda"</span>, <span class="code-str">"data_venda"</span>, <span class="code-str">"valor_total"</span>]
+<span class="code-kw">assert</span> all(c in df_silver.columns <span class="code-kw">for</span> c in expected_cols)
 
-# Escrever em Silver
 df_silver.write \
-    .mode("overwrite") \
-    .partitionBy("year", "month") \
-    .parquet("s3://datalake/silver/vendas")
-</code></pre>
+    .mode(<span class="code-str">"overwrite"</span>) \
+    .partitionBy(<span class="code-str">"year"</span>, <span class="code-str">"month"</span>) \
+    .parquet(<span class="code-str">"s3://datalake/silver/vendas"</span>)</pre>
       </div>
 
-      <h3 class="text-lg font-semibold text-cyan-400 mb-3">Camada Gold - Agregações Analytics</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg overflow-x-auto">
-        <pre><code class="text-sm text-slate-300">from pyspark.sql.functions import sum, avg, count, date_trunc
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Gold — Agregações Analytics</h3>
+      <div class="code-panel mono text-xs overflow-x-auto">
+<pre><span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> sum, avg, count, date_trunc
 
-# Ler da Silver
-df_silver = spark.read.parquet("s3://datalake/silver/vendas")
+df_silver = spark.read.parquet(<span class="code-str">"s3://datalake/silver/vendas"</span>)
 
-# Agregações para analytics
 df_gold = df_silver \
-    .withColumn("mes", date_trunc("month", col("data_venda"))) \
-    .groupBy("mes", "categoria_produto") \
+    .withColumn(<span class="code-str">"mes"</span>, date_trunc(<span class="code-str">"month"</span>, col(<span class="code-str">"data_venda"</span>))) \
+    .groupBy(<span class="code-str">"mes"</span>, <span class="code-str">"categoria_produto"</span>) \
     .agg(
-        sum("valor_total").alias("receita_total"),
-        avg("valor_total").alias("ticket_medio"),
-        count("id_venda").alias("qtd_vendas"),
-        count("nome_cliente").alias("qtd_clientes_unicos")
+        sum(<span class="code-str">"valor_total"</span>).alias(<span class="code-str">"receita_total"</span>),
+        avg(<span class="code-str">"valor_total"</span>).alias(<span class="code-str">"ticket_medio"</span>),
+        count(<span class="code-str">"id_venda"</span>).alias(<span class="code-str">"qtd_vendas"</span>)
     ) \
-    .withColumn("created_at", current_timestamp())
+    .withColumn(<span class="code-str">"created_at"</span>, current_timestamp())
 
-# Escrever em Gold (otimizado para BI)
 df_gold.write \
-    .mode("overwrite") \
-    .partitionBy("categoria_produto") \
-    .format("parquet") \
-    .option("compression", "snappy") \
-    .save("s3://datalake/gold/vendas_mensais")
-</code></pre>
+    .mode(<span class="code-str">"overwrite"</span>) \
+    .partitionBy(<span class="code-str">"categoria_produto"</span>) \
+    .format(<span class="code-str">"parquet"</span>) \
+    .option(<span class="code-str">"compression"</span>, <span class="code-str">"snappy"</span>) \
+    .save(<span class="code-str">"s3://datalake/gold/vendas_mensais"</span>)</pre>
       </div>
     </section>
 
-    <!-- Particionamento -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        📂 Estratégia de Particionamento
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+        Estratégia de Particionamento
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="bg-[#1f2937] p-6 rounded-lg mb-4">
-        <pre class="text-sm text-slate-300 overflow-x-auto"><code>
-datalake/
+      <div class="code-panel mono text-xs mb-4 overflow-x-auto">
+<pre>datalake/
 ├── bronze/
 │   └── vendas/
-│       ├── year=2024/
-│       │   ├── month=01/
-│       │   │   ├── day=01/
-│       │   │   │   └── part-00000.parquet
-│       │   │   └── day=02/
-│       ├── year=2023/
-│       │   └── month=12/
+│       ├── year=2024/month=01/day=01/part-00000.parquet
+│       └── year=2024/month=01/day=02/part-00000.parquet
 ├── silver/
 │   └── vendas/
-│       ├── year=2024/
-│       │   └── month=01/
-│       │       └── part-00000.parquet
-├── gold/
+│       └── year=2024/month=01/part-00000.parquet
+└── gold/
     └── vendas_mensais/
-        ├── categoria=eletronicos/
-        │   └── part-00000.parquet
-        └── categoria=moveis/
-            └── part-00000.parquet
-        </code></pre>
+        ├── categoria=eletronicos/part-00000.parquet
+        └── categoria=moveis/part-00000.parquet</pre>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Benefícios do Particionamento</h3>
-      <ul class="list-disc list-inside space-y-2 text-slate-300">
-        <li><strong>Partition Pruning:</strong> Queries só leem partições relevantes</li>
-        <li><strong>Paralelismo:</strong> Spark processa partições em paralelo</li>
-        <li><strong>Performance:</strong> Reduz tempo de query em até 100x</li>
-        <li><strong>Gerenciamento:</strong> Facilita delete/update de dados específicos</li>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Benefícios</h3>
+      <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)] text-sm">
+        <li><strong class="text-[var(--text-primary)]">Partition Pruning:</strong> Queries só leem partições relevantes</li>
+        <li><strong class="text-[var(--text-primary)]">Paralelismo:</strong> Spark processa partições em paralelo</li>
+        <li><strong class="text-[var(--text-primary)]">Performance:</strong> Reduz tempo de query em até 100x</li>
+        <li><strong class="text-[var(--text-primary)]">Gerenciamento:</strong> Facilita delete/update de dados específicos</li>
       </ul>
     </section>
 
-    <!-- Desafios e Soluções -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        🎯 Desafios e Soluções
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Desafios e Soluções
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="space-y-6">
-        <div class="border-l-4 border-cyan-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            1. Small Files Problem
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Muitos arquivos pequenos degradam performance.
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Implementei coalesce() e repartition() estratégico,
-            além de compactação periódica de arquivos antigos.
-          </p>
+      <div class="space-y-5">
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Small Files Problem</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Muitos arquivos pequenos degradam performance.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> coalesce() e repartition() estratégico, compactação periódica de arquivos antigos.</p>
         </div>
-
-        <div class="border-l-4 border-purple-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            2. Data Skew
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Partições desbalanceadas causando processamento lento.
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Usei salting technique e adaptive query execution (AQE)
-            do Spark 3.0 para balancear carga.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Data Skew</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Partições desbalanceadas causando processamento lento.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Salting technique + Adaptive Query Execution (AQE) do Spark 3.0.</p>
         </div>
-
-        <div class="border-l-4 border-pink-500 pl-4">
-          <h3 class="text-xl font-semibold text-cyan-400 mb-2">
-            3. Schema Evolution
-          </h3>
-          <p class="text-slate-300 mb-2">
-            <strong>Desafio:</strong> Mudanças no schema de origem quebravam o pipeline.
-          </p>
-          <p class="text-slate-300">
-            <strong>Solução:</strong> Habilitei mergeSchema e implementei validação de schema
-            na camada Bronze para detectar mudanças precocemente.
-          </p>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Schema Evolution</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Mudanças no schema de origem quebravam o pipeline.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> mergeSchema habilitado + validação na camada Bronze para detectar mudanças precocemente.</p>
         </div>
       </div>
     </section>
 
-    <!-- Métricas -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        📊 Performance e Resultados
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        Performance e Resultados
       </h2>
+      <div class="section-divider"></div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-6">
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-cyan-400 mb-2">5GB</div>
-          <p class="text-slate-400 text-sm">Dados Processados</p>
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="stat-panel">
+          <div class="stat-value">5 GB</div>
+          <p class="text-[var(--text-muted)] text-sm">Dados Processados</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-purple-400 mb-2">95%</div>
-          <p class="text-slate-400 text-sm">Redução em Query Time</p>
+        <div class="stat-panel">
+          <div class="stat-value">95%</div>
+          <p class="text-[var(--text-muted)] text-sm">Redução Query Time</p>
         </div>
-        <div class="bg-[#1f2937] p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-pink-400 mb-2">3x</div>
-          <p class="text-slate-400 text-sm">Mais Rápido que CSV</p>
+        <div class="stat-panel">
+          <div class="stat-value">3x</div>
+          <p class="text-[var(--text-muted)] text-sm">Mais Rápido que CSV</p>
         </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-cyan-400 mb-3">Comparação de Performance</h3>
-      <div class="bg-[#1f2937] p-4 rounded-lg text-sm">
-        <div class="grid grid-cols-3 gap-4 mb-2 font-semibold text-cyan-400 border-b border-slate-600 pb-2">
-          <div>Operação</div>
-          <div>CSV (baseline)</div>
-          <div>Parquet Particionado</div>
-        </div>
-        <div class="grid grid-cols-3 gap-4 py-2 border-b border-slate-700">
-          <div class="text-slate-300">Full Scan</div>
-          <div class="text-slate-400">45s</div>
-          <div class="text-green-400">12s ⚡</div>
-        </div>
-        <div class="grid grid-cols-3 gap-4 py-2 border-b border-slate-700">
-          <div class="text-slate-300">Filter by Date</div>
-          <div class="text-slate-400">38s</div>
-          <div class="text-green-400">2s ⚡⚡⚡</div>
-        </div>
-        <div class="grid grid-cols-3 gap-4 py-2">
-          <div class="text-slate-300">Aggregation</div>
-          <div class="text-slate-400">52s</div>
-          <div class="text-green-400">8s ⚡⚡</div>
-        </div>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Comparação de Performance</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-[var(--text-secondary)] border-collapse">
+          <thead>
+            <tr class="border-b border-[var(--border-subtle)] text-[var(--accent-tertiary)] font-semibold">
+              <th class="text-left py-2">Operação</th>
+              <th class="text-left py-2">CSV (baseline)</th>
+              <th class="text-left py-2">Parquet Particionado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[var(--border-subtle)]">
+              <td class="py-2">Full Scan</td>
+              <td class="py-2 text-[var(--text-muted)]">45s</td>
+              <td class="py-2 text-[var(--accent-secondary)]">12s</td>
+            </tr>
+            <tr class="border-b border-[var(--border-subtle)]">
+              <td class="py-2">Filter by Date</td>
+              <td class="py-2 text-[var(--text-muted)]">38s</td>
+              <td class="py-2 text-[var(--accent-secondary)]">2s</td>
+            </tr>
+            <tr>
+              <td class="py-2">Aggregation</td>
+              <td class="py-2 text-[var(--text-muted)]">52s</td>
+              <td class="py-2 text-[var(--accent-secondary)]">8s</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- Aprendizados -->
-    <section class="glass-card p-8 rounded-xl" data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
-        💡 Principais Aprendizados
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        Aprendizados
       </h2>
-      <ul class="space-y-3 text-slate-300">
+      <div class="section-divider"></div>
+      <ul class="space-y-2 text-[var(--text-secondary)]">
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Arquitetura <strong>Medallion</strong> organiza dados de forma lógica e escalável</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Arquitetura <strong class="text-[var(--text-primary)]">Medallion</strong> organiza dados de forma lógica e escalável</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span><strong>Particionamento inteligente</strong> é crítico para performance em Big Data</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span><strong class="text-[var(--text-primary)]">Particionamento inteligente</strong> é crítico para performance em Big Data</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Formato <strong>Parquet</strong> oferece compressão e performance superiores</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Formato <strong class="text-[var(--text-primary)]">Parquet</strong> oferece compressão e performance superiores</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span>Importância de <strong>coalesce/repartition</strong> para evitar small files</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Importância de <strong class="text-[var(--text-primary)]">coalesce/repartition</strong> para evitar small files</span>
         </li>
         <li class="flex items-start gap-3">
-          <span class="text-cyan-400 text-xl">✓</span>
-          <span><strong>Spark SQL</strong> permite queries SQL em dados distribuídos facilmente</span>
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span><strong class="text-[var(--text-primary)]">Spark SQL</strong> permite queries SQL em dados distribuídos facilmente</span>
         </li>
       </ul>
     </section>
 
-    <!-- Links -->
-    <section class="text-center" data-aos="fade-up">
-      <div class="inline-flex flex-col sm:flex-row gap-4">
-        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer"
-          class="cta-button neon-glow px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
+    <div class="text-center" data-aos="fade-up">
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
-        <a href="../index.html#projetos"
-          class="btn-primary cta-button">
-          Ver Outros Projetos
-        </a>
+        <a href="../index.html#projetos" class="btn-primary cta-button">Ver Outros Projetos</a>
       </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="project-footer"
-    data-aos="fade-up">
-    <p>
-      Projeto por <strong class="text-cyan-400">Anselmo Xavier</strong> •
-      <a href="https://www.linkedin.com/in/anselmoaxo" class="text-cyan-400 hover:underline"
-        target="_blank">LinkedIn</a> •
-      <a href="https://github.com/anselmoaxo" class="text-cyan-400 hover:underline" target="_blank">GitHub</a>
+  <footer class="footer-wave py-6 text-center mt-10">
+    <p class="text-[var(--text-muted)] text-sm">
+      Projeto por <strong class="text-[var(--accent-primary)]">Anselmo Xavier</strong> ·
+      <a href="https://www.linkedin.com/in/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">LinkedIn</a> ·
+      <a href="https://github.com/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">GitHub</a>
     </p>
   </footer>
 
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
   </script>
 
 </body>
