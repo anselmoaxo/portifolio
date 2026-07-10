@@ -21,9 +21,10 @@
   <meta name="twitter:title" content="Anselmo Xavier | Especialista em Dados &amp; Analytics Engineer">
   <meta name="twitter:description" content="15+ anos em tecnologia. Portfólio profissional de Analytics Engineering e Dados.">
 
-  <title>Anselmo Xavier | Especialista em Dados · Analytics Engineer</title>
+  <title data-i18n="page.title">Anselmo Xavier | Especialista em Dados · Analytics Engineer</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="i18n.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -52,33 +53,45 @@
           <span class="logo-text hidden sm:block">Anselmo Xavier</span>
         </a>
 
+        <!-- Language Switcher -->
+        <div class="lang-switcher hidden md:flex items-center gap-1 mr-4">
+          <button class="lang-flag" data-lang="pt" title="Português" aria-label="Português">🇧🇷</button>
+          <button class="lang-flag" data-lang="en" title="English" aria-label="English">🇺🇸</button>
+          <button class="lang-flag" data-lang="es" title="Español" aria-label="Español">🇪🇸</button>
+        </div>
+
         <button id="menu-btn" class="menu-btn md:hidden flex flex-col justify-center w-10 h-10" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
 
         <nav id="menu" class="hidden md:flex items-center gap-6">
-          <a href="#sobre" class="nav-link">Sobre</a>
-          <a href="#experiencia" class="nav-link">Experiência</a>
-          <a href="#stacks" class="nav-link">Stack</a>
-          <a href="#projetos" class="nav-link">Projetos</a>
-          <a href="#formacao" class="nav-link">Formação</a>
+          <a href="#sobre" class="nav-link" data-i18n="nav.sobre">Sobre</a>
+          <a href="#experiencia" class="nav-link" data-i18n="nav.experiencia">Experiência</a>
+          <a href="#stacks" class="nav-link" data-i18n="nav.stack">Stack</a>
+          <a href="#projetos" class="nav-link" data-i18n="nav.projetos">Projetos</a>
+          <a href="#formacao" class="nav-link" data-i18n="nav.formacao">Formação</a>
           <a href="#contato" class="nav-cta">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Contato
+            <span data-i18n="nav.contato">Contato</span>
           </a>
         </nav>
       </div>
 
       <nav id="mobile-menu" class="mobile-nav md:hidden hidden flex-col gap-1 px-4 py-4">
-        <a href="#sobre" class="nav-link py-3 px-2">Sobre</a>
-        <a href="#experiencia" class="nav-link py-3 px-2">Experiência</a>
-        <a href="#stacks" class="nav-link py-3 px-2">Stack</a>
-        <a href="#projetos" class="nav-link py-3 px-2">Projetos</a>
-        <a href="#formacao" class="nav-link py-3 px-2">Formação</a>
-        <a href="#contato" class="nav-cta mt-2 justify-center">Contato</a>
+        <div class="lang-switcher flex items-center gap-1 mb-2 pb-2 border-b border-white/5">
+          <button class="lang-flag" data-lang="pt" title="Português" aria-label="Português">🇧🇷</button>
+          <button class="lang-flag" data-lang="en" title="English" aria-label="English">🇺🇸</button>
+          <button class="lang-flag" data-lang="es" title="Español" aria-label="Español">🇪🇸</button>
+        </div>
+        <a href="#sobre" class="nav-link py-3 px-2" data-i18n="nav.sobre">Sobre</a>
+        <a href="#experiencia" class="nav-link py-3 px-2" data-i18n="nav.experiencia">Experiência</a>
+        <a href="#stacks" class="nav-link py-3 px-2" data-i18n="nav.stack">Stack</a>
+        <a href="#projetos" class="nav-link py-3 px-2" data-i18n="nav.projetos">Projetos</a>
+        <a href="#formacao" class="nav-link py-3 px-2" data-i18n="nav.formacao">Formação</a>
+        <a href="#contato" class="nav-cta mt-2 justify-center"><span data-i18n="nav.contato">Contato</span></a>
       </nav>
     </header>
 
@@ -94,7 +107,7 @@
           <div class="hero-content">
             <div class="hero-badge" data-aos="fade-right">
               <span class="hero-badge-dot"></span>
-              Disponível para oportunidades · São Paulo · Remoto · Híbrido · Presencial
+              <span data-i18n="hero.badge">Disponível para oportunidades · São Paulo · Remoto · Híbrido · Presencial</span>
             </div>
 
             <h1 class="hero-title" data-aos="fade-right" data-aos-delay="100">
@@ -102,54 +115,54 @@
             </h1>
 
             <p class="hero-role" data-aos="fade-right" data-aos-delay="150">
-              Engenheiro de Dados | Analytics Engineer
+              <span data-i18n="hero.role">Engenheiro de Dados | Analytics Engineer</span>
             </p>
 
-            <p class="hero-tagline" data-aos="fade-right" data-aos-delay="200">
-              Profissional de Tecnologia com mais de 15 anos de experiência em desenvolvimento de sistemas, bancos de dados e ERP. Atualmente aplico essa bagagem na construção de pipelines de dados, automação e soluções de Inteligência Artificial que apoiam decisões de negócio.
+            <p class="hero-tagline" data-aos="fade-right" data-aos-delay="200" data-i18n="hero.tagline">
+              Profissional de Tecnologia com mais de 16 anos de experiência em desenvolvimento de sistemas, bancos de dados e ERP. Atualmente aplico essa bagagem na construção de pipelines de dados, automação e soluções de Inteligência Artificial que apoiam decisões de negócio.
             </p>
 
 
             <div class="hero-expertise" data-aos="fade-right" data-aos-delay="260">
               <div class="expertise-group">
-                <span class="expertise-header">Experiência consolidada</span>
+                <span class="expertise-header" data-i18n="hero.expertise.consolidated">Experiência consolidada</span>
                 <div class="expertise-items">
                   <span class="expertise-item">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    15+ anos em Tecnologia
+                    <span data-i18n="hero.expertise.tech">16+ anos em Tecnologia</span>
                   </span>
                   <span class="expertise-item">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Desenvolvimento de Sistemas
+                    <span data-i18n="hero.expertise.dev">Desenvolvimento de Sistemas</span>
                   </span>
                   <span class="expertise-item">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Banco de Dados
+                    <span data-i18n="hero.expertise.db">Banco de Dados</span>
                   </span>
                   <span class="expertise-item">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    ERP
+                    <span data-i18n="hero.expertise.erp">ERP</span>
                   </span>
                   <span class="expertise-item">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    SQL
+                    <span data-i18n="hero.expertise.sql">SQL</span>
                   </span>
                 </div>
               </div>
               <div class="expertise-group">
-                <span class="expertise-header expertise-header-accent">Especialização atual</span>
+                <span class="expertise-header expertise-header-accent" data-i18n="hero.expertise.specialization">Especialização atual</span>
                 <div class="expertise-items">
                   <span class="expertise-item expertise-item-accent">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Engenharia de Dados
+                    <span data-i18n="hero.expertise.dataeng">Engenharia de Dados</span>
                   </span>
                   <span class="expertise-item expertise-item-accent">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Analytics Engineering
+                    <span data-i18n="hero.expertise.analytics">Analytics Engineering</span>
                   </span>
                   <span class="expertise-item expertise-item-accent">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Inteligência Artificial
+                    <span data-i18n="hero.expertise.ai">Inteligência Artificial</span>
                   </span>
                 </div>
               </div>
@@ -157,7 +170,7 @@
 
             <div class="hero-actions" data-aos="fade-right" data-aos-delay="300">
               <a href="#projetos" class="btn-primary cta-button">
-                Conheça meus projetos
+                <span data-i18n="hero.cta.projects">Conheça meus projetos</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -166,7 +179,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
                 </svg>
-                Baixar Currículo PDF
+                <span data-i18n="hero.cta.cv">Baixar Currículo PDF</span>
               </a>
             </div>
           </div>
@@ -178,19 +191,19 @@
                 <span class="pipeline-dot pipeline-dot-red"></span>
                 <span class="pipeline-dot pipeline-dot-yellow"></span>
                 <span class="pipeline-dot pipeline-dot-green"></span>
-                <span class="pipeline-filename">etl_pipeline.py</span>
+                <span class="pipeline-filename" data-i18n="hero.pipeline.filename">etl_pipeline.py</span>
               </div>
               <div class="pipeline-body mono">
                 <div class="pipeline-line"><span class="code-kw">from</span> airflow <span class="code-kw">import</span> DAG</div>
                 <div class="pipeline-line"><span class="code-kw">from</span> airflow.operators.python <span class="code-kw">import</span> PythonOperator</div>
                 <div class="pipeline-line">&nbsp;</div>
-                <div class="pipeline-line"><span class="code-comment"># 1. Extrair dados do ERP e DBs</span></div>
+                <div class="pipeline-line"><span class="code-comment" data-i18n="hero.pipeline.comment1"># 1. Extrair dados do ERP e DBs</span></div>
                 <div class="pipeline-line"><span class="code-fn">extract</span>(<span class="code-str">"postgresql"</span>, <span class="code-str">"erp_system"</span>)</div>
                 <div class="pipeline-line">&nbsp;</div>
-                <div class="pipeline-line"><span class="code-comment"># 2. Validar e transformar</span></div>
+                <div class="pipeline-line"><span class="code-comment" data-i18n="hero.pipeline.comment2"># 2. Validar e transformar</span></div>
                 <div class="pipeline-line pipeline-line-active"><span class="code-fn">transform</span>(<span class="code-str">"bronze → gold"</span>)<span class="code-cursor">|</span></div>
                 <div class="pipeline-line">&nbsp;</div>
-                <div class="pipeline-line"><span class="code-comment"># 3. Publicar dashboards</span></div>
+                <div class="pipeline-line"><span class="code-comment" data-i18n="hero.pipeline.comment3"># 3. Publicar dashboards</span></div>
                 <div class="pipeline-line"><span class="code-fn">publish</span>(<span class="code-str">"looker_studio"</span>, <span class="code-str">"power_bi"</span>)</div>
               </div>
               <div class="pipeline-flow">
@@ -254,20 +267,20 @@
       <div class="max-w-5xl mx-auto px-4">
         <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
           <div class="stat-card reveal" data-aos="fade-up">
-            <div class="stat-number" data-target="15">0</div>
-            <p class="stat-label">Anos de XP</p>
+            <div class="stat-number" data-target="16">0</div>
+            <p class="stat-label" data-i18n="stats.years">Anos de XP</p>
           </div>
           <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="80">
-            <div class="stat-number" data-target="3">0</div>
-            <p class="stat-label">Projetos</p>
+            <div class="stat-number" data-target="4">0</div>
+            <p class="stat-label" data-i18n="stats.projects">Projetos</p>
           </div>
           <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="160">
-            <div class="stat-number" data-target="180">0</div>
-            <p class="stat-label">Horas de Cursos</p>
+            <div class="stat-number" data-target="315">0</div>
+            <p class="stat-label" data-i18n="stats.hours">Horas de Cursos</p>
           </div>
           <div class="stat-card reveal" data-aos="fade-up" data-aos-delay="240">
             <div class="stat-number" data-target="20">0</div>
-            <p class="stat-label">Tecnologias</p>
+            <p class="stat-label" data-i18n="stats.techs">Tecnologias</p>
           </div>
         </div>
       </div>
@@ -277,8 +290,8 @@
 
       <!-- Stack -->
       <section id="stacks" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
-        <span class="section-label">Habilidades Técnicas</span>
-        <h2 class="section-title">Stack &amp; Ferramentas</h2>
+        <span class="section-label" data-i18n="stack.label">Habilidades Técnicas</span>
+        <h2 class="section-title" data-i18n="stack.title">Stack &amp; Ferramentas</h2>
         <div class="section-divider"></div>
 
         <div class="bento-grid">
@@ -286,7 +299,7 @@
           <div class="bento-card bento-large glass-card p-6">
             <h3 class="skill-category-title">
               <img src="https://cdn.simpleicons.org/apacheairflow/017CEE" class="w-5 h-5" alt="">
-              Orquestração &amp; ETL
+              <span data-i18n="stack.orchestration">Orquestração &amp; ETL</span>
             </h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip"><img src="https://cdn.simpleicons.org/apacheairflow/017CEE" class="w-4 h-4" alt=""> Airflow</span>
@@ -297,18 +310,19 @@
               <span class="skill-chip">Apache HOP</span>
               <span class="skill-chip">Astro CLI</span>
             </div>
-            <p class="text-xs text-[var(--text-muted)] mt-4">Camadas Bronze / Silver / Gold</p>
+            <p class="text-xs text-[var(--text-muted)] mt-4" data-i18n="stack.orchestration.desc">Camadas Bronze / Silver / Gold</p>
           </div>
 
           <div class="bento-card glass-card p-6">
-            <h3 class="skill-category-title">Linguagens</h3>
+            <h3 class="skill-category-title" data-i18n="stack.languages">Linguagens
+            </h3>
             <div class="space-y-4">
               <div class="flex items-center gap-3">
-                <span class="text-sm flex-1">SQL <span class="text-[var(--accent-secondary)] text-xs">Avançado</span></span>
+                <span class="text-sm flex-1">SQL <span class="text-[var(--accent-secondary)] text-xs" data-i18n="stack.sql.level">Avançado</span></span>
                 <div class="skill-bar"><div class="skill-progress" data-width="95" style="width:0%"></div></div>
               </div>
               <div class="flex items-center gap-3">
-                <span class="text-sm flex-1">Python <span class="text-xs text-[var(--text-muted)]">Intermediário</span></span>
+                <span class="text-sm flex-1">Python <span class="text-xs text-[var(--text-muted)]" data-i18n="stack.python.level">Intermediário</span></span>
                 <div class="skill-bar"><div class="skill-progress" data-width="75" style="width:0%"></div></div>
               </div>
             </div>
@@ -316,7 +330,7 @@
 
           <div class="bento-card glass-card p-6 bento-ai">
             <h3 class="skill-category-title">
-              <span class="ai-spark">✦</span> IA &amp; Automação
+              <span class="ai-spark">✦</span> <span data-i18n="stack.ai">IA &amp; Automação</span>
             </h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip skill-chip-ai">n8n</span>
@@ -324,13 +338,13 @@
               <span class="skill-chip skill-chip-ai">LLMs via API</span>
               <span class="skill-chip skill-chip-ai">Agentes Autônomos</span>
             </div>
-            <p class="text-xs text-[var(--accent-tertiary)] mt-3">Em estudo e desenvolvimento</p>
+            <p class="text-xs text-[var(--accent-tertiary)] mt-3" data-i18n="stack.ai.desc">Em estudo e desenvolvimento</p>
           </div>
 
           <div class="bento-card glass-card p-6">
             <h3 class="skill-category-title">
               <img src="https://cdn.simpleicons.org/postgresql/336791" class="w-5 h-5" alt="">
-              Bancos de Dados
+              <span data-i18n="stack.databases">Bancos de Dados</span>
             </h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip">PostgreSQL</span>
@@ -342,7 +356,7 @@
           </div>
 
           <div class="bento-card glass-card p-6">
-            <h3 class="skill-category-title">Cloud &amp; Infra</h3>
+            <h3 class="skill-category-title" data-i18n="stack.cloud">Cloud &amp; Infra</h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip">AWS (EC2, S3, RDS, Glue)</span>
               <span class="skill-chip">GCP</span>
@@ -353,7 +367,7 @@
           </div>
 
           <div class="bento-card glass-card p-6">
-            <h3 class="skill-category-title">ERP &amp; Negócios</h3>
+            <h3 class="skill-category-title" data-i18n="stack.erp">ERP &amp; Negócios</h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip">Sistemas ERP</span>
               <span class="skill-chip">NF-e</span>
@@ -363,7 +377,7 @@
           </div>
 
           <div class="bento-card glass-card p-6">
-            <h3 class="skill-category-title">Visualização</h3>
+            <h3 class="skill-category-title" data-i18n="stack.viz">Visualização</h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-chip">Power BI</span>
               <span class="skill-chip">Looker Studio</span>
@@ -376,19 +390,19 @@
 
       <!-- Sobre -->
       <section id="sobre" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
-        <span class="section-label">Resumo Profissional</span>
-        <h2 class="section-title">Sobre Mim</h2>
+        <span class="section-label" data-i18n="about.label">Resumo Profissional</span>
+        <h2 class="section-title" data-i18n="about.title">Sobre Mim</h2>
         <div class="section-divider"></div>
 
         <div class="glass-card p-8 space-y-5 glow-border">
-          <p class="text-[var(--text-secondary)] leading-relaxed text-lg">
+          <p class="text-[var(--text-secondary)] leading-relaxed text-lg" data-i18n-html="about.p1">
             Com mais de <strong class="text-[var(--text-primary)]">16 anos de experiência em Tecnologia da Informação</strong>,
             construí minha carreira no ecossistema de sistemas ERP, atuando no desenvolvimento de soluções, modelagem
             de bancos de dados, SQL, integrações, automação de processos e implementação de regras de negócio.
             Essa vivência me proporcionou uma visão ampla dos processos empresariais e da importância dos dados
             para apoiar decisões estratégicas.
           </p>
-          <p class="text-[var(--text-secondary)] leading-relaxed">
+          <p class="text-[var(--text-secondary)] leading-relaxed" data-i18n-html="about.p2">
             Hoje direciono essa bagagem para <strong class="text-[var(--accent-secondary)]">Engenharia de Dados e Analytics Engineering</strong>,
             desenvolvendo pipelines ETL/ELT, automações e soluções com
             <strong class="text-[var(--text-primary)]">Python, PostgreSQL, Apache Airflow, dbt e Inteligência Artificial</strong>.
@@ -396,53 +410,53 @@
             soluções escaláveis que gerem valor para o negócio.
           </p>
           <div class="flex flex-wrap gap-2 pt-2">
-            <span class="skill-chip skill-chip-highlight">SQL Avançado</span>
-            <span class="skill-chip">ERP &amp; NF-e</span>
-            <span class="skill-chip">ETL/ELT</span>
-            <span class="skill-chip">Medallion Architecture</span>
-            <span class="skill-chip skill-chip-ai">IA &amp; Agentes</span>
+            <span class="skill-chip skill-chip-highlight" data-i18n="about.chip.sql">SQL Avançado</span>
+            <span class="skill-chip" data-i18n="about.chip.erp">ERP &amp; NF-e</span>
+            <span class="skill-chip" data-i18n="about.chip.etl">ETL/ELT</span>
+            <span class="skill-chip" data-i18n="about.chip.medallion">Medallion Architecture</span>
+            <span class="skill-chip skill-chip-ai" data-i18n="about.chip.ai">IA &amp; Agentes</span>
           </div>
         </div>
       </section>
 
       <!-- Experiência -->
       <section id="experiencia" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
-        <span class="section-label">Trajetória</span>
-        <h2 class="section-title">Experiência Profissional</h2>
+        <span class="section-label" data-i18n="exp.label">Trajetória</span>
+        <h2 class="section-title" data-i18n="exp.title">Experiência Profissional</h2>
         <div class="section-divider"></div>
 
         <div class="timeline-item glass-card p-8 glow-border">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
             <div>
-              <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-2">Analista de Desenvolvimento | Especialista ERP</h3>
-              <span class="experience-company">CSTecnologia</span>
+              <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-2" data-i18n="exp.role">Analista de Desenvolvimento | Especialista ERP</h3>
+              <span class="experience-company" data-i18n="exp.company">CSTecnologia</span>
             </div>
-            <span class="experience-date">2010 — Atual</span>
+            <span class="experience-date" data-i18n="exp.date1">2010 — Atual</span>
           </div>
           <ul class="space-y-3 text-[var(--text-secondary)]">
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Desenvolvimento, evolução e sustentação de sistemas ERP, atuando em processos críticos de negócio como faturamento (NF-e), controle de estoque, financeiro e gestão administrativa.
+              <span data-i18n="exp.item1">Desenvolvimento, evolução e sustentação de sistemas ERP, atuando em processos críticos de negócio como faturamento (NF-e), controle de estoque, financeiro e gestão administrativa.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Modelagem, administração e otimização de bancos de dados PostgreSQL, realizando modelagem relacional, indexação, tuning de consultas SQL e melhorias de performance em ambientes de produção.
+              <span data-i18n="exp.item2">Modelagem, administração e otimização de bancos de dados PostgreSQL, realizando modelagem relacional, indexação, tuning de consultas SQL e melhorias de performance em ambientes de produção.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Desenvolvimento de consultas SQL para extração, consolidação e análise de dados, apoiando relatórios gerenciais, indicadores de desempenho e tomada de decisão.
+              <span data-i18n="exp.item3">Desenvolvimento de consultas SQL para extração, consolidação e análise de dados, apoiando relatórios gerenciais, indicadores de desempenho e tomada de decisão.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Implementação de integrações entre sistemas e automação de processos, garantindo maior confiabilidade, consistência e disponibilidade das informações.
+              <span data-i18n="exp.item4">Implementação de integrações entre sistemas e automação de processos, garantindo maior confiabilidade, consistência e disponibilidade das informações.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Administração de servidores Linux e Windows, incluindo gerenciamento de Apache Tomcat, monitoramento de ambientes e suporte à infraestrutura on-premise.
+              <span data-i18n="exp.item5">Administração de servidores Linux e Windows, incluindo gerenciamento de Apache Tomcat, monitoramento de ambientes e suporte à infraestrutura on-premise.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-[var(--accent-secondary)] mt-1">▸</span>
-              Levantamento de requisitos, documentação técnica, treinamento de usuários e suporte técnico-funcional, atuando como elo entre as áreas de negócio e tecnologia.
+              <span data-i18n="exp.item6">Levantamento de requisitos, documentação técnica, treinamento de usuários e suporte técnico-funcional, atuando como elo entre as áreas de negócio e tecnologia.</span>
             </li>
           </ul>
           <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-[var(--border-subtle)]">
@@ -460,8 +474,8 @@
 
       <!-- Projetos -->
       <section id="projetos" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
-        <span class="section-label">Portfólio</span>
-        <h2 class="section-title">Projetos em Destaque</h2>
+        <span class="section-label" data-i18n="projects.label">Portfólio</span>
+        <h2 class="section-title" data-i18n="projects.title">Projetos em Destaque</h2>
         <div class="section-divider"></div>
 
         <div class="projects-grid">
@@ -495,15 +509,15 @@
             <div class="project-body">
               <div class="project-card-accent project-accent-indigo"></div>
               <div class="flex items-start justify-between gap-2 mb-2">
-                <h3>Pipeline Concessionária</h3>
-                <span class="project-status">Concluído</span>
+                <h3 data-i18n="p1.title">Pipeline Concessionária</h3>
+                <span class="project-status" data-i18n="projects.status.concluded">Concluído</span>
               </div>
-              <p class="project-role">Engenheiro de Dados</p>
-              <p class="project-desc">Pipeline ETL completo com extração do PostgreSQL, transformação em 3 camadas com dbt e dashboards no Looker Studio.</p>
+              <p class="project-role" data-i18n="projects.role.dataeng">Engenheiro de Dados</p>
+              <p class="project-desc" data-i18n="p1.desc">Pipeline ETL completo com extração do PostgreSQL, transformação em 3 camadas com dbt e dashboards no Looker Studio.</p>
               <div class="project-impact">
                 <div class="flex items-start gap-1.5">
                   <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <span class="text-[var(--text-muted)] text-xs">Relatórios de <strong class="text-[var(--text-primary)]">2h → 15min</strong> com extração incremental</span>
+                  <span class="text-[var(--text-muted)] text-xs" data-i18n-html="p1.impact">Relatórios de <strong class="text-[var(--text-primary)]">2h → 15min</strong> com extração incremental</span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-1.5 mb-4">
@@ -513,7 +527,7 @@
                 <span class="tech-badge"><img src="https://cdn.simpleicons.org/looker/4285F4" class="w-3.5 h-3.5" alt=""> Looker</span>
               </div>
               <div class="project-actions">
-                <a href="projetos/projeto1.html" class="btn-link">Ver detalhes</a>
+                <a href="projetos/projeto1.html" class="btn-link" data-i18n="projects.btn.details">Ver detalhes</a>
                 <a href="https://github.com/anselmoaxo/etl_vendas" target="_blank" rel="noopener noreferrer" class="btn-link-github" title="GitHub">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
@@ -546,15 +560,15 @@
             <div class="project-body">
               <div class="project-card-accent project-accent-teal"></div>
               <div class="flex items-start justify-between gap-2 mb-2">
-                <h3>Data Lake Meteorologia</h3>
-                <span class="project-status">Concluído</span>
+                <h3 data-i18n="p2.title">Data Lake Meteorologia</h3>
+                <span class="project-status" data-i18n="projects.status.concluded">Concluído</span>
               </div>
               <p class="project-role">Engenheiro de Dados</p>
-              <p class="project-desc">Pipeline automatizado que consome API pública de previsão do tempo, armazena em Data Lake particionado e orquestra via Airflow semanalmente.</p>
+              <p class="project-desc" data-i18n="p2.desc">Pipeline automatizado que consome API pública de previsão do tempo, armazena em Data Lake particionado e orquestra via Airflow semanalmente.</p>
               <div class="project-impact">
                 <div class="flex items-start gap-1.5">
                   <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <span class="text-[var(--text-muted)] text-xs">Coleta <strong class="text-[var(--text-primary)]">100% automatizada</strong> — zero intervenção manual</span>
+                  <span class="text-[var(--text-muted)] text-xs" data-i18n-html="p2.impact">Coleta <strong class="text-[var(--text-primary)]">100% automatizada</strong> — zero intervenção manual</span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-1.5 mb-4">
@@ -564,7 +578,7 @@
                 <span class="tech-badge">REST API</span>
               </div>
               <div class="project-actions">
-                <a href="projetos/projeto2.html" class="btn-link">Ver detalhes</a>
+                <a href="projetos/projeto2.html" class="btn-link" data-i18n="projects.btn.details">Ver detalhes</a>
                 <a href="https://github.com/anselmoaxo/pipeline_meteorologia_airflow" target="_blank" rel="noopener noreferrer" class="btn-link-github" title="GitHub">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
@@ -594,15 +608,15 @@
             <div class="project-body">
               <div class="project-card-accent project-accent-purple"></div>
               <div class="flex items-start justify-between gap-2 mb-2">
-                <h3>ETL Tickers Financeiros</h3>
-                <span class="project-status">Concluído</span>
+                <h3 data-i18n="p3.title">ETL Tickers Financeiros</h3>
+                <span class="project-status" data-i18n="projects.status.concluded">Concluído</span>
               </div>
               <p class="project-role">Engenheiro de Dados</p>
-              <p class="project-desc">Pipeline ETL que coleta dados históricos de ações de bancos brasileiros via yfinance, armazena em PostgreSQL e transforma com dbt.</p>
+              <p class="project-desc" data-i18n="p3.desc">Pipeline ETL que coleta dados históricos de ações de bancos brasileiros via yfinance, armazena em PostgreSQL e transforma com dbt.</p>
               <div class="project-impact">
                 <div class="flex items-start gap-1.5">
                   <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <span class="text-[var(--text-muted)] text-xs">Dados de <strong class="text-[var(--text-primary)]">bancos brasileiros</strong> estruturados para análises financeiras</span>
+                  <span class="text-[var(--text-muted)] text-xs" data-i18n-html="p3.impact">Dados de <strong class="text-[var(--text-primary)]">bancos brasileiros</strong> estruturados para análises financeiras</span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-1.5 mb-4">
@@ -612,7 +626,7 @@
                 <span class="tech-badge"><img src="https://cdn.simpleicons.org/pandas/150458" class="w-3.5 h-3.5" alt=""> Pandas</span>
               </div>
               <div class="project-actions">
-                <a href="projetos/projeto3.html" class="btn-link">Ver detalhes</a>
+                <a href="projetos/projeto3.html" class="btn-link" data-i18n="projects.btn.details">Ver detalhes</a>
                 <a href="https://github.com/anselmoaxo/ETL-TickersSQL-Python-DBT" target="_blank" rel="noopener noreferrer" class="btn-link-github" title="GitHub">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
@@ -645,15 +659,15 @@
             <div class="project-body">
               <div class="project-card-accent" style="background:linear-gradient(90deg,var(--accent-warm),var(--accent-tertiary))"></div>
               <div class="flex items-start justify-between gap-2 mb-2">
-                <h3>FIFA 23 Dataset</h3>
-                <span class="project-status">Concluído</span>
+                <h3 data-i18n="p4.title">FIFA 23 Dataset</h3>
+                <span class="project-status" data-i18n="projects.status.concluded">Concluído</span>
               </div>
-              <p class="project-role">Desenvolvedor de Dados</p>
-              <p class="project-desc">Aplicação Streamlit interativa para explorar o dataset FIFA 23 com seleção de times, jogadores e visualização de estatísticas.</p>
+              <p class="project-role" data-i18n="projects.role.dev">Desenvolvedor de Dados</p>
+              <p class="project-desc" data-i18n="p4.desc">Aplicação Streamlit interativa para explorar o dataset FIFA 23 com seleção de times, jogadores e visualização de estatísticas.</p>
               <div class="project-impact">
                 <div class="flex items-start gap-1.5">
                   <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  <span class="text-[var(--text-muted)] text-xs">Exploração de dados de <strong class="text-[var(--text-primary)]">+17k jogadores</strong> com filtros interativos</span>
+                  <span class="text-[var(--text-muted)] text-xs" data-i18n-html="p4.impact">Exploração de dados de <strong class="text-[var(--text-primary)]">+17k jogadores</strong> com filtros interativos</span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-1.5 mb-4">
@@ -663,7 +677,7 @@
                 <span class="tech-badge"><img src="https://cdn.simpleicons.org/kaggle/20BEFF" class="w-3.5 h-3.5" alt=""> Kaggle</span>
               </div>
               <div class="project-actions">
-                <a href="projetos/projeto4.html" class="btn-link">Ver detalhes</a>
+                <a href="projetos/projeto4.html" class="btn-link" data-i18n="projects.btn.details">Ver detalhes</a>
                 <a href="https://github.com/anselmoaxo/dataset-fifa23" target="_blank" rel="noopener noreferrer" class="btn-link-github" title="GitHub">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
@@ -676,29 +690,29 @@
 
       <!-- Formação & Certificações -->
       <section id="formacao" class="mb-20 scroll-mt-24 reveal" data-aos="fade-up">
-        <span class="section-label">Qualificação</span>
-        <h2 class="section-title">Formação &amp; Certificações</h2>
+        <span class="section-label" data-i18n="edu.label">Qualificação</span>
+        <h2 class="section-title" data-i18n="edu.title">Formação &amp; Certificações</h2>
         <div class="section-divider"></div>
 
         <div class="grid md:grid-cols-2 gap-5 mb-5">
           <div class="glass-card p-6 glow-border">
             <div class="cert-icon">🎓</div>
-            <h3 class="font-semibold text-[var(--text-primary)] mb-1">Bacharelado em Ciência da Computação</h3>
-            <p class="text-[var(--accent-tertiary)] text-sm mb-2">Universidade de Guarulhos</p>
-            <span class="experience-date">2007 — 2010</span>
+            <h3 class="font-semibold text-[var(--text-primary)] mb-1" data-i18n="edu.bsc">Bacharelado em Ciência da Computação</h3>
+            <p class="text-[var(--accent-tertiary)] text-sm mb-2" data-i18n="edu.uni">Universidade de Guarulhos</p>
+            <span class="experience-date" data-i18n="edu.date2">2007 — 2010</span>
           </div>
           <div class="glass-card p-6 glow-border bento-ai">
             <div class="cert-icon">✦</div>
-            <h3 class="font-semibold text-[var(--text-primary)] mb-1">Engenharia de Agentes de IA</h3>
-            <p class="text-[var(--accent-tertiary)] text-sm mb-2">LLMs e Sistemas Autônomos</p>
-            <span class="cert-badge-inprogress">Em andamento</span>
+            <h3 class="font-semibold text-[var(--text-primary)] mb-1" data-i18n="edu.ai">Engenharia de Agentes de IA</h3>
+            <p class="text-[var(--accent-tertiary)] text-sm mb-2" data-i18n="edu.ai.desc">LLMs e Sistemas Autônomos</p>
+            <span class="cert-badge-inprogress" data-i18n="edu.ai.badge">Em andamento</span>
           </div>
         </div>
 
         <!-- Trilhas Alura -->
         <details class="cert-accordion mb-3" open>
           <summary class="cert-accordion-summary">
-            <span class="font-semibold text-[var(--text-primary)]">Trilhas Concluídas • Alura</span>
+            <span class="font-semibold text-[var(--text-primary)]" data-i18n="edu.courses">Trilhas Concluídas • Alura</span>
             <span class="cert-hours mono ml-auto mr-3">268h</span>
             <svg class="cert-accordion-chevron w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -760,7 +774,7 @@
         <!-- Imersões -->
         <details class="cert-accordion mb-3">
           <summary class="cert-accordion-summary">
-            <span class="font-semibold text-[var(--text-primary)]">Imersões Concluídas</span>
+            <span class="font-semibold text-[var(--text-primary)]" data-i18n="edu.immersions">Imersões Concluídas</span>
             <span class="cert-hours mono ml-auto mr-3">47h</span>
             <svg class="cert-accordion-chevron w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -789,10 +803,10 @@
         <!-- Total horas -->
         <div class="mt-6 pt-4 border-t border-white/10">
           <p class="text-sm text-[var(--text-muted)]">
-            <span class="font-medium text-[var(--text-primary)]">Total de horas estudadas:</span>
-            <span class="cert-hours mono">315h</span> de cursos, trilhas e imersões concluídas
+            <span class="font-medium text-[var(--text-primary)]" data-i18n="edu.total">Total de horas estudadas:</span>
+            <span class="cert-hours mono">315h</span> <span data-i18n="edu.total.desc">de cursos, trilhas e imersões concluídas</span>
           </p>
-          <p class="text-xs text-[var(--text-muted)] mt-1">Período: 25/03/2024 a 28/06/2026</p>
+          <p class="text-xs text-[var(--text-muted)] mt-1" data-i18n="edu.period">Período: 25/03/2024 a 28/06/2026</p>
         </div>
       </section>
 
@@ -800,8 +814,8 @@
       <section id="contato" class="scroll-mt-24 reveal" data-aos="fade-up">
         <div class="contact-card glow-border-strong">
 
-          <h2 class="section-title" style="margin-bottom:0.5rem">Vamos conversar</h2>
-          <p class="text-[var(--text-secondary)] max-w-md mx-auto mb-8" style="font-size:0.9375rem;line-height:1.6">
+          <h2 class="section-title" style="margin-bottom:0.5rem" data-i18n="contact.title">Vamos conversar</h2>
+          <p class="text-[var(--text-secondary)] max-w-md mx-auto mb-8" style="font-size:0.9375rem;line-height:1.6" data-i18n="contact.desc">
             Disponível para oportunidades em Engenharia de Dados, Analytics Engineering e Inteligência Artificial.
           </p>
 
@@ -811,7 +825,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Entrar em contato
+            <span data-i18n="contact.btn">Entrar em contato</span>
           </a>
 
           <div class="contact-socials">
@@ -833,7 +847,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
             </svg>
-            Baixar currículo em PDF
+            <span data-i18n="contact.cv">Baixar currículo em PDF</span>
           </a>
 
           <div class="contact-meta">
@@ -864,7 +878,7 @@
     </main>
 
     <footer class="footer-wave py-6 text-center">
-      <p class="text-[var(--text-muted)] text-sm">
+      <p class="text-[var(--text-muted)] text-sm" data-i18n="footer.text">
         © 2026 Anselmo Xavier de Oliveira · Engenheiro de Dados · Analytics Engineer
       </p>
     </footer>
@@ -885,7 +899,7 @@
     <svg class="whatsapp-float-icon" viewBox="0 0 32 32" fill="currentColor">
       <path d="M16.002 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.47 1.72 6.43L3.2 28.8l6.55-1.72a12.74 12.74 0 006.25 1.6h.01c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05A12.72 12.72 0 0016.002 3.2zm0 23.4h-.01a10.66 10.66 0 01-5.43-1.48l-.39-.23-3.89 1.02 1.04-3.79-.25-.4a10.6 10.6 0 01-1.62-5.63c0-5.89 4.79-10.68 10.69-10.68 2.85 0 5.53 1.11 7.55 3.13a10.61 10.61 0 013.13 7.55c0 5.9-4.79 10.68-10.68 10.68zm5.88-8.01c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.22.32-.84 1.05-1.03 1.26-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.86-1.6-1.92-1.79-2.24-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.56-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.55-.73-.56h-.62c-.22 0-.56.08-.85.4-.3.32-1.12 1.1-1.12 2.67 0 1.58 1.15 3.1 1.31 3.32.16.21 2.27 3.47 5.5 4.86.77.33 1.37.53 1.84.68.77.25 1.48.21 2.03.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.14-.3-.22-.62-.38z"/>
     </svg>
-    <span class="whatsapp-float-tooltip">Fale comigo</span>
+    <span class="whatsapp-float-tooltip" data-i18n="whatsapp.tooltip">Fale comigo</span>
   </a>
 
 </body>

@@ -1707,3 +1707,49 @@ body.bg-grid .text-slate-400 { color: var(--text-muted); }
     transform: none;
   }
 }
+
+/* ========================================
+   LANGUAGE SWITCHER
+   ======================================== */
+
+.lang-switcher {
+  flex-shrink: 0;
+}
+
+.lang-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 1.25rem;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+  line-height: 1;
+  padding: 0;
+}
+
+.lang-flag:hover {
+  opacity: 0.85;
+  border-color: var(--border-accent);
+  transform: translateY(-1px);
+}
+
+.lang-flag.lang-active {
+  opacity: 1;
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+@media (max-width: 767px) {
+  .lang-switcher .lang-flag {
+    width: 40px;
+    height: 40px;
+    font-size: 1.375rem;
+  }
+}
