@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Data Lake com PySpark — Arquitetura Medallion (Bronze/Silver/Gold) usando Apache Spark, Parquet e particionamento">
-  <meta property="og:title" content="Data Lake com PySpark | Anselmo Xavier">
+    content="ETL Tickers Financeiros — Pipeline Python para coleta de dados de ações de bancos brasileiros com yfinance, PostgreSQL e dbt">
+  <meta property="og:title" content="ETL Tickers Financeiros | Anselmo Xavier">
   <meta property="og:description"
-    content="Implementação de Data Lake com Apache Spark (PySpark) seguindo arquitetura Medallion. 3 camadas, particionamento inteligente e formato Parquet.">
-  <title>Data Lake com PySpark | Anselmo Xavier</title>
+    content="Pipeline ETL que coleta dados históricos de ações (ITUB, BBDC4, BBAS3, SANB11) via yfinance, armazena em PostgreSQL e transforma com dbt.">
+  <title>ETL Tickers Financeiros | Anselmo Xavier</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -48,18 +48,18 @@
 
   <div class="project-page-header">
     <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
-      <h1>Data Lake com PySpark</h1>
-      <p class="mt-2 text-[var(--text-secondary)]">Apache Spark · PySpark · Parquet · Medallion Architecture</p>
+      <h1>ETL Tickers Financeiros</h1>
+      <p class="mt-2 text-[var(--text-secondary)]">Python · yfinance · PostgreSQL · dbt · Pandas</p>
       <div class="flex flex-wrap justify-center gap-2 mt-4">
-        <span class="tech-badge">Apache Spark</span>
-        <span class="tech-badge">PySpark</span>
-        <span class="tech-badge">Data Lake</span>
-        <span class="tech-badge">Parquet</span>
-        <span class="tech-badge">Medallion</span>
         <span class="tech-badge">Python</span>
+        <span class="tech-badge">yfinance</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">dbt</span>
+        <span class="tech-badge">Pandas</span>
+        <span class="tech-badge">SQLAlchemy</span>
       </div>
       <div class="flex flex-wrap justify-center gap-4 mt-6">
-        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
+        <a href="https://github.com/anselmoaxo/ETL-TickersSQL-Python-DBT" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
@@ -76,124 +76,112 @@
       </h2>
       <div class="section-divider"></div>
       <p class="text-[var(--text-secondary)] leading-relaxed mb-3">
-        Implementação de um <strong class="text-[var(--text-primary)]">Data Lake</strong> utilizando <strong class="text-[var(--accent-secondary)]">Apache Spark (PySpark)</strong>
-        seguindo a arquitetura <strong class="text-[var(--accent-tertiary)]">Medallion</strong> com três camadas distintas: Bronze (raw),
-        Silver (curated) e Gold (analytics).
+        Pipeline ETL para coleta de <strong class="text-[var(--text-primary)]">dados históricos de ações de bancos brasileiros</strong>
+        através da API <strong class="text-[var(--accent-secondary)]">yfinance</strong>, com processamento e armazenamento em
+        <strong class="text-[var(--accent-secondary)]">PostgreSQL</strong> e transformações orquestradas via
+        <strong class="text-[var(--accent-tertiary)]">dbt (Data Build Tool)</strong>.
       </p>
       <p class="text-[var(--text-secondary)] leading-relaxed">
-        O projeto demonstra o fluxo completo de ingestão, transformação progressiva e otimização de dados,
-        com particionamento inteligente e armazenamento em formato <strong class="text-[var(--accent-secondary)]">Parquet</strong> para alta
-        performance em queries analíticas.
+        O projeto se divide em três partes: coleta de dados históricos de fechamento de ações
+        (ITUB, BBDC4, BBAS3, SANB11), processamento e carga no banco relacional, e camada de
+        transformação com dbt para preparar os dados para análises e visualizações.
       </p>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        Arquitetura Medallion
+        Arquitetura do Pipeline
       </h2>
       <div class="section-divider"></div>
 
       <div class="code-panel mono text-xs mb-5 overflow-x-auto">
-<pre>┌─────────────────────────────────────────────────────┐
-│                   FONTE DE DADOS                    │
-│          CSV / JSON / APIs / Databases              │
-└──────────────────────┬──────────────────────────────┘
-                       │
-                       ▼
-        ┌──────────────────────────────┐
-        │     🥉 CAMADA BRONZE         │
-        │  (Dados Brutos / Raw Data)   │
-        │  · Dados como recebidos      │
-        │  · Sem transformações        │
-        │  · Schema-on-read            │
-        │  · Formato: Parquet          │
-        │  · Partição: ano/mes/dia     │
-        └──────────────┬───────────────┘
-                       │ PySpark · Limpeza · Validação
-                       ▼
-        ┌──────────────────────────────┐
-        │     🥈 CAMADA SILVER         │
-        │ (Dados Limpos / Curated)     │
-        │  · Dados limpos              │
-        │  · Schema definido           │
-        │  · Deduplicação              │
-        │  · Formato: Parquet          │
-        │  · Partição: ano/mes         │
-        └──────────────┬───────────────┘
-                       │ PySpark · Agregações · Joins
-                       ▼
-        ┌──────────────────────────────┐
-        │     🥇 CAMADA GOLD           │
-        │  (Dados Analytics-Ready)     │
-        │  · Dados agregados           │
-        │  · Business metrics          │
-        │  · Otimizado para BI         │
-        │  · Formato: Parquet          │
-        │  · Partição: categoria       │
-        └──────────────┬───────────────┘
-                       │
-                       ▼
-        ┌──────────────────────────────┐
-        │    CONSUMO                   │
-        │  BI Tools / ML / Analytics   │
-        └──────────────────────────────┘</pre>
+<pre>┌──────────────────────┐
+│    yfinance API      │
+│  Dados de ações B3   │
+│  · ITUB  · BBDC4     │
+│  · BBAS3 · SANB11    │
+└──────────┬───────────┘
+           │ Python + yfinance
+           ▼
+┌──────────────────────┐
+│   Processamento      │
+│  · Pandas DataFrame  │
+│  · Limpeza e formato │
+│  · SQLAlchemy Engine │
+└──────────┬───────────┘
+           │ INSERT / UPSERT
+           ▼
+┌──────────────────────┐
+│     PostgreSQL       │
+│  Tabela raw:         │
+│  · tickers_historico │
+└──────────┬───────────┘
+           │ dbt run
+           ▼
+┌──────────────────────┐
+│        dbt           │
+│  · staging           │
+│  · analytics         │
+│  · testes e docs     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   Análises e BI      │
+│  PostgreSQL queries  │
+└──────────────────────┘</pre>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Detalhamento das Camadas</h3>
-      <div class="space-y-3">
-        <div class="border-l-4 pl-4" style="border-color:#b45309">
-          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Bronze — Raw Data</h4>
-          <p class="text-[var(--text-secondary)] text-sm">Dados brutos exatamente como recebidos. Preserva dados originais para auditoria e reprocessamento. Schema-on-read com particionamento temporal.</p>
-        </div>
-        <div class="border-l-4 pl-4" style="border-color:var(--text-muted)">
-          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Silver — Curated Data</h4>
-          <p class="text-[var(--text-secondary)] text-sm">Dados limpos e validados. Remoção de duplicatas, padronização de tipos, enrichment com dados de referência.</p>
-        </div>
-        <div class="border-l-4 pl-4" style="border-color:#eab308">
-          <h4 class="font-semibold text-[var(--text-primary)] text-sm mb-1">Gold — Analytics-Ready</h4>
-          <p class="text-[var(--text-secondary)] text-sm">Dados agregados e otimizados para BI. Métricas calculadas (KPIs), desnormalização e otimização para ferramentas de visualização.</p>
-        </div>
-      </div>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Fluxo de Dados</h3>
+      <ol class="list-decimal list-inside space-y-2 text-[var(--text-secondary)]">
+        <li><strong class="text-[var(--text-primary)]">Coleta:</strong> Python + yfinance baixa dados históricos de fechamento dos tickers</li>
+        <li><strong class="text-[var(--text-primary)]">Processamento:</strong> Pandas organiza os dados em DataFrame com colunas padronizadas</li>
+        <li><strong class="text-[var(--text-primary)]">Carga:</strong> SQLAlchemy insere os dados na tabela raw do PostgreSQL</li>
+        <li><strong class="text-[var(--text-primary)]">Transformação:</strong> dbt aplica camadas staging e analytics com modelos SQL</li>
+      </ol>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Stack Utilizada
+        Stack Tecnológica
       </h2>
       <div class="section-divider"></div>
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Processamento</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Linguagem &amp; Bibliotecas</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Apache Spark 3.x</li>
-            <li>PySpark</li>
-            <li>Spark SQL</li>
+            <li>Python 3.8+</li>
+            <li>yfinance — API de dados financeiros</li>
+            <li>Pandas — manipulação de dados</li>
+            <li>SQLAlchemy — ORM e conexão DB</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Armazenamento</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Banco de Dados</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Data Lake (S3/HDFS)</li>
-            <li>Formato Parquet (colunar)</li>
-            <li>Compressão Snappy</li>
+            <li>PostgreSQL</li>
+            <li>Tabelas raw e analytics</li>
+            <li>Schemas separados por camada</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Otimização</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Transformação</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Particionamento inteligente</li>
-            <li>Bucketing para joins</li>
-            <li>Cache para dados frequentes</li>
+            <li>dbt (Data Build Tool)</li>
+            <li>Modelos staging e analytics</li>
+            <li>Testes de qualidade de dados</li>
+            <li>Documentação automatizada</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Qualidade</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Tickers Monitorados</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Validação de schema</li>
-            <li>Detecção de anomalias</li>
-            <li>Logging de transformações</li>
+            <li>ITUB — Itaú Unibanco</li>
+            <li>BBDC4 — Bradesco</li>
+            <li>BBAS3 — Banco do Brasil</li>
+            <li>SANB11 — Santander</li>
           </ul>
         </div>
       </div>
@@ -206,111 +194,77 @@
       </h2>
       <div class="section-divider"></div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Bronze — Ingestão</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Coleta de Dados com yfinance</h3>
       <div class="code-panel mono text-xs overflow-x-auto mb-5">
-<pre><span class="code-kw">from</span> pyspark.sql <span class="code-kw">import</span> SparkSession
-<span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> current_timestamp, year, month, dayofmonth
+<pre><span class="code-kw">import</span> yfinance <span class="code-kw">as</span> yf
+<span class="code-kw">import</span> pandas <span class="code-kw">as</span> pd
+<span class="code-kw">from</span> sqlalchemy <span class="code-kw">import</span> create_engine
+<span class="code-kw">from</span> datetime <span class="code-kw">import</span> datetime
 
-spark = SparkSession.builder \
-    .appName(<span class="code-str">"DataLake_Bronze"</span>) \
-    .getOrCreate()
+<span class="code-comment"># Tickers dos principais bancos brasileiros</span>
+TICKERS = [<span class="code-str">'ITUB'</span>, <span class="code-str">'BBDC4'</span>, <span class="code-str">'BBAS3'</span>, <span class="code-str">'SANB11'</span>]
 
-df_raw = spark.read \
-    .option(<span class="code-str">"header"</span>, <span class="code-str">"true"</span>) \
-    .option(<span class="code-str">"inferSchema"</span>, <span class="code-str">"true"</span>) \
-    .csv(<span class="code-str">"s3://input/vendas_*.csv"</span>)
+<span class="code-comment"># Adicionar sufixo .SA para B3</span>
+tickers_sa = [f<span class="code-str">'{t}.SA'</span> <span class="code-kw">for</span> t <span class="code-kw">in</span> TICKERS]
 
-df_bronze = df_raw \
-    .withColumn(<span class="code-str">"ingestion_timestamp"</span>, current_timestamp()) \
-    .withColumn(<span class="code-str">"year"</span>, year(<span class="code-str">"data_venda"</span>)) \
-    .withColumn(<span class="code-str">"month"</span>, month(<span class="code-str">"data_venda"</span>)) \
-    .withColumn(<span class="code-str">"day"</span>, dayofmonth(<span class="code-str">"data_venda"</span>))
+<span class="code-comment"># Baixar dados históricos (últimos 2 anos)</span>
+df = yf.download(
+    tickers_sa,
+    period=<span class="code-str">'2y'</span>,
+    interval=<span class="code-str">'1d'</span>
+)
 
-df_bronze.write \
-    .mode(<span class="code-str">"append"</span>) \
-    .partitionBy(<span class="code-str">"year"</span>, <span class="code-str">"month"</span>, <span class="code-str">"day"</span>) \
-    .parquet(<span class="code-str">"s3://datalake/bronze/vendas"</span>)</pre>
+<span class="code-comment"># Processar e formatar para PostgreSQL</span>
+df_clean = df.stack(level=0).reset_index()
+df_clean.columns = [<span class="code-str">'data'</span>, <span class="code-str">'ticker'</span>, <span class="code-str">'open'</span>, <span class="code-str">'high'</span>,
+                    <span class="code-str">'low'</span>, <span class="code-str">'close'</span>, <span class="code-str">'adj_close'</span>, <span class="code-str">'volume'</span>]
+
+<span class="code-comment"># Conectar ao PostgreSQL e inserir</span>
+engine = create_engine(os.getenv(<span class="code-str">'DATABASE_URL'</span>))
+df_clean.to_sql(<span class="code-str">'raw_tickers'</span>, engine, if_exists=<span class="code-str">'append'</span>, index=<span class="code-kw">False</span>)</pre>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Silver — Limpeza e Curação</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Modelo dbt — staging</h3>
       <div class="code-panel mono text-xs overflow-x-auto mb-5">
-<pre><span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> col, trim, upper, when
+<pre><span class="code-comment">-- models/staging/stg_tickers.sql</span>
+{{ config(materialized=<span class="code-str">'view'</span>) }}
 
-df_bronze = spark.read.parquet(<span class="code-str">"s3://datalake/bronze/vendas"</span>)
-
-df_silver = df_bronze \
-    .dropDuplicates([<span class="code-str">"id_venda"</span>]) \
-    .filter(col(<span class="code-str">"valor_total"</span>) > 0) \
-    .filter(col(<span class="code-str">"data_venda"</span>).isNotNull()) \
-    .withColumn(<span class="code-str">"nome_cliente"</span>, trim(upper(col(<span class="code-str">"nome_cliente"</span>)))) \
-    .withColumn(<span class="code-str">"status"</span>, when(col(<span class="code-str">"status"</span>).isNull(), <span class="code-str">"PENDENTE"</span>)
-                          .otherwise(col(<span class="code-str">"status"</span>)))) \
-    .withColumn(<span class="code-str">"processing_timestamp"</span>, current_timestamp())
-
-<span class="code-comment"># Validação de schema</span>
-expected_cols = [<span class="code-str">"id_venda"</span>, <span class="code-str">"data_venda"</span>, <span class="code-str">"valor_total"</span>]
-<span class="code-kw">assert</span> all(c in df_silver.columns <span class="code-kw">for</span> c in expected_cols)
-
-df_silver.write \
-    .mode(<span class="code-str">"overwrite"</span>) \
-    .partitionBy(<span class="code-str">"year"</span>, <span class="code-str">"month"</span>) \
-    .parquet(<span class="code-str">"s3://datalake/silver/vendas"</span>)</pre>
+<span class="code-kw">SELECT</span>
+    data,
+    ticker,
+    <span class="code-kw">CAST</span>(open <span class="code-kw">AS</span> DECIMAL(10,2)) <span class="code-kw">AS</span> preco_abertura,
+    <span class="code-kw">CAST</span>(high <span class="code-kw">AS</span> DECIMAL(10,2)) <span class="code-kw">AS</span> preco_maximo,
+    <span class="code-kw">CAST</span>(low <span class="code-kw">AS</span> DECIMAL(10,2)) <span class="code-kw">AS</span> preco_minimo,
+    <span class="code-kw">CAST</span>(close <span class="code-kw">AS</span> DECIMAL(10,2)) <span class="code-kw">AS</span> preco_fechamento,
+    volume <span class="code-kw">AS</span> volume_negociado
+<span class="code-kw">FROM</span> {{ source(<span class="code-str">'raw'</span>, <span class="code-str">'raw_tickers'</span>) }}
+<span class="code-kw">WHERE</span> close > 0
+  <span class="code-kw">AND</span> data >= <span class="code-str">'2022-01-01'</span></pre>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Camada Gold — Agregações Analytics</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Modelo dbt — analytics</h3>
       <div class="code-panel mono text-xs overflow-x-auto">
-<pre><span class="code-kw">from</span> pyspark.sql.functions <span class="code-kw">import</span> sum, avg, count, date_trunc
+<pre><span class="code-comment">-- models/analytics/metricas_diarias.sql</span>
+{{ config(materialized=<span class="code-str">'table'</span>) }}
 
-df_silver = spark.read.parquet(<span class="code-str">"s3://datalake/silver/vendas"</span>)
-
-df_gold = df_silver \
-    .withColumn(<span class="code-str">"mes"</span>, date_trunc(<span class="code-str">"month"</span>, col(<span class="code-str">"data_venda"</span>))) \
-    .groupBy(<span class="code-str">"mes"</span>, <span class="code-str">"categoria_produto"</span>) \
-    .agg(
-        sum(<span class="code-str">"valor_total"</span>).alias(<span class="code-str">"receita_total"</span>),
-        avg(<span class="code-str">"valor_total"</span>).alias(<span class="code-str">"ticket_medio"</span>),
-        count(<span class="code-str">"id_venda"</span>).alias(<span class="code-str">"qtd_vendas"</span>)
-    ) \
-    .withColumn(<span class="code-str">"created_at"</span>, current_timestamp())
-
-df_gold.write \
-    .mode(<span class="code-str">"overwrite"</span>) \
-    .partitionBy(<span class="code-str">"categoria_produto"</span>) \
-    .format(<span class="code-str">"parquet"</span>) \
-    .option(<span class="code-str">"compression"</span>, <span class="code-str">"snappy"</span>) \
-    .save(<span class="code-str">"s3://datalake/gold/vendas_mensais"</span>)</pre>
+<span class="code-kw">SELECT</span>
+    data,
+    ticker,
+    preco_fechamento,
+    LAG(preco_fechamento) <span class="code-kw">OVER</span> (
+        <span class="code-kw">PARTITION BY</span> ticker <span class="code-kw">ORDER BY</span> data
+    ) <span class="code-kw">AS</span> fechamento_anterior,
+    <span class="code-kw">ROUND</span>(
+        (preco_fechamento - LAG(preco_fechamento) <span class="code-kw">OVER</span> (
+            <span class="code-kw">PARTITION BY</span> ticker <span class="code-kw">ORDER BY</span> data
+        )) / <span class="code-kw">NULLIF</span>(LAG(preco_fechamento) <span class="code-kw">OVER</span> (
+            <span class="code-kw">PARTITION BY</span> ticker <span class="code-kw">ORDER BY</span> data
+        ), 0) * 100, 2
+    ) <span class="code-kw">AS</span> variacao_pct,
+    volume_negociado
+<span class="code-kw">FROM</span> {{ ref(<span class="code-str">'stg_tickers'</span>) }}
+<span class="code-kw">ORDER BY</span> data <span class="code-kw">DESC</span>, ticker</pre>
       </div>
-    </section>
-
-    <section class="glass-card p-8" data-aos="fade-up">
-      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
-        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
-        Estratégia de Particionamento
-      </h2>
-      <div class="section-divider"></div>
-
-      <div class="code-panel mono text-xs mb-4 overflow-x-auto">
-<pre>datalake/
-├── bronze/
-│   └── vendas/
-│       ├── year=2024/month=01/day=01/part-00000.parquet
-│       └── year=2024/month=01/day=02/part-00000.parquet
-├── silver/
-│   └── vendas/
-│       └── year=2024/month=01/part-00000.parquet
-└── gold/
-    └── vendas_mensais/
-        ├── categoria=eletronicos/part-00000.parquet
-        └── categoria=moveis/part-00000.parquet</pre>
-      </div>
-
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Benefícios</h3>
-      <ul class="list-disc list-inside space-y-1 text-[var(--text-secondary)] text-sm">
-        <li><strong class="text-[var(--text-primary)]">Partition Pruning:</strong> Queries só leem partições relevantes</li>
-        <li><strong class="text-[var(--text-primary)]">Paralelismo:</strong> Spark processa partições em paralelo</li>
-        <li><strong class="text-[var(--text-primary)]">Performance:</strong> Reduz tempo de query em até 100x</li>
-        <li><strong class="text-[var(--text-primary)]">Gerenciamento:</strong> Facilita delete/update de dados específicos</li>
-      </ul>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
@@ -322,19 +276,19 @@ df_gold.write \
 
       <div class="space-y-5">
         <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Small Files Problem</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Muitos arquivos pequenos degradam performance.</p>
-          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> coalesce() e repartition() estratégico, compactação periódica de arquivos antigos.</p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Dados da B3 com sufixo .SA</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Tickers brasileiros na yfinance exigem o sufixo .SA, gerando confusão no mapeamento.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Função de mapeamento automático que adiciona o sufixo e mantém o ticker original na tabela.</p>
         </div>
         <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Data Skew</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Partições desbalanceadas causando processamento lento.</p>
-          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Salting technique + Adaptive Query Execution (AQE) do Spark 3.0.</p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Volumetria de dados históricos</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> 2 anos de dados diários para 4 tickers gera milhares de registros.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Lógica de upsert com controle de data para evitar duplicação e permitir execuções incrementais.</p>
         </div>
         <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Schema Evolution</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Mudanças no schema de origem quebravam o pipeline.</p>
-          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> mergeSchema habilitado + validação na camada Bronze para detectar mudanças precocemente.</p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Qualidade e consistência</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Dados zerados ou nulos em feriados e fins de semana.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Filtros no modelo staging do dbt removem registros com close = 0 e datas inválidas.</p>
         </div>
       </div>
     </section>
@@ -342,54 +296,32 @@ df_gold.write \
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-        Performance e Resultados
+        Resultados
       </h2>
       <div class="section-divider"></div>
 
       <div class="grid md:grid-cols-3 gap-4 mb-5">
         <div class="stat-panel">
-          <div class="stat-value">5 GB</div>
-          <p class="text-[var(--text-muted)] text-sm">Dados Processados</p>
+          <div class="stat-value">4</div>
+          <p class="text-[var(--text-muted)] text-sm">Tickers Monitorados</p>
         </div>
         <div class="stat-panel">
-          <div class="stat-value">95%</div>
-          <p class="text-[var(--text-muted)] text-sm">Redução Query Time</p>
+          <div class="stat-value">2 anos</div>
+          <p class="text-[var(--text-muted)] text-sm">Histórico Coletado</p>
         </div>
         <div class="stat-panel">
-          <div class="stat-value">3x</div>
-          <p class="text-[var(--text-muted)] text-sm">Mais Rápido que CSV</p>
+          <div class="stat-value">dbt</div>
+          <p class="text-[var(--text-muted)] text-sm">Transformações SQL</p>
         </div>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Comparação de Performance</h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm text-[var(--text-secondary)] border-collapse">
-          <thead>
-            <tr class="border-b border-[var(--border-subtle)] text-[var(--accent-tertiary)] font-semibold">
-              <th class="text-left py-2">Operação</th>
-              <th class="text-left py-2">CSV (baseline)</th>
-              <th class="text-left py-2">Parquet Particionado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-[var(--border-subtle)]">
-              <td class="py-2">Full Scan</td>
-              <td class="py-2 text-[var(--text-muted)]">45s</td>
-              <td class="py-2 text-[var(--accent-secondary)]">12s</td>
-            </tr>
-            <tr class="border-b border-[var(--border-subtle)]">
-              <td class="py-2">Filter by Date</td>
-              <td class="py-2 text-[var(--text-muted)]">38s</td>
-              <td class="py-2 text-[var(--accent-secondary)]">2s</td>
-            </tr>
-            <tr>
-              <td class="py-2">Aggregation</td>
-              <td class="py-2 text-[var(--text-muted)]">52s</td>
-              <td class="py-2 text-[var(--accent-secondary)]">8s</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Entregáveis</h3>
+      <ul class="list-disc list-inside space-y-1.5 text-[var(--text-secondary)] text-sm">
+        <li>Pipeline Python completo para coleta automatizada de dados da B3</li>
+        <li>Modelo de dados relacional em PostgreSQL com tabelas raw e analytics</li>
+        <li>Transformações dbt com staging, métricas diárias e variação percentual</li>
+        <li>Base de dados pronta para dashboards financeiros e análises de mercado</li>
+      </ul>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
@@ -401,30 +333,26 @@ df_gold.write \
       <ul class="space-y-2 text-[var(--text-secondary)]">
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Arquitetura <strong class="text-[var(--text-primary)]">Medallion</strong> organiza dados de forma lógica e escalável</span>
+          <span>Como <strong class="text-[var(--text-primary)]">consumir APIs financeiras</strong> com yfinance e tratar dados do mercado B3</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span><strong class="text-[var(--text-primary)]">Particionamento inteligente</strong> é crítico para performance em Big Data</span>
+          <span>Estruturação de <strong class="text-[var(--text-primary)]">pipeline ETL com Python + SQLAlchemy</strong> para carga em PostgreSQL</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Formato <strong class="text-[var(--text-primary)]">Parquet</strong> oferece compressão e performance superiores</span>
+          <span>Uso do <strong class="text-[var(--text-primary)]">dbt para camadas de transformação</strong> com staging e analytics</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Importância de <strong class="text-[var(--text-primary)]">coalesce/repartition</strong> para evitar small files</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span><strong class="text-[var(--text-primary)]">Spark SQL</strong> permite queries SQL em dados distribuídos facilmente</span>
+          <span>Implementação de <strong class="text-[var(--text-primary)]">window functions SQL</strong> para métricas de variação percentual</span>
         </li>
       </ul>
     </section>
 
     <div class="text-center" data-aos="fade-up">
       <div class="flex flex-col sm:flex-row justify-center gap-3">
-        <a href="https://github.com/anselmoaxo" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        <a href="https://github.com/anselmoaxo/ETL-TickersSQL-Python-DBT" target="_blank" rel="noopener noreferrer" class="btn-secondary">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>

@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Pipeline ETL Concessionária — Projeto de Engenharia de Dados com Airflow, dbt e Looker Studio">
-  <meta property="og:title" content="Pipeline Concessionária | Anselmo Xavier">
+    content="FIFA 23 Dataset — Aplicação Streamlit interativa para exploração de dados de +17 mil jogadores do FIFA 23">
+  <meta property="og:title" content="FIFA 23 Dataset | Anselmo Xavier">
   <meta property="og:description"
-    content="Pipeline completo de ETL com Airflow + dbt + PostgreSQL. Extração incremental, 3 camadas de transformação e dashboards no Looker Studio.">
-  <title>Pipeline Concessionária | Anselmo Xavier</title>
+    content="Dashboard interativo com Streamlit e Python. Explore estatísticas de times e jogadores do dataset FIFA 23 do Kaggle.">
+  <title>FIFA 23 Dataset | Anselmo Xavier</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -48,18 +48,17 @@
 
   <div class="project-page-header">
     <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
-      <h1>Pipeline Concessionária</h1>
-      <p class="mt-2 text-[var(--text-secondary)]">Airflow + dbt + PostgreSQL + Looker Studio</p>
+      <h1>FIFA 23 Dataset</h1>
+      <p class="mt-2 text-[var(--text-secondary)]">Python · Streamlit · Pandas · Kaggle</p>
       <div class="flex flex-wrap justify-center gap-2 mt-4">
-        <span class="tech-badge">Apache Airflow</span>
-        <span class="tech-badge">dbt</span>
-        <span class="tech-badge">PostgreSQL</span>
-        <span class="tech-badge">Looker Studio</span>
         <span class="tech-badge">Python</span>
-        <span class="tech-badge">ETL</span>
+        <span class="tech-badge">Streamlit</span>
+        <span class="tech-badge">Pandas</span>
+        <span class="tech-badge">Kaggle</span>
+        <span class="tech-badge">Data Viz</span>
       </div>
       <div class="flex flex-wrap justify-center gap-4 mt-6">
-        <a href="https://github.com/anselmoaxo/etl_vendas" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
+        <a href="https://github.com/anselmoaxo/dataset-fifa23" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.875rem;padding:0.5rem 1.125rem;">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
@@ -76,113 +75,124 @@
       </h2>
       <div class="section-divider"></div>
       <p class="text-[var(--text-secondary)] leading-relaxed mb-3">
-        Pipeline completo de ETL para análise de dados de uma <strong class="text-[var(--text-primary)]">concessionária de veículos</strong>.
-        O projeto extrai dados operacionais de vendas, clientes, produtos e categorias de um banco de
-        produção PostgreSQL, realiza transformações com <strong class="text-[var(--accent-secondary)]">dbt</strong> seguindo arquitetura de
-        camadas, e disponibiliza os dados em um Data Warehouse para visualização em <strong class="text-[var(--accent-secondary)]">Looker Studio</strong>.
+        Aplicação interativa desenvolvida com <strong class="text-[var(--accent-warm)]">Streamlit</strong> para
+        exploração do <strong class="text-[var(--text-primary)]">dataset FIFA 23</strong>, contendo estatísticas
+        de <strong class="text-[var(--accent-secondary)]">+17 mil jogadores</strong>. O usuário pode selecionar
+        times e jogadores para visualizar métricas detalhadas como overall, pace, shooting, passing e valor de mercado.
       </p>
       <p class="text-[var(--text-secondary)] leading-relaxed">
-        Toda a orquestração é feita via <strong class="text-[var(--accent-primary)]">Apache Airflow</strong>, permitindo agendamento
-        automático, monitoramento e retry de falhas.
+        Os dados foram obtidos do <strong class="text-[var(--accent-tertiary)]">Kaggle</strong> (FIFA Player Stats Database)
+        e o projeto demonstra habilidades em manipulação de dados com Pandas, construção de dashboards interativos e
+        deployment de aplicações web com Streamlit.
       </p>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        Arquitetura do Pipeline
+        Arquitetura da Aplicação
       </h2>
       <div class="section-divider"></div>
 
       <div class="code-panel mono text-xs mb-5 overflow-x-auto">
-<pre>┌─────────────────┐
-│  PostgreSQL     │
-│  (Produção)     │
-│  · vendas       │
-│  · clientes     │
-│  · produtos     │
-└────────┬────────┘
-         │ Extract
-         ▼
-┌─────────────────┐
-│ Apache Airflow  │
-│  DAG Pipeline   │
-│  · Extração     │
-│  · Validação    │
-│  · Trigger dbt  │
-└────────┬────────┘
-         │ Load
-         ▼
-┌─────────────────┐
-│  PostgreSQL     │
-│ (Data Warehouse)│
-│  · staging      │
-└────────┬────────┘
-         │ Transform
-         ▼
-┌─────────────────┐
-│      dbt        │
-│  · staging      │
-│  · dimensions   │
-│  · analytics    │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Looker Studio  │
-│  Dashboards     │
-│  · Vendas       │
-│  · Clientes     │
-│  · Produtos     │
-└─────────────────┘</pre>
+<pre>┌──────────────────────┐
+│       Kaggle         │
+│  FIFA Player Stats   │
+│  Database (CSV)      │
+└──────────┬───────────┘
+           │ pandas.read_csv()
+           ▼
+┌──────────────────────┐
+│   Processamento      │
+│  · Pandas DataFrame  │
+│  · Limpeza de dados  │
+│  · Filtros e seleção │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│     Streamlit App    │
+│  · Seleção de Time   │
+│  · Seleção Jogador   │
+│  · Métricas e Cards  │
+│  · Interface Web     │
+└──────────────────────┘</pre>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Fluxo de Dados</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Fluxo da Aplicação</h3>
       <ol class="list-decimal list-inside space-y-2 text-[var(--text-secondary)]">
-        <li><strong class="text-[var(--text-primary)]">Extração:</strong> Airflow conecta ao banco de produção e extrai dados via SQL</li>
-        <li><strong class="text-[var(--text-primary)]">Carga:</strong> Dados brutos são carregados na camada staging do DW</li>
-        <li><strong class="text-[var(--text-primary)]">Transformação:</strong> dbt aplica transformações em 3 camadas (staging → dimensions → analytics)</li>
-        <li><strong class="text-[var(--text-primary)]">Visualização:</strong> Looker Studio consome as tabelas finais para dashboards</li>
+        <li><strong class="text-[var(--text-primary)]">Carregamento:</strong> Pandas carrega o CSV do Kaggle com dados de todos os jogadores</li>
+        <li><strong class="text-[var(--text-primary)]">Seleção de Time:</strong> Dropdown com todos os clubes disponíveis no dataset</li>
+        <li><strong class="text-[var(--text-primary)]">Seleção de Jogador:</strong> Filtro dinâmico que mostra apenas jogadores do time escolhido</li>
+        <li><strong class="text-[var(--text-primary)]">Visualização:</strong> Cards com métricas do jogador (overall, pace, shooting, passing, dribbling, value)</li>
       </ol>
     </section>
 
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Stack Utilizada
+        Stack Tecnológica
       </h2>
       <div class="section-divider"></div>
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Orquestração</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Linguagem &amp; Bibliotecas</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Apache Airflow 2.5+</li>
-            <li>DAGs com agendamento diário</li>
-            <li>Retry automático em falhas</li>
+            <li>Python 3.8+</li>
+            <li>Pandas — manipulação de dados</li>
+            <li>Streamlit — framework web</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Transformação</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Fonte de Dados</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>dbt para transformações SQL</li>
-            <li>Camadas: staging, dimensions, analytics</li>
-            <li>Testes de qualidade de dados</li>
+            <li>Kaggle — FIFA Player Stats DB</li>
+            <li>Formato CSV</li>
+            <li>17 mil+ registros</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Armazenamento</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Interface</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>PostgreSQL (origem e DW)</li>
-            <li>Schemas separados por camada</li>
+            <li>Streamlit — app web interativo</li>
+            <li>Dropdowns dinâmicos</li>
+            <li>Métricas em cards visuais</li>
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Visualização</h3>
+          <h3 class="font-semibold text-[var(--accent-tertiary)] mb-2">Métricas Exibidas</h3>
           <ul class="list-disc list-inside text-[var(--text-secondary)] space-y-1 text-sm">
-            <li>Looker Studio</li>
-            <li>Conexão direta com PostgreSQL</li>
-            <li>Refresh automático</li>
+            <li>Overall Rating</li>
+            <li>Pace · Shooting · Passing</li>
+            <li>Dribbling · Defending</li>
+            <li>Valor de Mercado</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-card p-8" data-aos="fade-up">
+      <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
+        <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+        Funcionalidades
+      </h2>
+      <div class="section-divider"></div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Seleção de Time</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Dropdown com todos os clubes carregados dinamicamente do dataset.</p>
+        </div>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Seleção de Jogador</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Filtro reativo que atualiza conforme o time escolhido, exibindo apenas jogadores do clube.</p>
+        </div>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Cards de Estatísticas</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Métricas visuais individuais para cada atributo do jogador selecionado.</p>
+        </div>
+        <div class="border-l-4 pl-4" style="border-color:var(--accent-primary)">
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">Interface Responsiva</h3>
+          <p class="text-[var(--text-secondary)] text-sm">Layout adaptável do Streamlit que funciona em qualquer dispositivo.</p>
         </div>
       </div>
     </section>
@@ -194,57 +204,51 @@
       </h2>
       <div class="section-divider"></div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">DAG do Airflow</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Carregamento e Interface</h3>
       <div class="code-panel mono text-xs overflow-x-auto mb-5">
-<pre><span class="code-kw">from</span> airflow <span class="code-kw">import</span> DAG
-<span class="code-kw">from</span> airflow.operators.python <span class="code-kw">import</span> PythonOperator
-<span class="code-kw">from</span> airflow.operators.bash <span class="code-kw">import</span> BashOperator
-<span class="code-kw">from</span> datetime <span class="code-kw">import</span> datetime, timedelta
+<pre><span class="code-kw">import</span> streamlit <span class="code-kw">as</span> st
+<span class="code-kw">import</span> pandas <span class="code-kw">as</span> pd
 
-default_args = {
-    <span class="code-str">'owner'</span>: <span class="code-str">'data_team'</span>,
-    <span class="code-str">'retries'</span>: 3,
-    <span class="code-str">'retry_delay'</span>: timedelta(minutes=5),
-}
+<span class="code-comment"># Configuração da página</span>
+st.set_page_config(
+    page_title=<span class="code-str">"FIFA 23 Dataset"</span>,
+    page_icon=<span class="code-str">"⚽"</span>,
+    layout=<span class="code-str">"wide"</span>
+)
 
-<span class="code-kw">with</span> DAG(
-    <span class="code-str">'concessionaria_etl'</span>,
-    default_args=default_args,
-    schedule_interval=<span class="code-str">'0 2 * * *'</span>,
-    start_date=datetime(2024, 1, 1),
-    catchup=<span class="code-kw">False</span>,
-) <span class="code-kw">as</span> dag:
+st.title(<span class="code-str">"FIFA 2023 — Player Stats"</span>)
 
-    extract = PostgresOperator(
-        task_id=<span class="code-str">'extract_vendas'</span>,
-        sql=<span class="code-str">'sql/extract_vendas.sql'</span>
-    )
+<span class="code-comment"># Carregar dataset do Kaggle</span>
+df = pd.read_csv(<span class="code-str">"fifa_player_stats.csv"</span>, sep=<span class="code-str">';'</span>)
 
-    run_dbt = BashOperator(
-        task_id=<span class="code-str">'run_dbt'</span>,
-        bash_command=<span class="code-str">'dbt run --models analytics'</span>
-    )
+<span class="code-comment"># Seleção de time</span>
+clubes = sorted(df[<span class="code-str">'Club'</span>].unique())
+clube = st.selectbox(<span class="code-str">"Selecione um time:"</span>, clubes)
 
-    extract >> run_dbt</pre>
+<span class="code-comment"># Filtrar jogadores do time</span>
+jogadores_time = df[df[<span class="code-str">'Club'</span>] == clube]
+jogador = st.selectbox(<span class="code-str">"Selecione um jogador:"</span>, jogadores_time[<span class="code-str">'Name'</span>])
+
+<span class="code-comment"># Exibir estatísticas</span>
+player = jogadores_time[jogadores_time[<span class="code-str">'Name'</span>] == jogador].iloc[0]
+
+col1, col2, col3, col4 = st.columns(4)
+col1.metric(<span class="code-str">"Overall"</span>, player[<span class="code-str">'Overall'</span>])
+col2.metric(<span class="code-str">"Pace"</span>, player[<span class="code-str">'Pace'</span>])
+col3.metric(<span class="code-str">"Shooting"</span>, player[<span class="code-str">'Shooting'</span>])
+col4.metric(<span class="code-str">"Passing"</span>, player[<span class="code-str">'Passing'</span>])</pre>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Modelo dbt — fact_vendas.sql</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Como Executar</h3>
       <div class="code-panel mono text-xs overflow-x-auto">
-<pre><span class="code-comment">-- models/analytics/fact_vendas.sql</span>
-{{ config(materialized=<span class="code-str">'table'</span>, schema=<span class="code-str">'analytics'</span>) }}
+<pre><span class="code-comment"># Clonar repositório</span>
+git clone https://github.com/anselmoaxo/dataset-fifa23.git
 
-<span class="code-kw">WITH</span> vendas_enriched <span class="code-kw">AS</span> (
-    <span class="code-kw">SELECT</span>
-        v.venda_id, v.data_venda, v.valor_total,
-        c.nome_cliente, c.cidade,
-        p.modelo, p.categoria
-    <span class="code-kw">FROM</span> {{ ref(<span class="code-str">'stg_vendas'</span>) }} v
-    <span class="code-kw">LEFT JOIN</span> {{ ref(<span class="code-str">'dim_clientes'</span>) }} c
-      <span class="code-kw">ON</span> v.cliente_id = c.cliente_id
-    <span class="code-kw">LEFT JOIN</span> {{ ref(<span class="code-str">'dim_produtos'</span>) }} p
-      <span class="code-kw">ON</span> v.produto_id = p.produto_id
-)
-<span class="code-kw">SELECT</span> * <span class="code-kw">FROM</span> vendas_enriched</pre>
+<span class="code-comment"># Instalar dependências</span>
+pip install -r requirements.txt
+
+<span class="code-comment"># Executar aplicação</span>
+streamlit run app.py</pre>
       </div>
     </section>
 
@@ -257,33 +261,19 @@ default_args = {
 
       <div class="space-y-5">
         <div class="border-l-4 pl-4" style="border-color:var(--accent-secondary)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Performance na Extração</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
-            <strong class="text-[var(--text-primary)]">Desafio:</strong> Extração completa levava mais de 2 horas, impactando o banco de produção.
-          </p>
-          <p class="text-[var(--text-secondary)] text-sm">
-            <strong class="text-[var(--text-primary)]">Solução:</strong> Extração incremental baseada em timestamps, reduzindo tempo para ~15 minutos e carga no banco em 85%.
-          </p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">1. Dataset com encoding variável</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> CSV do Kaggle com separador ponto-e-vírgula e encoding não-UTF8.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Configuração de encoding e separador na leitura com Pandas para carregamento correto.</p>
         </div>
-
         <div class="border-l-4 pl-4" style="border-color:var(--accent-tertiary)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Qualidade de Dados</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
-            <strong class="text-[var(--text-primary)]">Desafio:</strong> Dados inconsistentes quebravam o pipeline (nulos, duplicatas).
-          </p>
-          <p class="text-[var(--text-secondary)] text-sm">
-            <strong class="text-[var(--text-primary)]">Solução:</strong> Testes dbt para validar unicidade, não-nulidade e integridade referencial. Pipeline falha rápido com alertas claros.
-          </p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">2. Filtros reativos com Streamlit</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> Sincronizar dropdown de jogador conforme o time selecionado.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Uso do estado reativo do Streamlit com filtro encadeado no DataFrame.</p>
         </div>
-
         <div class="border-l-4 pl-4" style="border-color:var(--accent-warm)">
-          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Monitoramento e Alertas</h3>
-          <p class="text-[var(--text-secondary)] text-sm mb-1.5">
-            <strong class="text-[var(--text-primary)]">Desafio:</strong> Falhas silenciosas não eram detectadas rapidamente.
-          </p>
-          <p class="text-[var(--text-secondary)] text-sm">
-            <strong class="text-[var(--text-primary)]">Solução:</strong> Callbacks do Airflow para enviar alertas por email com logs detalhados.
-          </p>
+          <h3 class="font-semibold text-[var(--accent-primary)] mb-1.5">3. Performance com dataset grande</h3>
+          <p class="text-[var(--text-secondary)] text-sm mb-1.5"><strong class="text-[var(--text-primary)]">Desafio:</strong> +17 mil registros com múltiplas colunas podem deixar a interface lenta.</p>
+          <p class="text-[var(--text-secondary)] text-sm"><strong class="text-[var(--text-primary)]">Solução:</strong> Filtragem antecipada no DataFrame e cache do Streamlit para operações repetitivas.</p>
         </div>
       </div>
     </section>
@@ -291,31 +281,31 @@ default_args = {
     <section class="glass-card p-8" data-aos="fade-up">
       <h2 class="section-title" style="font-size:1.5rem;margin-bottom:1rem;">
         <svg class="w-6 h-6 inline-block mr-2 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-        Resultados e Métricas
+        Resultados
       </h2>
       <div class="section-divider"></div>
 
       <div class="grid md:grid-cols-3 gap-4 mb-5">
         <div class="stat-panel">
-          <div class="stat-value">~15min</div>
-          <p class="text-[var(--text-muted)] text-sm">Tempo de Execução Diária</p>
+          <div class="stat-value">17k+</div>
+          <p class="text-[var(--text-muted)] text-sm">Jogadores no Dataset</p>
         </div>
         <div class="stat-panel">
-          <div class="stat-value">500k+</div>
-          <p class="text-[var(--text-muted)] text-sm">Registros Processados/Dia</p>
+          <div class="stat-value">700+</div>
+          <p class="text-[var(--text-muted)] text-sm">Times Disponíveis</p>
         </div>
         <div class="stat-panel">
-          <div class="stat-value">99.5%</div>
-          <p class="text-[var(--text-muted)] text-sm">Taxa de Sucesso</p>
+          <div class="stat-value">MIT</div>
+          <p class="text-[var(--text-muted)] text-sm">Licença Open Source</p>
         </div>
       </div>
 
-      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Impacto no Negócio</h3>
+      <h3 class="font-semibold text-[var(--accent-tertiary)] mb-3">Entregáveis</h3>
       <ul class="list-disc list-inside space-y-1.5 text-[var(--text-secondary)] text-sm">
-        <li>Dashboards atualizados diariamente com dados atuais</li>
-        <li>Redução de 85% no tempo de geração de relatórios gerenciais</li>
-        <li>Visibilidade em tempo real de vendas, estoque e performance</li>
-        <li>Base sólida para expansão futura (ML, previsões)</li>
+        <li>Aplicação Streamlit funcional com interface interativa e responsiva</li>
+        <li>Dataset FIFA 23 processado e pronto para consultas analíticas</li>
+        <li>Filtros dinâmicos de time e jogador com atualização em tempo real</li>
+        <li>Código documentado e preparado para contribuições da comunidade</li>
       </ul>
     </section>
 
@@ -328,26 +318,26 @@ default_args = {
       <ul class="space-y-2 text-[var(--text-secondary)]">
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Importância de <strong class="text-[var(--text-primary)]">testes de qualidade</strong> desde o início do projeto</span>
+          <span>Construção de <strong class="text-[var(--text-primary)]">dashboards interativos</strong> com Streamlit de forma rápida e eficiente</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Benefícios da <strong class="text-[var(--text-primary)]">extração incremental</strong> para reduzir carga</span>
+          <span>Manipulação de <strong class="text-[var(--text-primary)]">datasets do Kaggle</strong> com Pandas — leitura, limpeza e filtros</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Valor do <strong class="text-[var(--text-primary)]">monitoramento proativo</strong> em pipelines de produção</span>
+          <span>Uso de <strong class="text-[var(--text-primary)]">componentes reativos</strong> do Streamlit para filtros encadeados</span>
         </li>
         <li class="flex items-start gap-3">
           <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-[var(--accent-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span>Estruturação de transformações em <strong class="text-[var(--text-primary)]">camadas lógicas</strong> (staging → dimensions → analytics)</span>
+          <span>Tratamento de <strong class="text-[var(--text-primary)]">encoding e formatos de arquivo</strong> em dados reais do Kaggle</span>
         </li>
       </ul>
     </section>
 
     <div class="text-center" data-aos="fade-up">
       <div class="flex flex-col sm:flex-row justify-center gap-3">
-        <a href="https://github.com/anselmoaxo/etl_vendas" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        <a href="https://github.com/anselmoaxo/dataset-fifa23" target="_blank" rel="noopener noreferrer" class="btn-secondary">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Ver no GitHub
         </a>
@@ -361,7 +351,7 @@ default_args = {
     <p class="text-[var(--text-muted)] text-sm">
       Projeto por <strong class="text-[var(--accent-primary)]">Anselmo Xavier</strong> ·
       <a href="https://www.linkedin.com/in/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">LinkedIn</a> ·
-      <a href="https://github.com/anselmoaxo/etl_vendas" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">GitHub</a>
+      <a href="https://github.com/anselmoaxo" class="hover:text-[var(--accent-secondary)] transition-colors" target="_blank">GitHub</a>
     </p>
   </footer>
 
