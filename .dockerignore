@@ -1,0 +1,43 @@
+# ========================================
+# Docker Ignore
+# ========================================
+
+# Git
+.git
+.gitignore
+
+# Node / Build
+node_modules/
+package.json
+package-lock.json
+postcss.config.js
+tailwind.config.js
+src/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# Docker itself
+Dockerfile
+.dockerignore
+
+# Temporary
+*.tmp
+*.temp
+dist/
+build/
+.cache/

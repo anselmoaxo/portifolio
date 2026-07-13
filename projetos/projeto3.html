@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta name="description"
     content="ETL Tickers Financeiros — Pipeline Python para coleta de dados de ações de bancos brasileiros com yfinance, PostgreSQL e dbt">
   <meta property="og:title" content="ETL Tickers Financeiros | Anselmo Xavier">
@@ -377,13 +378,15 @@ df_clean.to_sql(<span class="code-str">'raw_tickers'</span>, engine, if_exists=<
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
-      } else {
-        document.querySelectorAll('[data-aos]').forEach(element => element.removeAttribute('data-aos'));
-      }
-    });
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
+        } else {
+          document.querySelectorAll('[data-aos]').forEach(element => element.removeAttribute('data-aos'));
+        }
+      });
+    }
   </script>
 
 </body>
