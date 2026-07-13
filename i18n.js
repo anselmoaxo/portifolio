@@ -2,11 +2,7 @@
 // PORTFOLIO INTERNATIONALIZATION (i18n)
 // ========================================
 
-if (typeof window === 'undefined' || typeof document === 'undefined') {
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {};
-  }
-} else {
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
 const I18N = {
   currentLang: 'pt',
@@ -564,4 +560,4 @@ document.addEventListener('DOMContentLoaded', () => {
   I18N.init();
 });
 
-} // end browser-only guard
+}

@@ -90,35 +90,38 @@ python -m http.server 8000
 # Abra no navegador: http://localhost:8000
 ```
 
-### Opção 3: Node.js http-server
+### Gerar o artefato de produção
 ```bash
-# Instalar globalmente (uma vez)
-npm install -g http-server
-
-# Executar
-cd portifolio
-http-server -p 8000
-
-# Abra no navegador: http://localhost:8000
+npm ci
+npm run build
+python -m http.server 8000 --directory dist
 ```
+
+O build compila o Tailwind e gera `dist/` apenas com os arquivos públicos.
 
 ## 🌐 Deploy no GitHub Pages
 
-1. **Criar Repositório no GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit - Portfolio de Engenharia de Dados"
-   git branch -M main
-   git remote add origin https://github.com/anselmoaxo/portifolio.git
-   git push -u origin main
-   ```
+O workflow `.github/workflows/deploy-pages.yml` executa `npm ci`, valida o
+JavaScript, compila o site e publica `dist/` com as ações oficiais do GitHub.
 
-2. **Ativar GitHub Pages**
-   - Vá em **Settings** > **Pages**
-   - Em **Source**, selecione a branch `main` e pasta `/ (root)`
-   - Clique em **Save**
-   - O site estará disponível em: `https://anselmoaxo.github.io/portifolio`
+Em **Settings > Pages**, selecione **GitHub Actions** como fonte. Cada push na
+branch `main` publicará `https://anselmoaxo.github.io/portifolio/`.
+
+## Deploy no EasyPanel
+
+O EasyPanel deve construir o `Dockerfile`; Nixpacks não é usado neste projeto.
+
+```text
+Build method: Dockerfile
+Dockerfile: ./Dockerfile
+Build context: .
+Internal port: 80
+Start command: vazio
+Health check: /health
+```
+
+O Node.js existe somente no estágio de build do Tailwind. A imagem final contém
+apenas Nginx e o conteúdo de `dist/`.
 
 ## ✨ Funcionalidades Implementadas
 

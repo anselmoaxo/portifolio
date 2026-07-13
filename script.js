@@ -2,11 +2,7 @@
 // PORTFOLIO INTERACTIVE ENHANCEMENTS
 // ========================================
 
-if (typeof window === 'undefined' || typeof document === 'undefined') {
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {};
-  }
-} else {
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -336,4 +332,4 @@ if (menuBtn && mobileMenu) {
   });
 }
 
-} // end browser-only guard
+}
