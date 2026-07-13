@@ -362,7 +362,13 @@ streamlit run app.py</pre>
   </footer>
 
   <script>
-    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
+      } else {
+        document.querySelectorAll('[data-aos]').forEach(element => element.removeAttribute('data-aos'));
+      }
+    });
   </script>
 
 </body>

@@ -1820,6 +1820,17 @@ body.bg-grid .text-slate-400 { color: var(--text-muted); }
 .tech-domain-level.practice { color: var(--accent-primary); }
 .tech-domain-level.learning { color: var(--accent-tertiary); }
 
+@media (max-width: 639px) {
+  .tech-domain-title {
+    flex-wrap: wrap;
+  }
+
+  .tech-domain-level {
+    width: 100%;
+    margin-left: 1.625rem;
+  }
+}
+
 .tech-domain-items {
   display: flex;
   flex-wrap: wrap;

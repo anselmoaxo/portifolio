@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Init AOS (Animate on Scroll)
   if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
+  } else {
+    document.querySelectorAll('[data-aos]').forEach(element => {
+      element.removeAttribute('data-aos');
+    });
   }
 
   // Animated Counter
@@ -36,49 +40,61 @@ document.addEventListener('DOMContentLoaded', function() {
   // Intersection Observer for counters
   const counters = document.querySelectorAll('.stat-number');
   
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-        const target = parseInt(entry.target.getAttribute('data-target'));
-        animateCounter(entry.target, target);
-        entry.target.classList.add('counted');
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  counters.forEach(counter => counterObserver.observe(counter));
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          const target = parseInt(entry.target.getAttribute('data-target'));
+          animateCounter(entry.target, target);
+          entry.target.classList.add('counted');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+  }
   
   
   // Scroll Reveal Animation
   const revealElements = document.querySelectorAll('.reveal');
   
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     });
-  }, { 
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-  
-  revealElements.forEach(element => revealObserver.observe(element));
+
+    revealElements.forEach(element => revealObserver.observe(element));
+  } else {
+    revealElements.forEach(element => element.classList.add('active'));
+  }
   
   
   // Skill Progress Bar Animation
   const skillBars = document.querySelectorAll('.skill-progress');
   
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const width = entry.target.getAttribute('data-width');
-        entry.target.style.width = width + '%';
-      }
+  if ('IntersectionObserver' in window) {
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const width = entry.target.getAttribute('data-width');
+          entry.target.style.width = width + '%';
+        }
+      });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => skillObserver.observe(bar));
+  } else {
+    skillBars.forEach(bar => {
+      bar.style.width = bar.getAttribute('data-width') + '%';
     });
-  }, { threshold: 0.5 });
-  
-  skillBars.forEach(bar => skillObserver.observe(bar));
+  }
   
   
   // Smooth Scroll for Anchor Links
@@ -171,18 +187,25 @@ document.addEventListener('DOMContentLoaded', function() {
   // Lazy Loading for Images
   const images = document.querySelectorAll('img[data-src]');
   
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.getAttribute('data-src');
-        img.removeAttribute('data-src');
-        imageObserver.unobserve(img);
-      }
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.getAttribute('data-src');
+          img.removeAttribute('data-src');
+          imageObserver.unobserve(img);
+        }
+      });
     });
-  });
-  
-  images.forEach(img => imageObserver.observe(img));
+
+    images.forEach(img => imageObserver.observe(img));
+  } else {
+    images.forEach(img => {
+      img.src = img.getAttribute('data-src');
+      img.removeAttribute('data-src');
+    });
+  }
   
   
   // Enhanced Button Interactions
