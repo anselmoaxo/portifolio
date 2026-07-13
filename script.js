@@ -4,8 +4,18 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+  // Init AOS (Animate on Scroll)
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 700, easing: 'ease-out', once: true, offset: 80 });
+  }
+
   // Animated Counter
   function animateCounter(element, target, duration = 2000) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      element.textContent = target;
+      return;
+    }
     let start = 0;
     const increment = target / (duration / 16);
     
@@ -19,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    element.textContent = '0';
     updateCounter();
   }
   
@@ -78,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-          const offsetTop = target.offsetTop - 80; // Account for fixed header
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
           window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
@@ -115,31 +126,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
+
+    // Back to top button visibility
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+      backToTop.classList.toggle('visible', scrollY > 400);
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
   
   
-  // Add hover sound effect (optional, commented out by default)
-  /*
-  const buttons = document.querySelectorAll('.cta-button');
-  buttons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-      // Add subtle haptic feedback simulation
-      if (navigator.vibrate) {
-        navigator.vibrate(10);
-      }
-    });
-  });
-  */
-  
-  
   // Copy Email to Clipboard (if email link is present)
   const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
   emailLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      if (e.ctrlKey || e.metaKey) { // Ctrl+Click or Cmd+Click
+      if (e.ctrlKey || e.metaKey) {
         e.preventDefault();
         const email = this.getAttribute('href').replace('mailto:', '');
         navigator.clipboard.writeText(email).then(() => {
@@ -182,22 +185,10 @@ document.addEventListener('DOMContentLoaded', function() {
   images.forEach(img => imageObserver.observe(img));
   
   
-  // Add loading animation to external links
-  const externalLinks = document.querySelectorAll('a[target="_blank"]');
-  externalLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      this.style.opacity = '0.7';
-      setTimeout(() => {
-        this.style.opacity = '1';
-      }, 200);
-    });
-  });
-
   // Enhanced Button Interactions
   const ctaButtons = document.querySelectorAll('.cta-button, .btn-primary, .btn-secondary');
   ctaButtons.forEach(button => {
     button.addEventListener('mouseenter', function() {
-      // Subtle scale effect
       this.style.transform = 'translateY(-2px)';
     });
 
@@ -250,44 +241,68 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadTime = performance.now();
     console.log(`Portfolio loaded in ${Math.round(loadTime)}ms`);
   });
+
+  // Back to Top button
+  const backToTopBtn = document.querySelector('.back-to-top');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
+    });
+  }
   
 });
 
 
 // ========================================
-// MOBILE MENU TOGGLE (Enhanced)
+// MOBILE MENU TOGGLE (Enhanced + Accessible)
 // ========================================
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('open');
-    mobileMenu.classList.toggle('hidden');
-    
-    // Prevent body scroll when mobile menu is open
-    if (!mobileMenu.classList.contains('hidden')) {
-      document.body.style.overflow = 'hidden';
-    } else {
+  const toggleMenu = (forceClose) => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    const shouldClose = forceClose || isOpen;
+
+    if (shouldClose) {
+      menuBtn.classList.remove('open');
+      mobileMenu.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Abrir menu de navegação');
       document.body.style.overflow = '';
+    } else {
+      menuBtn.classList.add('open');
+      mobileMenu.classList.remove('hidden');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      menuBtn.setAttribute('aria-label', 'Fechar menu de navegação');
+      document.body.style.overflow = 'hidden';
     }
+  };
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    toggleMenu(isOpen);
   });
   
   // Close mobile menu when clicking a link
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      menuBtn.classList.remove('open');
-      mobileMenu.classList.add('hidden');
-      document.body.style.overflow = '';
+      toggleMenu(true);
     });
   });
   
   // Close mobile menu on window resize
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 768) {
-      menuBtn.classList.remove('open');
-      mobileMenu.classList.add('hidden');
-      document.body.style.overflow = '';
+      toggleMenu(true);
+    }
+  });
+
+  // Close mobile menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+      toggleMenu(true);
+      menuBtn.focus();
     }
   });
 }

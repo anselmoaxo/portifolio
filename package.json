@@ -1,0 +1,19 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "[![Portfolio](https://img.shields.io/badge/Portfolio-Live-cyan?style=for-the-badge)](https://anselmoaxo.github.io/portifolio) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/anselmoaxo) [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/anselmoaxo)",
+  "main": "i18n.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./css/tailwind.min.css --minify",
+    "build": "npm run build:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.5.2",
+    "postcss": "^8.5.18",
+    "tailwindcss": "^3.4.19"
+  }
+}

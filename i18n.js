@@ -12,12 +12,12 @@ const I18N = {
     // ==========================================
     pt: {
       // SEO
-      'page.title': 'Anselmo Xavier | Especialista em Dados · Analytics Engineer',
-      'meta.desc': 'Anselmo Xavier — Especialista em Dados & Analytics Engineer. 16+ anos em tecnologia, unindo ERP e modelagem de dados a pipelines ETL com Airflow, dbt, Python, IA e automação.',
-      'meta.keywords': 'Analytics Engineer, Engenharia de Dados, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, ERP, modelagem de dados, n8n, LangChain, IA, automação, pipeline de dados',
-      'og.title': 'Anselmo Xavier | Especialista em Dados & Analytics Engineer',
-      'og.desc': '16+ anos em tecnologia. ERP, SQL, modelagem de dados e pipelines ETL modernos com Airflow, dbt, Python e IA aplicada.',
-      'twitter.title': 'Anselmo Xavier | Especialista em Dados & Analytics Engineer',
+      'page.title': 'Anselmo Xavier | Especialista em ERP e Engenharia de Dados',
+      'meta.desc': 'Portfólio de Anselmo Xavier, profissional de Tecnologia com mais de 16 anos de experiência em ERP, SQL e bancos de dados, atualmente especializado em Engenharia de Dados, Analytics Engineering, automação e Inteligência Artificial.',
+      'meta.keywords': 'Especialista ERP, Engenharia de Dados, Analytics Engineering, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, modelagem de dados, n8n, LangChain, IA, automação, pipeline de dados',
+      'og.title': 'Anselmo Xavier | Especialista em ERP e Engenharia de Dados',
+      'og.desc': 'Profissional de Tecnologia com mais de 16 anos de experiência em ERP, SQL e bancos de dados. Especializado em Engenharia de Dados, Analytics Engineering, automação e Inteligência Artificial.',
+      'twitter.title': 'Anselmo Xavier | Especialista em ERP e Engenharia de Dados',
 
       // Nav
       'nav.sobre': 'Sobre',
@@ -29,8 +29,8 @@ const I18N = {
 
       // Hero
       'hero.badge': 'Disponível para oportunidades · São Paulo · Remoto · Híbrido · Presencial',
-      'hero.role': 'Engenheiro de Dados | Analytics Engineer',
-      'hero.tagline': 'Profissional de Tecnologia com mais de 16 anos de experiência em desenvolvimento de sistemas, bancos de dados e ERP. Atualmente aplico essa bagagem na construção de pipelines de dados, automação e soluções de Inteligência Artificial que apoiam decisões de negócio.',
+      'hero.role': 'Especialista em ERP | Engenharia de Dados | Analytics Engineering',
+      'hero.tagline': 'Profissional de Tecnologia com mais de 16 anos de experiência em desenvolvimento de sistemas, bancos de dados, SQL e processos de ERP. Atualmente aplico essa bagagem na construção de pipelines de dados, automações e soluções de Inteligência Artificial que apoiam decisões de negócio.',
       'hero.expertise.consolidated': 'Experiência consolidada',
       'hero.expertise.tech': '16+ anos em Tecnologia',
       'hero.expertise.dev': 'Desenvolvimento de Sistemas',
@@ -104,7 +104,7 @@ const I18N = {
       // Project 1
       'p1.title': 'Pipeline Concessionária',
       'p1.desc': 'Pipeline ETL completo com extração do PostgreSQL, transformação em 3 camadas com dbt e dashboards no Looker Studio.',
-      'p1.impact': 'Relatórios de <strong class="text-[var(--text-primary)]">2h → 15min</strong> com extração incremental',
+      'p1.impact': 'Pipeline incremental desenvolvido para <strong class="text-[var(--text-primary)]">reduzir o tempo</strong> de geração dos relatórios',
 
       // Project 2
       'p2.title': 'Data Lake Meteorologia',
@@ -143,7 +143,7 @@ const I18N = {
       'contact.cv': 'Baixar currículo em PDF',
 
       // Footer
-      'footer.text': '© 2026 Anselmo Xavier de Oliveira · Engenheiro de Dados · Analytics Engineer',
+      'footer.text': '© 2026 Anselmo Xavier de Oliveira · Especialista em ERP · Engenharia de Dados · Analytics Engineering',
 
       // WhatsApp
       'whatsapp.tooltip': 'Fale comigo',
@@ -166,12 +166,12 @@ const I18N = {
     // EN
     // ==========================================
     en: {
-      'page.title': 'Anselmo Xavier | Data Specialist · Analytics Engineer',
-      'meta.desc': 'Anselmo Xavier — Data Specialist & Analytics Engineer. 16+ years in tech, bridging ERP and data modeling with modern ETL pipelines using Airflow, dbt, Python, AI and automation.',
-      'meta.keywords': 'Analytics Engineer, Data Engineering, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, ERP, data modeling, n8n, LangChain, AI, automation, data pipeline',
-      'og.title': 'Anselmo Xavier | Data Specialist & Analytics Engineer',
-      'og.desc': '16+ years in tech. ERP, SQL, data modeling and modern ETL pipelines with Airflow, dbt, Python and applied AI.',
-      'twitter.title': 'Anselmo Xavier | Data Specialist & Analytics Engineer',
+      'page.title': 'Anselmo Xavier | ERP Specialist & Data Engineering',
+      'meta.desc': "Anselmo Xavier's portfolio — Technology professional with 16+ years in ERP, SQL and databases, currently specialized in Data Engineering, Analytics Engineering, automation and AI.",
+      'meta.keywords': 'ERP Specialist, Data Engineering, Analytics Engineering, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, data modeling, n8n, LangChain, AI, automation, data pipeline',
+      'og.title': 'Anselmo Xavier | ERP Specialist & Data Engineering',
+      'og.desc': '16+ years in tech. ERP, SQL, databases and modern data pipelines with Airflow, dbt, Python and applied AI.',
+      'twitter.title': 'Anselmo Xavier | ERP Specialist & Data Engineering',
 
       'nav.sobre': 'About',
       'nav.experiencia': 'Experience',
@@ -181,8 +181,8 @@ const I18N = {
       'nav.contato': 'Contact',
 
       'hero.badge': 'Open to opportunities · São Paulo · Remote · Hybrid · On-site',
-      'hero.role': 'Data Engineer | Analytics Engineer',
-      'hero.tagline': 'Technology professional with over 16 years of experience in systems development, databases and ERP. Currently applying this background to build data pipelines, automation and Artificial Intelligence solutions that support business decisions.',
+      'hero.role': 'ERP Specialist | Data Engineering | Analytics Engineering',
+      'hero.tagline': 'Technology professional with over 16 years of experience in systems development, databases, SQL and ERP processes. Currently applying this background to build data pipelines, automations and Artificial Intelligence solutions that support business decisions.',
       'hero.expertise.consolidated': 'Solid experience',
       'hero.expertise.tech': '16+ years in Technology',
       'hero.expertise.dev': 'Systems Development',
@@ -250,7 +250,7 @@ const I18N = {
 
       'p1.title': 'Dealership Pipeline',
       'p1.desc': 'Complete ETL pipeline with PostgreSQL extraction, 3-layer transformation with dbt and Looker Studio dashboards.',
-      'p1.impact': 'Reports from <strong class="text-[var(--text-primary)]">2h → 15min</strong> with incremental extraction',
+      'p1.impact': 'Incremental pipeline developed to <strong class="text-[var(--text-primary)]">reduce report generation time</strong>',
 
       'p2.title': 'Weather Data Lake',
       'p2.desc': 'Automated pipeline consuming a public weather forecast API, storing in a partitioned Data Lake and orchestrating via Airflow weekly.',
@@ -283,7 +283,7 @@ const I18N = {
       'contact.btn': 'Get in touch',
       'contact.cv': 'Download resume PDF',
 
-      'footer.text': '© 2026 Anselmo Xavier de Oliveira · Data Engineer · Analytics Engineer',
+      'footer.text': '© 2026 Anselmo Xavier de Oliveira · ERP Specialist · Data Engineering · Analytics Engineering',
 
       'whatsapp.tooltip': 'Chat with me',
 
@@ -304,12 +304,12 @@ const I18N = {
     // ES
     // ==========================================
     es: {
-      'page.title': 'Anselmo Xavier | Especialista en Datos · Analytics Engineer',
-      'meta.desc': 'Anselmo Xavier — Especialista en Datos & Analytics Engineer. 16+ años en tecnología, uniendo ERP y modelado de datos con pipelines ETL modernos usando Airflow, dbt, Python, IA y automatización.',
-      'meta.keywords': 'Analytics Engineer, Ingeniería de Datos, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, ERP, modelado de datos, n8n, LangChain, IA, automatización, pipeline de datos',
-      'og.title': 'Anselmo Xavier | Especialista en Datos & Analytics Engineer',
-      'og.desc': '16+ años en tecnología. ERP, SQL, modelado de datos y pipelines ETL modernos con Airflow, dbt, Python e IA aplicada.',
-      'twitter.title': 'Anselmo Xavier | Especialista en Datos & Analytics Engineer',
+      'page.title': 'Anselmo Xavier | Especialista en ERP e Ingeniería de Datos',
+      'meta.desc': 'Portafolio de Anselmo Xavier, profesional de Tecnología con más de 16 años de experiencia en ERP, SQL y bases de datos, actualmente especializado en Ingeniería de Datos, Analytics Engineering, automatización e Inteligencia Artificial.',
+      'meta.keywords': 'Especialista ERP, Ingeniería de Datos, Analytics Engineering, SQL, PostgreSQL, Apache Airflow, dbt, Python, ETL, modelado de datos, n8n, LangChain, IA, automatización, pipeline de datos',
+      'og.title': 'Anselmo Xavier | Especialista en ERP e Ingeniería de Datos',
+      'og.desc': 'Más de 16 años en tecnología. ERP, SQL, bases de datos y pipelines de datos modernos con Airflow, dbt, Python e IA aplicada.',
+      'twitter.title': 'Anselmo Xavier | Especialista en ERP e Ingeniería de Datos',
 
       'nav.sobre': 'Sobre mí',
       'nav.experiencia': 'Experiencia',
@@ -319,8 +319,8 @@ const I18N = {
       'nav.contato': 'Contacto',
 
       'hero.badge': 'Disponible para oportunidades · São Paulo · Remoto · Híbrido · Presencial',
-      'hero.role': 'Ingeniero de Datos | Analytics Engineer',
-      'hero.tagline': 'Profesional de Tecnología con más de 16 años de experiencia en desarrollo de sistemas, bases de datos y ERP. Actualmente aplico esta experiencia en la construcción de pipelines de datos, automatización y soluciones de Inteligencia Artificial que apoyan decisiones de negocio.',
+      'hero.role': 'Especialista en ERP | Ingeniería de Datos | Analytics Engineering',
+      'hero.tagline': 'Profesional de Tecnología con más de 16 años de experiencia en desarrollo de sistemas, bases de datos, SQL y procesos de ERP. Actualmente aplico esta experiencia en la construcción de pipelines de datos, automatizaciones y soluciones de Inteligencia Artificial que apoyan decisiones de negocio.',
       'hero.expertise.consolidated': 'Experiencia consolidada',
       'hero.expertise.tech': '16+ años en Tecnología',
       'hero.expertise.dev': 'Desarrollo de Sistemas',
@@ -388,7 +388,7 @@ const I18N = {
 
       'p1.title': 'Pipeline Concesionaria',
       'p1.desc': 'Pipeline ETL completo con extracción de PostgreSQL, transformación en 3 capas con dbt y dashboards en Looker Studio.',
-      'p1.impact': 'Informes de <strong class="text-[var(--text-primary)]">2h → 15min</strong> con extracción incremental',
+      'p1.impact': 'Pipeline incremental desarrollado para <strong class="text-[var(--text-primary)]">reducir el tiempo</strong> de generación de informes',
 
       'p2.title': 'Data Lake Meteorología',
       'p2.desc': 'Pipeline automatizado que consume API pública de pronóstico del tiempo, almacena en Data Lake particionado y orquesta vía Airflow semanalmente.',
@@ -421,7 +421,7 @@ const I18N = {
       'contact.btn': 'Ponte en contacto',
       'contact.cv': 'Descargar currículo en PDF',
 
-      'footer.text': '© 2026 Anselmo Xavier de Oliveira · Ingeniero de Datos · Analytics Engineer',
+      'footer.text': '© 2026 Anselmo Xavier de Oliveira · Especialista en ERP · Ingeniería de Datos · Analytics Engineering',
 
       'whatsapp.tooltip': 'Háblame',
 
