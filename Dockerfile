@@ -5,19 +5,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY tailwind.config.js postcss.config.js ./
-COPY src/ ./src/
-COPY scripts/ ./scripts/
-COPY index.html style.css script.js i18n.js favicon.svg robots.txt sitemap.xml ./
-COPY assets/ ./assets/
-COPY projetos/ ./projetos/
-
+COPY . .
 RUN npm run build
 
 FROM nginx:1.28-alpine
 
 LABEL maintainer="Anselmo Xavier" \
-      description="Portfolio static site served by Nginx"
+      description="Portfolio static site (Astro) served by Nginx"
 
 RUN rm -rf /usr/share/nginx/html/*
 

@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { contact } from '../data/profile';
+import { htmlLang, languages, useTranslations, withBase, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Caminhos (sem base) da mesma página em cada idioma. */
+  alternates?: Partial<Record<Lang, string>>;
+  type?: 'website' | 'article';
+}
+
+const { lang, title, description, alternates = {}, type = 'website' } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = title ?? t('meta.title');
+const pageDesc = description ?? t('meta.desc');
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const abs = (p: string) => new URL(withBase(p), Astro.site).href;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: contact.fullName,
+  jobTitle: t('hero.role'),
+  url: abs(''),
+  sameAs: [contact.linkedin, contact.github],
+  email: `mailto:${contact.email}`,
+  address: { '@type': 'PostalAddress', addressLocality: contact.city, addressRegion: contact.region, addressCountry: 'BR' },
+};
+---
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <meta name="author" content={contact.fullName} />
+    <link rel="canonical" href={canonical} />
+    {Object.entries(alternates).map(([l, p]) => (
+      <link rel="alternate" hreflang={htmlLang[l as Lang]} href={abs(p!)} />
+    ))}
+    {alternates.pt && <link rel="alternate" hreflang="x-default" href={abs(alternates.pt)} />}
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="sitemap" href={withBase('sitemap-index.xml')} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={htmlLang[lang].replace('-', '_')} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1320" media="(prefers-color-scheme: dark)" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+    <script is:inline>
+      (() => {
+        let theme;
+        try { theme = localStorage.getItem('theme'); } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh">
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:text-paper">
+      {t('skip')}
+    </a>
+    <Header lang={lang} alternates={alternates} />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

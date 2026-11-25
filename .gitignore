@@ -41,3 +41,5 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+# Astro
+.astro/

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../i18n/ui';
+---
+<Base lang="pt" title="Página não encontrada | Anselmo Xavier">
+  <section class="mx-auto max-w-3xl px-4 py-32 sm:px-6">
+    <p class="display text-[8rem] text-accent">404</p>
+    <h1 class="heading mt-4 text-4xl text-ink">Página não encontrada</h1>
+    <p class="mt-5 text-lg text-muted">O endereço pode ter mudado. Page not found.</p>
+    <a href={withBase('')} class="mt-8 inline-block rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink">Voltar ao início</a>
+  </section>
+</Base>
