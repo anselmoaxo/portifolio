@@ -12,6 +12,7 @@ impact:
   pt: Exploração de mais de 17 mil jogadores com filtros interativos.
   en: Exploration of 17k+ players with interactive filters.
   es: Exploración de más de 17 mil jugadores con filtros interactivos.
+flow: [Kaggle CSV, Pandas, Streamlit]
 stack: [Python, Pandas, Streamlit]
 github: https://github.com/anselmoaxo/dataset-fifa23
 metrics:

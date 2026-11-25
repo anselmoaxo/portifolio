@@ -12,7 +12,9 @@ const projects = defineCollection({
     summary: localized,
     impact: localized,
     stack: z.array(z.string()),
-    github: z.string().url(),
+    /** Etapas do fluxo de dados, da origem à entrega (mostradas no card). */
+    flow: z.array(z.string()),
+    github: z.url(),
     year: z.string().optional(),
     metrics: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
   }),

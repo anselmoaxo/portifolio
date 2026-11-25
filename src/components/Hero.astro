@@ -1,0 +1,106 @@
+---
+import { contact } from '../data/profile';
+import { useTranslations, withBase, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Cada nó é uma etapa real da carreira: a base (ERP, PostgreSQL) alimenta o foco atual.
+const nodes = [
+  { name: 'ERP', desc: t('pipe.erp') },
+  { name: 'PostgreSQL', desc: t('pipe.pg') },
+  { name: 'Airflow', desc: t('pipe.airflow') },
+  { name: 'dbt', desc: t('pipe.dbt'), layers: true },
+  { name: t('pipe.bi.name'), desc: t('pipe.bi') },
+];
+
+// Geometria do SVG (viewBox 1000 x 210)
+const W = 176, GAP = 30, Y = 24, H = 112;
+const xs = nodes.map((_, i) => i * (W + GAP));
+const cy = Y + 34;
+const flowPath = `M${W / 2} ${cy} H${xs[4] + W / 2}`;
+---
+<section class="relative overflow-hidden border-b border-line" aria-labelledby="hero-titulo">
+  <div class="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-20">
+    <p class="flex items-center gap-2.5 text-[0.95rem] text-muted">
+      <span class="inline-block size-2 rounded-full bg-accent" aria-hidden="true"></span>
+      {t('hero.where')}
+    </p>
+
+    <h1 id="hero-titulo" class="display mt-6 text-[clamp(3.5rem,12.5vw,10rem)] text-ink">
+      Anselmo Xavier
+    </h1>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div class="max-w-2xl">
+        <p class="text-[clamp(1.35rem,2.4vw,1.75rem)] leading-snug font-medium text-ink">{t('hero.statement')}</p>
+        <p class="mt-3 text-muted">{t('hero.role')}</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="#projetos" class="rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink transition-transform hover:-translate-y-0.5">{t('hero.cta.projects')}</a>
+        <a href={withBase(contact.cv)} download class="rounded-full border border-ink/20 bg-surface px-6 py-3 font-semibold text-ink transition-colors hover:border-ink/50">{t('hero.cta.cv')}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trajetória como pipeline -->
+  <figure class="canvas mt-16 border-t border-line">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+      <figcaption class="text-sm font-medium text-muted">{t('pipe.title')}</figcaption>
+
+      <!-- Desktop: diagrama SVG -->
+      <svg viewBox="0 0 1000 210" class="mt-6 hidden w-full lg:block" role="img" aria-label={nodes.map((n) => n.name).join(', ')}>
+        {xs.slice(0, -1).map((x) => (
+          <line class="pipe-edge" x1={x + W} y1={cy} x2={x + W + GAP} y2={cy} />
+        ))}
+        <path class="pipe-flow" d={flowPath} pathLength="1000" />
+        <circle class="pipe-packet" r="5">
+          <animateMotion dur="2.6s" begin="1.9s" fill="freeze" path={flowPath} keyTimes="0;1" keySplines=".5 0 .3 1" calcMode="spline" />
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.94;1" dur="2.6s" begin="1.9s" fill="freeze" />
+        </circle>
+
+        {nodes.map((n, i) => (
+          <g transform={`translate(${xs[i]} ${Y})`}>
+            <rect width={W} height={H} rx="14" class="fill-surface stroke-line" stroke-width="1.5" />
+            <circle cx="20" cy="34" r="5" class:list={[i < 2 ? 'fill-ink' : 'fill-accent']} />
+            <text x="34" y="40" class="fill-ink" style="font-size:19px;font-weight:700;font-stretch:85%">{n.name}</text>
+            {n.layers ? (
+              <g transform="translate(16 62)">
+                <rect width="44" height="22" rx="6" class="fill-bronze" /><text x="22" y="15" text-anchor="middle" style="font-size:11px;font-weight:600" fill="#fff">bronze</text>
+                <rect x="50" width="44" height="22" rx="6" class="fill-silver" /><text x="72" y="15" text-anchor="middle" style="font-size:11px;font-weight:600" fill="#fff">silver</text>
+                <rect x="100" width="44" height="22" rx="6" class="fill-gold" /><text x="122" y="15" text-anchor="middle" style="font-size:11px;font-weight:600" fill="#fff">gold</text>
+              </g>
+            ) : (
+              <foreignObject x="16" y="58" width={W - 28} height="46">
+                <p style="font-size:13px;line-height:1.35;margin:0" class="text-muted">{n.desc}</p>
+              </foreignObject>
+            )}
+          </g>
+        ))}
+
+        <!-- Chaves agrupando base e foco atual -->
+        <path d={`M2 ${Y + H + 22} v10 H${xs[1] + W - 2} v-10`} class="stroke-ink/40" fill="none" stroke-width="1.5" />
+        <text x={(xs[1] + W) / 2} y={Y + H + 56} text-anchor="middle" class="fill-ink" style="font-size:14px;font-weight:600">{t('pipe.base')}</text>
+        <path d={`M${xs[2] + 2} ${Y + H + 22} v10 H${xs[4] + W - 2} v-10`} class="stroke-accent" fill="none" stroke-width="1.5" />
+        <text x={(xs[2] + xs[4] + W) / 2} y={Y + H + 56} text-anchor="middle" class="fill-accent" style="font-size:14px;font-weight:600">{t('pipe.now')}</text>
+      </svg>
+
+      <!-- Mobile/tablet: lista vertical com o mesmo conteúdo -->
+      <ol class="mt-6 lg:hidden">
+        {nodes.map((n, i) => (
+          <li class="relative flex gap-4 pb-5 last:pb-0">
+            {i < nodes.length - 1 && <span class="absolute left-[7px] top-5 bottom-0 w-0.5 bg-line" aria-hidden="true"></span>}
+            <span class:list={['relative mt-1.5 size-4 shrink-0 rounded-full border-4 border-paper', i < 2 ? 'bg-ink' : 'bg-accent']} aria-hidden="true"></span>
+            <div class="min-w-0 flex-1 rounded-xl border border-line bg-surface px-4 py-3">
+              <p class="heading text-lg text-ink">{n.name}</p>
+              <p class="text-sm text-muted">{n.desc}</p>
+              {i === 1 && <p class="mt-2 text-sm font-semibold text-ink">{t('pipe.base')}</p>}
+              {i === 4 && <p class="mt-2 text-sm font-semibold text-accent">{t('pipe.now')}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </figure>
+</section>

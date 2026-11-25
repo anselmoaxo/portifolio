@@ -12,6 +12,7 @@ impact:
   pt: Extração incremental que reduziu o tempo de geração dos relatórios.
   en: Incremental extraction that cut report generation time.
   es: Extracción incremental que redujo el tiempo de generación de informes.
+flow: [PostgreSQL, Airflow, dbt, Looker Studio]
 stack: [Airflow, dbt, PostgreSQL, Looker Studio]
 github: https://github.com/anselmoaxo/etl_vendas
 metrics:

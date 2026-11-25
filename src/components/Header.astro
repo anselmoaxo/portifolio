@@ -20,14 +20,15 @@ const nav = [
 
 const langs = Object.entries(languages) as [Lang, string][];
 ---
-<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur supports-[backdrop-filter]:bg-paper/70">
+<header class="sticky top-0 z-40 border-b border-line bg-paper/80 backdrop-blur-md">
   <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-    <a href={home} class="font-serif text-lg font-medium tracking-tight text-ink no-underline">
-      Anselmo Xavier
+    <a href={home} class="flex items-center gap-2.5 text-ink no-underline">
+      <svg viewBox="0 0 100 100" class="size-8" aria-hidden="true"><rect width="100" height="100" rx="24" class="fill-accent"/><circle cx="28" cy="50" r="9" class="fill-paper"/><circle cx="72" cy="50" r="9" class="fill-paper"/><path d="M37 50h26" class="stroke-paper" stroke-width="7" stroke-linecap="round"/></svg>
+      <span class="heading text-lg">Anselmo Xavier</span>
     </a>
 
     <nav aria-label="Principal" class="hidden lg:block">
-      <ul class="flex items-center gap-6 text-sm text-muted">
+      <ul class="flex items-center gap-7 text-[0.95rem] font-medium text-muted">
         {nav.map(([id, label]) => (
           <li><a href={`${home}#${id}`} class="transition-colors hover:text-ink">{label}</a></li>
         ))}
@@ -35,7 +36,7 @@ const langs = Object.entries(languages) as [Lang, string][];
     </nav>
 
     <div class="flex items-center gap-1">
-      <div role="group" aria-label={t('lang.label')} class="flex items-center font-mono text-xs">
+      <div role="group" aria-label={t('lang.label')} class="flex items-center text-sm font-semibold">
         {langs.map(([code, label]) => {
           const href = alternates[code] !== undefined ? withBase(alternates[code]) : homePath(code);
           return (
@@ -44,8 +45,8 @@ const langs = Object.entries(languages) as [Lang, string][];
               hreflang={code}
               aria-current={code === lang ? 'true' : undefined}
               class:list={[
-                'rounded px-2 py-1.5 transition-colors',
-                code === lang ? 'text-ink underline decoration-accent decoration-2' : 'text-faint hover:text-ink',
+                'rounded-md px-2 py-1 transition-colors',
+                code === lang ? 'bg-accent-soft text-ink' : 'text-faint hover:text-ink',
               ]}
             >{label}</a>
           );

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import SectionHeading from './SectionHeading.astro';
+import Hero from './Hero.astro';
 import { contact, courses, experience, immersions, stack } from '../data/profile';
 import { useTranslations, withBase, type Lang } from '../i18n/ui';
 
@@ -10,84 +10,62 @@ const t = useTranslations(lang);
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const coursesHours = courses.reduce((s, c) => s + c.hours, 0);
+const maxHours = Math.max(...courses.map((c) => c.hours));
 const totalHours = 315;
 const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(t('contact.mail.subject'))}`;
 
-const facts = [
-  [t('facts.experience'), t('facts.experience.value')],
-  [t('facts.focus'), t('facts.focus.value')],
-  [t('facts.base'), t('facts.base.value')],
-  [t('facts.location'), t('facts.location.value')],
+const startYear = 2010;
+const nowYear = new Date().getFullYear();
+const years = Array.from({ length: nowYear - startYear + 1 }, (_, i) => startYear + i);
+
+// Maturidade codificada no preenchimento da etiqueta
+const levels = [
+  { key: 'solid', title: t('stack.solid'), desc: t('stack.solid.desc'), items: stack.solid, chip: 'bg-ink text-paper border-ink' },
+  { key: 'practice', title: t('stack.practice'), desc: t('stack.practice.desc'), items: stack.practice, chip: 'bg-surface text-ink border-ink/70' },
+  { key: 'learning', title: t('stack.learning'), desc: t('stack.learning.desc'), items: stack.learning, chip: 'bg-transparent text-muted border-dashed border-faint' },
 ];
 
-const stackGroups = [
-  [t('stack.solid'), t('stack.solid.desc'), stack.solid],
-  [t('stack.practice'), t('stack.practice.desc'), stack.practice],
-  [t('stack.learning'), t('stack.learning.desc'), stack.learning],
-] as const;
-
-const section = 'mx-auto grid max-w-6xl gap-8 border-t border-line px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[14rem_1fr] lg:gap-16';
+const wrap = 'mx-auto max-w-6xl px-4 sm:px-6';
+const sectionY = 'py-20 sm:py-28';
+const h2 = 'heading text-[clamp(2.4rem,5vw,3.75rem)] text-ink';
 ---
 
-<!-- Hero -->
-<section class="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-24" aria-labelledby="hero-titulo">
-  <p class="flex items-center gap-2 text-sm text-muted">
-    <span class="relative flex size-2"><span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden"></span><span class="relative inline-flex size-2 rounded-full bg-accent"></span></span>
-    {t('hero.status')}
-  </p>
-  <h1 id="hero-titulo" class="mt-6 max-w-4xl font-serif text-5xl leading-[1.02] font-light tracking-tight text-ink sm:text-7xl lg:text-8xl">
-    Anselmo Xavier
-  </h1>
-  <p class="mt-5 max-w-3xl font-serif text-xl leading-snug text-muted italic sm:text-2xl">{t('hero.role')}</p>
-
-  <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-20">
-    <div>
-      <p class="max-w-2xl text-lg leading-relaxed text-ink/90">{t('hero.lead')}</p>
-      <div class="mt-8 flex flex-wrap items-center gap-3">
-        <a href="#projetos" class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-85">{t('hero.cta.projects')}</a>
-        <a href={withBase(contact.cv)} class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink/40" download>{t('hero.cta.cv')}</a>
-        <a href={contact.linkedin} class="px-3 py-2.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a>
-        <a href={contact.github} class="px-3 py-2.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
-      </div>
-    </div>
-    <dl class="divide-y divide-line border-y border-line text-sm">
-      {facts.map(([k, v]) => (
-        <div class="grid grid-cols-[7rem_1fr] gap-4 py-3">
-          <dt class="text-faint">{k}</dt>
-          <dd class="text-ink">{v}</dd>
-        </div>
-      ))}
-    </dl>
-  </div>
-</section>
+<Hero lang={lang} />
 
 <!-- Sobre -->
-<section id="sobre" class={section} aria-labelledby="sobre-titulo">
-  <SectionHeading index="01" title={t('about.title')} id="sobre" />
-  <div class="max-w-3xl space-y-6 text-lg leading-relaxed text-muted [&_strong]:font-medium [&_strong]:text-ink">
+<section id="sobre" class:list={[wrap, sectionY]} aria-labelledby="sobre-titulo">
+  <h2 id="sobre-titulo" class={h2}>{t('about.title')}</h2>
+  <div class="mt-10 grid gap-8 text-lg leading-relaxed text-muted md:grid-cols-2 md:gap-12 [&_strong]:font-semibold [&_strong]:text-ink">
     <p set:html={t('about.p1')} />
     <p set:html={t('about.p2')} />
   </div>
 </section>
 
 <!-- Experiência -->
-<section id="experiencia" class={section} aria-labelledby="experiencia-titulo">
-  <SectionHeading index="02" title={t('exp.title')} id="experiencia" />
-  <div class="space-y-12">
+<section id="experiencia" class="border-y border-line bg-surface" aria-labelledby="experiencia-titulo">
+  <div class:list={[wrap, sectionY]}>
+    <h2 id="experiencia-titulo" class={h2}>{t('exp.title')}</h2>
     {experience.map((job) => (
-      <article>
-        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 class="font-serif text-2xl text-ink">{job.role[lang]}</h3>
-          <p class="font-mono text-sm text-faint">{job.period[lang]}</p>
+      <article class="mt-10">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+          <h3 class="heading text-2xl text-ink sm:text-3xl">{job.role[lang]}</h3>
+          <p class="font-semibold text-accent">{job.company}, {job.period[lang]}</p>
         </div>
-        <p class="mt-1 text-accent">{job.company}</p>
-        <ul class="mt-6 max-w-3xl space-y-3 text-muted">
+
+        <!-- Linha do tempo: um tique por ano desde 2010 -->
+        <div class="mt-8" aria-hidden="true">
+          <div class="flex h-3 gap-[3px]">
+            {years.map(() => <span class="flex-1 rounded-sm bg-accent"></span>)}
+          </div>
+          <div class="mt-2 flex justify-between text-sm text-faint">
+            <span>{startYear}</span><span>{nowYear}</span>
+          </div>
+        </div>
+
+        <ul class="mt-10 grid gap-x-12 gap-y-5 md:grid-cols-2">
           {job.items.map((item) => (
-            <li class="relative pl-5 leading-relaxed before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-faint">{item[lang]}</li>
+            <li class="border-l-2 border-line pl-4 leading-relaxed text-muted">{item[lang]}</li>
           ))}
-        </ul>
-        <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tecnologias">
-          {job.tags.map((tag) => <li class="rounded-full border border-line px-3 py-1 text-xs text-muted">{tag}</li>)}
         </ul>
       </article>
     ))}
@@ -95,139 +73,140 @@ const section = 'mx-auto grid max-w-6xl gap-8 border-t border-line px-4 py-16 sm
 </section>
 
 <!-- Projetos -->
-<section id="projetos" class={section} aria-labelledby="projetos-titulo">
-  <SectionHeading index="03" title={t('projects.title')} id="projetos" />
-  <div>
-    <p class="max-w-2xl text-lg text-muted">{t('projects.intro')}</p>
-    <ol class="mt-10 divide-y divide-line border-y border-line">
-      {projects.map((p, i) => {
-        const href = withBase(`projetos/${p.id}/`);
-        return (
-          <li class="group relative grid gap-4 py-8 sm:grid-cols-[3rem_1fr] sm:gap-6">
-            <span class="font-mono text-sm text-faint">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <h3 class="font-serif text-2xl text-ink sm:text-3xl">
-                <a href={href} class="decoration-accent decoration-2 group-hover:underline after:absolute after:inset-0 after:content-['']">{p.data.title[lang]}</a>
-              </h3>
-              <p class="mt-3 max-w-2xl leading-relaxed text-muted">{p.data.summary[lang]}</p>
-              <p class="mt-3 max-w-2xl text-sm text-ink">
-                <span class="text-accent">→</span> {p.data.impact[lang]}
-              </p>
-              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                <ul class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-faint">
-                  {p.data.stack.map((s) => <li>{s}</li>)}
-                </ul>
-                <div class="relative z-10 flex items-center gap-4 text-sm">
-                  <a href={p.data.github} class="text-muted hover:text-ink" rel="noopener noreferrer" target="_blank">{t('projects.code')} ↗</a>
-                  <a href={href} class="font-medium text-accent">{t('projects.details')} →</a>
-                </div>
-              </div>
-            </div>
-          </li>
-        );
-      })}
-    </ol>
+<section id="projetos" class:list={[wrap, sectionY]} aria-labelledby="projetos-titulo">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <h2 id="projetos-titulo" class={h2}>{t('projects.title')}</h2>
+    <p class="max-w-md text-muted">{t('projects.intro')}</p>
   </div>
+
+  <ul class="mt-12 grid gap-5 md:grid-cols-2">
+    {projects.map((p) => {
+      const href = withBase(`projetos/${p.id}/`);
+      return (
+        <li class="group relative flex flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent sm:p-8">
+          <!-- Fluxo de dados do projeto, da origem à entrega -->
+          <ol class="flex flex-wrap items-center gap-y-2 text-sm" aria-label="Fluxo">
+            {p.data.flow.map((step, i) => (
+              <li class="flex items-center">
+                {i > 0 && <span class="mx-1.5 h-0.5 w-4 bg-accent/60" aria-hidden="true"></span>}
+                <span class:list={['rounded-md px-2 py-0.5 font-medium', i === p.data.flow.length - 1 ? 'bg-accent text-accent-ink' : 'bg-accent-soft text-ink']}>{step}</span>
+              </li>
+            ))}
+          </ol>
+
+          <h3 class="heading mt-6 text-2xl text-ink sm:text-[1.75rem]">
+            <a href={href} class="after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:outline-none group-has-[a:focus-visible]:outline-2">{p.data.title[lang]}</a>
+          </h3>
+          <p class="mt-3 leading-relaxed text-muted">{p.data.summary[lang]}</p>
+          <p class="mt-4 font-medium text-ink">{p.data.impact[lang]}</p>
+
+          <div class="mt-auto flex items-center justify-between gap-4 pt-8 text-sm">
+            <span class="font-semibold text-accent group-hover:underline">{t('projects.details')}</span>
+            <a href={p.data.github} class="relative z-10 font-medium text-muted hover:text-ink" rel="noopener noreferrer" target="_blank">{t('projects.code')} (GitHub)</a>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
 </section>
 
 <!-- Stack -->
-<section id="stack" class={section} aria-labelledby="stack-titulo">
-  <SectionHeading index="04" title={t('stack.title')} id="stack" />
-  <div class="grid gap-10 md:grid-cols-3 md:gap-8">
-    {stackGroups.map(([title, desc, items]) => (
-      <div>
-        <h3 class="font-medium text-ink">{title}</h3>
-        <p class="text-sm text-faint">{desc}</p>
-        <ul class="mt-5 space-y-2 border-t border-line pt-5 text-muted">
-          {items.map((s) => <li>{s}</li>)}
-        </ul>
-      </div>
-    ))}
+<section id="stack" class="border-y border-line bg-surface" aria-labelledby="stack-titulo">
+  <div class:list={[wrap, sectionY]}>
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="stack-titulo" class={h2}>{t('stack.title')}</h2>
+      <p class="max-w-md text-muted">{t('stack.legend')}</p>
+    </div>
+    <div class="mt-12 divide-y divide-line border-y border-line">
+      {levels.map((lvl) => (
+        <div class="grid gap-4 py-7 md:grid-cols-[15rem_1fr] md:gap-10">
+          <div class="flex items-start gap-3">
+            <span class:list={['mt-1.5 size-4 shrink-0 rounded border-2', lvl.chip]} aria-hidden="true"></span>
+            <div>
+              <h3 class="font-semibold text-ink">{lvl.title}</h3>
+              <p class="text-sm text-faint">{lvl.desc}</p>
+            </div>
+          </div>
+          <ul class="flex flex-wrap gap-2">
+            {lvl.items.map((s) => <li class:list={['rounded-full border-2 px-3.5 py-1 text-[0.95rem] font-medium', lvl.chip]}>{s}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <!-- Formação -->
-<section id="formacao" class={section} aria-labelledby="formacao-titulo">
-  <SectionHeading index="05" title={t('edu.title')} id="formacao" />
-  <div class="space-y-14">
-    <div class="grid gap-6 sm:grid-cols-2">
-      <div class="rounded-xl border border-line bg-surface p-6">
-        <p class="font-mono text-sm text-faint">2007 — 2010</p>
-        <h3 class="mt-2 font-serif text-xl text-ink">{t('edu.degree')}</h3>
-        <p class="mt-1 text-muted">{t('edu.uni')}</p>
-      </div>
-      <div class="rounded-xl border border-line bg-surface p-6">
-        <p class="inline-flex rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">{t('edu.inprogress')}</p>
-        <h3 class="mt-2 font-serif text-xl text-ink">{t('edu.ai')}</h3>
-        <p class="mt-1 text-muted">{t('edu.ai.desc')}</p>
-      </div>
-    </div>
+<section id="formacao" class:list={[wrap, sectionY]} aria-labelledby="formacao-titulo">
+  <h2 id="formacao-titulo" class={h2}>{t('edu.title')}</h2>
 
+  <div class="mt-12 grid gap-5 md:grid-cols-2">
+    <div class="rounded-2xl border border-line bg-surface p-6 sm:p-8">
+      <p class="text-sm font-medium text-faint">2007 — 2010</p>
+      <h3 class="heading mt-2 text-2xl text-ink">{t('edu.degree')}</h3>
+      <p class="mt-1 text-muted">{t('edu.uni')}</p>
+    </div>
+    <div class="rounded-2xl border-2 border-dashed border-accent/60 p-6 sm:p-8">
+      <p class="text-sm font-semibold text-accent">{t('edu.inprogress')}</p>
+      <h3 class="heading mt-2 text-2xl text-ink">{t('edu.ai')}</h3>
+      <p class="mt-1 text-muted">{t('edu.ai.desc')}</p>
+    </div>
+  </div>
+
+  <div class="mt-16 grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
     <div>
       <div class="flex items-baseline justify-between gap-4">
-        <h3 class="font-medium text-ink">{t('edu.paths')}</h3>
-        <p class="font-mono text-sm text-faint">{coursesHours}h</p>
+        <h3 class="font-semibold text-ink">{t('edu.paths')}</h3>
+        <p class="text-sm text-faint">{coursesHours}h</p>
       </div>
-      <ul class="mt-4 divide-y divide-line border-y border-line">
+      <ul class="mt-6 space-y-5">
         {courses.map((c) => (
-          <li class="grid gap-1 py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
-            <div>
-              <p class="text-ink">{c.name}</p>
-              <p class="text-sm text-faint">{c.topics}</p>
+          <li>
+            <div class="flex items-baseline justify-between gap-4">
+              <p class="font-medium text-ink">{c.name}</p>
+              <p class="shrink-0 text-sm font-semibold tabular-nums text-ink">{c.hours}h</p>
             </div>
-            <p class="font-mono text-sm text-muted sm:text-right">{c.hours}h</p>
+            <div class="mt-1.5 h-2 rounded-full bg-line" aria-hidden="true">
+              <div class="h-2 rounded-full bg-accent" style={`width:${(c.hours / maxHours) * 100}%`}></div>
+            </div>
+            <p class="mt-1.5 text-sm text-faint">{c.topics}</p>
           </li>
         ))}
       </ul>
     </div>
 
     <div>
-      <h3 class="font-medium text-ink">{t('edu.immersions')}</h3>
-      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+      <p class="display text-[5.5rem] text-accent">{totalHours}h</p>
+      <p class="mt-2 text-muted">{t('edu.total')}</p>
+
+      <h3 class="mt-12 font-semibold text-ink">{t('edu.immersions')}</h3>
+      <ul class="mt-4 divide-y divide-line border-y border-line">
         {immersions.map((im) => (
-          <li class="flex items-baseline justify-between gap-4 rounded-lg border border-line px-4 py-3">
+          <li class="flex items-baseline justify-between gap-4 py-3">
             <span><span class="text-ink">{im.name}</span><span class="block text-sm text-faint">{im.detail}</span></span>
-            <span class="font-mono text-sm text-muted">{im.hours}h</span>
+            <span class="text-sm font-semibold tabular-nums text-ink">{im.hours}h</span>
           </li>
         ))}
       </ul>
     </div>
-
-    <p class="flex items-baseline gap-3 border-t border-line pt-6">
-      <span class="font-serif text-5xl font-light text-ink">{totalHours}h</span>
-      <span class="text-muted">{t('edu.total')}</span>
-    </p>
   </div>
 </section>
 
 <!-- Contato -->
 <section id="contato" class="border-t border-line bg-surface" aria-labelledby="contato-titulo">
-  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-    <p class="eyebrow">06</p>
-    <h2 id="contato-titulo" class="mt-2 font-serif text-4xl font-light tracking-tight text-ink sm:text-6xl">{t('contact.title')}</h2>
-    <p class="mt-5 max-w-2xl text-lg text-muted">{t('contact.lead')}</p>
+  <div class:list={[wrap, sectionY]}>
+    <h2 id="contato-titulo" class={h2}>{t('contact.title')}</h2>
+    <p class="mt-4 max-w-xl text-lg text-muted">{t('contact.lead')}</p>
 
-    <a href={mailto} class="mt-10 inline-block break-all font-serif text-2xl text-accent underline decoration-1 underline-offset-8 hover:decoration-2 sm:text-4xl">
+    <a href={mailto} class="heading mt-10 inline-block text-[clamp(1.4rem,4.2vw,3.25rem)] break-all text-accent underline decoration-2 underline-offset-[0.18em] hover:decoration-4">
       {contact.email}
     </a>
 
-    <dl class="mt-12 grid gap-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
-      <div>
-        <dt class="text-faint">{t('contact.phone')}</dt>
-        <dd class="mt-1"><a href={contact.whatsapp} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">{contact.phone}</a></dd>
-      </div>
-      <div>
-        <dt class="text-faint">LinkedIn</dt>
-        <dd class="mt-1"><a href={contact.linkedin} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">in/anselmoaxo</a></dd>
-      </div>
-      <div>
-        <dt class="text-faint">GitHub</dt>
-        <dd class="mt-1"><a href={contact.github} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">@anselmoaxo</a></dd>
-      </div>
-      <div>
-        <dt class="text-faint">CV</dt>
-        <dd class="mt-1"><a href={withBase(contact.cv)} class="text-ink hover:text-accent" download>{t('hero.cta.cv')}</a></dd>
-      </div>
-    </dl>
+    <ul class="mt-12 flex flex-wrap gap-3">
+      <li><a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex rounded-full border border-ink/20 px-5 py-2.5 font-medium text-ink hover:border-ink/50">WhatsApp {contact.phone}</a></li>
+      <li><a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex rounded-full border border-ink/20 px-5 py-2.5 font-medium text-ink hover:border-ink/50">LinkedIn</a></li>
+      <li><a href={contact.github} target="_blank" rel="noopener noreferrer" class="inline-flex rounded-full border border-ink/20 px-5 py-2.5 font-medium text-ink hover:border-ink/50">GitHub</a></li>
+      <li><a href={withBase(contact.cv)} download class="inline-flex rounded-full bg-ink px-5 py-2.5 font-medium text-paper hover:opacity-85">{t('hero.cta.cv')}</a></li>
+    </ul>
   </div>
 </section>

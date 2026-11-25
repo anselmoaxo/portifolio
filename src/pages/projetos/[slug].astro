@@ -17,27 +17,34 @@ const t = useTranslations('pt');
 const d = project.data;
 ---
 <Base lang="pt" title={`${d.title.pt} | Anselmo Xavier`} description={d.summary.pt} type="article">
-  <article class="mx-auto max-w-3xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
-    <a href={withBase('#projetos')} class="text-sm text-muted hover:text-ink">← {t('project.back')}</a>
+  <article class="mx-auto max-w-4xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
+    <a href={withBase('#projetos')} class="text-sm font-medium text-muted hover:text-ink">← {t('project.back')}</a>
 
     <header class="mt-10">
-      <p class="eyebrow">{t('nav.projects')} · {String(d.order).padStart(2, '0')}</p>
-      <h1 class="mt-3 font-serif text-4xl leading-tight font-light tracking-tight text-ink sm:text-6xl">{d.title.pt}</h1>
+      <ol class="flex flex-wrap items-center gap-y-2 text-sm" aria-label="Fluxo">
+        {d.flow.map((step, i) => (
+          <li class="flex items-center">
+            {i > 0 && <span class="mx-1.5 h-0.5 w-4 bg-accent/60" aria-hidden="true"></span>}
+            <span class:list={['rounded-md px-2 py-0.5 font-medium', i === d.flow.length - 1 ? 'bg-accent text-accent-ink' : 'bg-accent-soft text-ink']}>{step}</span>
+          </li>
+        ))}
+      </ol>
+      <h1 class="display mt-6 text-[clamp(3rem,9vw,5.5rem)] text-ink">{d.title.pt}</h1>
       <p class="mt-5 text-lg leading-relaxed text-muted">{d.summary.pt}</p>
 
       <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <a href={d.github} class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper hover:opacity-85" rel="noopener noreferrer" target="_blank">{t('project.github')} ↗</a>
-        <ul class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-faint" aria-label={t('project.stack')}>
-          {d.stack.map((s) => <li>{s}</li>)}
+        <a href={d.github} class="rounded-full bg-accent px-6 py-3 font-semibold text-accent-ink hover:-translate-y-0.5 transition-transform" rel="noopener noreferrer" target="_blank">{t('project.github')}</a>
+        <ul class="flex flex-wrap gap-2" aria-label={t('project.stack')}>
+          {d.stack.map((s) => <li class="rounded-full border border-ink/20 px-3 py-1 text-sm font-medium text-ink">{s}</li>)}
         </ul>
       </div>
 
       {d.metrics.length > 0 && (
-        <dl class="mt-12 grid grid-cols-3 divide-x divide-line border-y border-line">
+        <dl class="mt-12 grid grid-cols-3 gap-3">
           {d.metrics.map((m) => (
-            <div class="px-3 py-5 first:pl-0 sm:px-5">
-              <dd class="font-serif text-2xl text-ink sm:text-3xl">{m.value}</dd>
-              <dt class="mt-1 text-xs text-faint sm:text-sm">{m.label}</dt>
+            <div class="flex flex-col rounded-2xl border border-line bg-surface p-4 sm:p-5">
+              <dd class="heading text-2xl text-accent sm:text-4xl">{m.value}</dd>
+              <dt class="mt-1 text-xs text-muted sm:text-sm">{m.label}</dt>
             </div>
           ))}
         </dl>
@@ -52,7 +59,7 @@ const d = project.data;
       <a href={withBase('#projetos')} class="text-sm text-muted hover:text-ink">← {t('project.back')}</a>
       <a href={withBase(`projetos/${next.id}/`)} class="group text-right">
         <span class="block text-sm text-faint">{t('project.next')}</span>
-        <span class="font-serif text-xl text-ink group-hover:text-accent">{next.data.title.pt} →</span>
+        <span class="heading text-2xl text-ink group-hover:text-accent">{next.data.title.pt}</span>
       </a>
     </nav>
   </article>

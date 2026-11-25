@@ -26,9 +26,9 @@ export const experience: {
 }[] = [
   {
     role: {
-      pt: 'Analista de Desenvolvimento · Especialista ERP',
-      en: 'Development Analyst · ERP Specialist',
-      es: 'Analista de Desarrollo · Especialista ERP',
+      pt: 'Analista de Desenvolvimento, Especialista ERP',
+      en: 'Development Analyst, ERP Specialist',
+      es: 'Analista de Desarrollo, Especialista ERP',
     },
     company: 'CSTecnologia',
     period: { pt: '2010 — atual', en: '2010 — present', es: '2010 — actual' },

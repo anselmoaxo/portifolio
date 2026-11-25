@@ -12,6 +12,7 @@ impact:
   pt: Dados de bancos brasileiros estruturados para análises financeiras.
   en: Brazilian bank data structured for financial analysis.
   es: Datos de bancos brasileños estructurados para análisis financieros.
+flow: [yfinance, Pandas, PostgreSQL, dbt]
 stack: [Python, yfinance, PostgreSQL, dbt]
 github: https://github.com/anselmoaxo/ETL-TickersSQL-Python-DBT
 metrics:

@@ -12,6 +12,7 @@ impact:
   pt: Coleta 100% automatizada, sem intervenção manual.
   en: 100% automated collection, no manual work.
   es: Recolección 100% automatizada, sin intervención manual.
+flow: [API REST, Airflow, Data Lake, Pandas]
 stack: [Airflow, Python, API REST, Data Lake]
 github: https://github.com/anselmoaxo/pipeline_meteorologia_airflow
 metrics:
