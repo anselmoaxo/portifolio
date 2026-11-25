@@ -1,0 +1,233 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+import { contact, courses, experience, immersions, stack } from '../data/profile';
+import { useTranslations, withBase, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const coursesHours = courses.reduce((s, c) => s + c.hours, 0);
+const totalHours = 315;
+const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(t('contact.mail.subject'))}`;
+
+const facts = [
+  [t('facts.experience'), t('facts.experience.value')],
+  [t('facts.focus'), t('facts.focus.value')],
+  [t('facts.base'), t('facts.base.value')],
+  [t('facts.location'), t('facts.location.value')],
+];
+
+const stackGroups = [
+  [t('stack.solid'), t('stack.solid.desc'), stack.solid],
+  [t('stack.practice'), t('stack.practice.desc'), stack.practice],
+  [t('stack.learning'), t('stack.learning.desc'), stack.learning],
+] as const;
+
+const section = 'mx-auto grid max-w-6xl gap-8 border-t border-line px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[14rem_1fr] lg:gap-16';
+---
+
+<!-- Hero -->
+<section class="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-24" aria-labelledby="hero-titulo">
+  <p class="flex items-center gap-2 text-sm text-muted">
+    <span class="relative flex size-2"><span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden"></span><span class="relative inline-flex size-2 rounded-full bg-accent"></span></span>
+    {t('hero.status')}
+  </p>
+  <h1 id="hero-titulo" class="mt-6 max-w-4xl font-serif text-5xl leading-[1.02] font-light tracking-tight text-ink sm:text-7xl lg:text-8xl">
+    Anselmo Xavier
+  </h1>
+  <p class="mt-5 max-w-3xl font-serif text-xl leading-snug text-muted italic sm:text-2xl">{t('hero.role')}</p>
+
+  <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-20">
+    <div>
+      <p class="max-w-2xl text-lg leading-relaxed text-ink/90">{t('hero.lead')}</p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#projetos" class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-85">{t('hero.cta.projects')}</a>
+        <a href={withBase(contact.cv)} class="rounded-full border border-line bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink/40" download>{t('hero.cta.cv')}</a>
+        <a href={contact.linkedin} class="px-3 py-2.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a>
+        <a href={contact.github} class="px-3 py-2.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+    <dl class="divide-y divide-line border-y border-line text-sm">
+      {facts.map(([k, v]) => (
+        <div class="grid grid-cols-[7rem_1fr] gap-4 py-3">
+          <dt class="text-faint">{k}</dt>
+          <dd class="text-ink">{v}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- Sobre -->
+<section id="sobre" class={section} aria-labelledby="sobre-titulo">
+  <SectionHeading index="01" title={t('about.title')} id="sobre" />
+  <div class="max-w-3xl space-y-6 text-lg leading-relaxed text-muted [&_strong]:font-medium [&_strong]:text-ink">
+    <p set:html={t('about.p1')} />
+    <p set:html={t('about.p2')} />
+  </div>
+</section>
+
+<!-- Experiência -->
+<section id="experiencia" class={section} aria-labelledby="experiencia-titulo">
+  <SectionHeading index="02" title={t('exp.title')} id="experiencia" />
+  <div class="space-y-12">
+    {experience.map((job) => (
+      <article>
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+          <h3 class="font-serif text-2xl text-ink">{job.role[lang]}</h3>
+          <p class="font-mono text-sm text-faint">{job.period[lang]}</p>
+        </div>
+        <p class="mt-1 text-accent">{job.company}</p>
+        <ul class="mt-6 max-w-3xl space-y-3 text-muted">
+          {job.items.map((item) => (
+            <li class="relative pl-5 leading-relaxed before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-faint">{item[lang]}</li>
+          ))}
+        </ul>
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tecnologias">
+          {job.tags.map((tag) => <li class="rounded-full border border-line px-3 py-1 text-xs text-muted">{tag}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
+
+<!-- Projetos -->
+<section id="projetos" class={section} aria-labelledby="projetos-titulo">
+  <SectionHeading index="03" title={t('projects.title')} id="projetos" />
+  <div>
+    <p class="max-w-2xl text-lg text-muted">{t('projects.intro')}</p>
+    <ol class="mt-10 divide-y divide-line border-y border-line">
+      {projects.map((p, i) => {
+        const href = withBase(`projetos/${p.id}/`);
+        return (
+          <li class="group relative grid gap-4 py-8 sm:grid-cols-[3rem_1fr] sm:gap-6">
+            <span class="font-mono text-sm text-faint">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="font-serif text-2xl text-ink sm:text-3xl">
+                <a href={href} class="decoration-accent decoration-2 group-hover:underline after:absolute after:inset-0 after:content-['']">{p.data.title[lang]}</a>
+              </h3>
+              <p class="mt-3 max-w-2xl leading-relaxed text-muted">{p.data.summary[lang]}</p>
+              <p class="mt-3 max-w-2xl text-sm text-ink">
+                <span class="text-accent">→</span> {p.data.impact[lang]}
+              </p>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <ul class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-faint">
+                  {p.data.stack.map((s) => <li>{s}</li>)}
+                </ul>
+                <div class="relative z-10 flex items-center gap-4 text-sm">
+                  <a href={p.data.github} class="text-muted hover:text-ink" rel="noopener noreferrer" target="_blank">{t('projects.code')} ↗</a>
+                  <a href={href} class="font-medium text-accent">{t('projects.details')} →</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>
+
+<!-- Stack -->
+<section id="stack" class={section} aria-labelledby="stack-titulo">
+  <SectionHeading index="04" title={t('stack.title')} id="stack" />
+  <div class="grid gap-10 md:grid-cols-3 md:gap-8">
+    {stackGroups.map(([title, desc, items]) => (
+      <div>
+        <h3 class="font-medium text-ink">{title}</h3>
+        <p class="text-sm text-faint">{desc}</p>
+        <ul class="mt-5 space-y-2 border-t border-line pt-5 text-muted">
+          {items.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- Formação -->
+<section id="formacao" class={section} aria-labelledby="formacao-titulo">
+  <SectionHeading index="05" title={t('edu.title')} id="formacao" />
+  <div class="space-y-14">
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div class="rounded-xl border border-line bg-surface p-6">
+        <p class="font-mono text-sm text-faint">2007 — 2010</p>
+        <h3 class="mt-2 font-serif text-xl text-ink">{t('edu.degree')}</h3>
+        <p class="mt-1 text-muted">{t('edu.uni')}</p>
+      </div>
+      <div class="rounded-xl border border-line bg-surface p-6">
+        <p class="inline-flex rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">{t('edu.inprogress')}</p>
+        <h3 class="mt-2 font-serif text-xl text-ink">{t('edu.ai')}</h3>
+        <p class="mt-1 text-muted">{t('edu.ai.desc')}</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-baseline justify-between gap-4">
+        <h3 class="font-medium text-ink">{t('edu.paths')}</h3>
+        <p class="font-mono text-sm text-faint">{coursesHours}h</p>
+      </div>
+      <ul class="mt-4 divide-y divide-line border-y border-line">
+        {courses.map((c) => (
+          <li class="grid gap-1 py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
+            <div>
+              <p class="text-ink">{c.name}</p>
+              <p class="text-sm text-faint">{c.topics}</p>
+            </div>
+            <p class="font-mono text-sm text-muted sm:text-right">{c.hours}h</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-medium text-ink">{t('edu.immersions')}</h3>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        {immersions.map((im) => (
+          <li class="flex items-baseline justify-between gap-4 rounded-lg border border-line px-4 py-3">
+            <span><span class="text-ink">{im.name}</span><span class="block text-sm text-faint">{im.detail}</span></span>
+            <span class="font-mono text-sm text-muted">{im.hours}h</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p class="flex items-baseline gap-3 border-t border-line pt-6">
+      <span class="font-serif text-5xl font-light text-ink">{totalHours}h</span>
+      <span class="text-muted">{t('edu.total')}</span>
+    </p>
+  </div>
+</section>
+
+<!-- Contato -->
+<section id="contato" class="border-t border-line bg-surface" aria-labelledby="contato-titulo">
+  <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <p class="eyebrow">06</p>
+    <h2 id="contato-titulo" class="mt-2 font-serif text-4xl font-light tracking-tight text-ink sm:text-6xl">{t('contact.title')}</h2>
+    <p class="mt-5 max-w-2xl text-lg text-muted">{t('contact.lead')}</p>
+
+    <a href={mailto} class="mt-10 inline-block break-all font-serif text-2xl text-accent underline decoration-1 underline-offset-8 hover:decoration-2 sm:text-4xl">
+      {contact.email}
+    </a>
+
+    <dl class="mt-12 grid gap-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <dt class="text-faint">{t('contact.phone')}</dt>
+        <dd class="mt-1"><a href={contact.whatsapp} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">{contact.phone}</a></dd>
+      </div>
+      <div>
+        <dt class="text-faint">LinkedIn</dt>
+        <dd class="mt-1"><a href={contact.linkedin} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">in/anselmoaxo</a></dd>
+      </div>
+      <div>
+        <dt class="text-faint">GitHub</dt>
+        <dd class="mt-1"><a href={contact.github} class="text-ink hover:text-accent" rel="noopener noreferrer" target="_blank">@anselmoaxo</a></dd>
+      </div>
+      <div>
+        <dt class="text-faint">CV</dt>
+        <dd class="mt-1"><a href={withBase(contact.cv)} class="text-ink hover:text-accent" download>{t('hero.cta.cv')}</a></dd>
+      </div>
+    </dl>
+  </div>
+</section>

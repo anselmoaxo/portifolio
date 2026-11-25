@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { useTranslations, withBase } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { project, next } = Astro.props;
+const { Content } = await render(project);
+const t = useTranslations('pt');
+const d = project.data;
+---
+<Base lang="pt" title={`${d.title.pt} | Anselmo Xavier`} description={d.summary.pt} type="article">
+  <article class="mx-auto max-w-3xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
+    <a href={withBase('#projetos')} class="text-sm text-muted hover:text-ink">← {t('project.back')}</a>
+
+    <header class="mt-10">
+      <p class="eyebrow">{t('nav.projects')} · {String(d.order).padStart(2, '0')}</p>
+      <h1 class="mt-3 font-serif text-4xl leading-tight font-light tracking-tight text-ink sm:text-6xl">{d.title.pt}</h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">{d.summary.pt}</p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href={d.github} class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper hover:opacity-85" rel="noopener noreferrer" target="_blank">{t('project.github')} ↗</a>
+        <ul class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-faint" aria-label={t('project.stack')}>
+          {d.stack.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+
+      {d.metrics.length > 0 && (
+        <dl class="mt-12 grid grid-cols-3 divide-x divide-line border-y border-line">
+          {d.metrics.map((m) => (
+            <div class="px-3 py-5 first:pl-0 sm:px-5">
+              <dd class="font-serif text-2xl text-ink sm:text-3xl">{m.value}</dd>
+              <dt class="mt-1 text-xs text-faint sm:text-sm">{m.label}</dt>
+            </div>
+          ))}
+        </dl>
+      )}
+    </header>
+
+    <div class="prose-case mt-4">
+      <Content />
+    </div>
+
+    <nav class="mt-20 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between" aria-label={t('project.next')}>
+      <a href={withBase('#projetos')} class="text-sm text-muted hover:text-ink">← {t('project.back')}</a>
+      <a href={withBase(`projetos/${next.id}/`)} class="group text-right">
+        <span class="block text-sm text-faint">{t('project.next')}</span>
+        <span class="font-serif text-xl text-ink group-hover:text-accent">{next.data.title.pt} →</span>
+      </a>
+    </nav>
+  </article>
+</Base>

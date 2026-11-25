@@ -1,221 +1,72 @@
-# 💼 Portfólio de Engenharia de Dados - Anselmo Xavier
+# Portfólio — Anselmo Xavier
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-cyan?style=for-the-badge)](https://anselmoaxo.github.io/portifolio)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/anselmoaxo)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/anselmoaxo)
+Portfólio profissional de **Anselmo Xavier**, especialista em ERP, Engenharia de Dados e Analytics Engineering.
 
-> Portfólio profissional moderno de Engenharia de Dados, apresentando projetos com Apache Airflow, dbt, PySpark e Big Data.
+- Produção: <https://dev.anselmotech.online/>
+- GitHub Pages: <https://anselmoaxo.github.io/portifolio/>
 
-![Portfolio Preview](https://via.placeholder.com/1200x600/0b0f19/06b6d4?text=Portfolio+Preview)
+## Stack
 
-## 🌟 Destaques
+- [Astro](https://astro.build) gerando site 100% estático
+- Tailwind CSS 4
+- Fontes self-hosted (Inter, Fraunces, JetBrains Mono), sem CDN externo
+- Tema claro e escuro, três idiomas (PT, EN, ES)
 
-- **Design Moderno**: Interface premium com gradientes, glassmorphism e animações suaves
-- **Totalmente Responsivo**: Otimizado para desktop, tablet e mobile
-- **Performance**: Carregamento rápido com lazy loading e otimizações
-- **SEO Otimizado**: Meta tags, Open Graph e estrutura semântica
-- **100% Estático**: Compatível com GitHub Pages (HTML + CSS + JavaScript vanilla)
+## Rodar localmente
 
-## 🚀 Projetos em Destaque
-
-### 1. 🚗 Pipeline Concessionária
-Pipeline ETL completo com Apache Airflow e dbt para análise de dados de vendas.
-- **Stack**: Airflow, dbt, PostgreSQL, Power BI
-- **Destaques**: Arquitetura em camadas, extração incremental, testes de qualidade
-
-### 2. 📊 API de Previsão do Tempo
-Automação de coleta de dados meteorológicos com armazenamento em Data Lake.
-- **Stack**: Airflow, Python, API REST, Data Lake
-- **Destaques**: Agendamento semanal, particionamento temporal, consumo de APIs
-
-### 3. 🧊 Data Lake com Spark
-Implementação de arquitetura Medallion (Bronze/Silver/Gold) com PySpark.
-- **Stack**: Apache Spark, PySpark, Parquet, Medallion Architecture
-- **Destaques**: Particionamento inteligente, 95% redução em query time, otimização de performance
-
-## 🛠️ Tecnologias
-
-### Frontend
-- HTML5 Semântico
-- CSS3 (Custom + Tailwind CDN)
-- JavaScript Vanilla
-- AOS (Animate On Scroll)
-- Google Fonts (Inter)
-
-### Design Features
-- Gradientes animados
-- Glassmorphism cards
-- Efeitos neon/glow
-- Typing effect
-- Counter animations
-- Progress bars
-- Scroll reveal animations
-
-## 📁 Estrutura do Projeto
-
-```
-portifolio/
-├── index.html              # Página principal
-├── style.css               # Estilos customizados
-├── script.js               # Interatividade e animações
-├── CONTRIBUTING.md       # Guia de contribuição
-├── assets/
-│   ├── curriculo.pdf       # Currículo em PDF (oferecido)
-│   └── curriculo.docx      # Currículo em Word
-├── projetos/
-│   ├── projeto1.html       # Pipeline Concessionária
-│   ├── projeto2.html       # API Previsão do Tempo
-│   └── projeto3.html       # Data Lake Spark
-└── README.md               # Este arquivo
-```
-
-## 🚀 Como Executar Localmente
-
-### Opção 1: Live Server (VS Code)
-```bash
-# 1. Abra o projeto no VS Code
-# 2. Instale a extensão "Live Server"
-# 3. Clique com botão direito em index.html
-# 4. Selecione "Open with Live Server"
-```
-
-### Opção 2: Python HTTP Server
-```bash
-# Navegue até o diretório do projeto
-cd portifolio
-
-# Python 3
-python -m http.server 8000
-
-# Abra no navegador: http://localhost:8000
-```
-
-### Gerar o artefato de produção
 ```bash
 npm ci
-npm run build
-python -m http.server 8000 --directory dist
+npm run dev        # http://localhost:4321
+npm run build      # gera dist/
+npm run preview    # serve dist/
+npm test           # astro check + build
 ```
 
-O build compila o Tailwind e gera `dist/` apenas com os arquivos públicos.
+## Estrutura
 
-## 🌐 Deploy no GitHub Pages
+```
+src/
+├── pages/                 # rotas: /, /en/, /es/, /projetos/<slug>/
+├── components/            # Header, Footer, Home (todas as seções)
+├── layouts/Base.astro     # <head>, SEO, tema
+├── content/projects/      # um arquivo .md por projeto
+├── data/profile.ts        # contato, experiência, stack, cursos
+├── i18n/ui.ts             # textos da interface em PT/EN/ES
+└── styles/global.css      # cores e tipografia
+public/
+├── assets/                # currículo PDF/DOCX
+└── projetos/projetoN.html # redirecionam os links antigos
+```
 
-O workflow `.github/workflows/deploy-pages.yml` executa `npm ci`, valida o
-JavaScript, compila o site e publica `dist/` com as ações oficiais do GitHub.
+## Como editar
 
-Em **Settings > Pages**, selecione **GitHub Actions** como fonte. Cada push na
-branch `main` publicará `https://anselmoaxo.github.io/portifolio/`.
+- **Adicionar um projeto:** crie `src/content/projects/meu-projeto.md` copiando um existente. O cabeçalho (frontmatter) tem título, resumo e impacto nos três idiomas, stack, link do GitHub, métricas e a ordem. O corpo em Markdown vira a página de detalhe em `/projetos/meu-projeto/`.
+- **Textos da página:** `src/i18n/ui.ts`.
+- **Experiência, stack, cursos e contato:** `src/data/profile.ts`.
+- **Cores:** variáveis em `src/styles/global.css` (`:root` para o tema claro e `[data-theme="dark"]` para o escuro).
+- **Currículo:** substitua os arquivos em `public/assets/`.
 
-## Deploy no EasyPanel
+## Deploy
 
-O EasyPanel deve construir o `Dockerfile`; Nixpacks não é usado neste projeto.
+### GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` roda `astro check`, compila com
+`SITE_URL=https://anselmoaxo.github.io` e `BASE_PATH=/portifolio` e publica `dist/`.
+Em **Settings > Pages**, a fonte deve ser **GitHub Actions**.
+
+### EasyPanel (Docker)
 
 ```text
 Build method: Dockerfile
 Dockerfile: ./Dockerfile
 Build context: .
 Internal port: 80
-Start command: vazio
 Health check: /health
 ```
 
-O Node.js existe somente no estágio de build do Tailwind. A imagem final contém
-apenas Nginx e o conteúdo de `dist/`.
+O Node existe só no estágio de build. A imagem final contém apenas Nginx e `dist/`.
+Sem variáveis, o build usa `https://dev.anselmotech.online` na raiz.
 
-## ✨ Funcionalidades Implementadas
+## Licença
 
-### Design e UX
-- [x] Hero section com bandeira visual impactante
-- [x] Seção de estatísticas com contadores animados
-- [x] Cards com efeito glassmorphism
-- [x] Barras de progresso para skills
-- [x] Animações de scroll reveal
-- [x] Menu mobile responsivo
-- [x] Smooth scroll navigation
-- [x] Hover effects premium
-
-### Projetos
-- [x] Diagramas de arquitetura ASCII
-- [x] Code snippets com syntax highlighting
-- [x] Seções "Desafios e Soluções"
-- [x] Métricas de performance
-- [x] Badges de tecnologias
-- [x] Links para GitHub
-
-### Otimizações
-- [x] SEO completo (meta tags, Open Graph)
-- [x] Lazy loading de imagens
-- [x] Performance otimizada
-- [x] Acessibilidade (semântica HTML)
-- [x] Mobile-first responsive design
-
-## 📊 Performance
-
-- **Lighthouse Score**: 90+ em todas as categorias
-- **Tempo de Carregamento**: < 2s
-- **Mobile Friendly**: 100%
-- **Acessibilidade**: WCAG 2.1 AA
-
-## 🎨 Paleta de Cores
-
-```css
---primary-cyan: #06b6d4
---primary-purple: #8b5cf6
---accent-pink: #ec4899
---bg-dark: #0b0f19
---bg-card: #111827
---text-light: #e2e8f0
---text-muted: #94a3b8
-```
-
-## 📝 Customização
-
-### Atualizar Informações Pessoais
-1. Edite `index.html` e substitua:
-   - Nome e título
-   - Links de redes sociais
-   - Estatísticas (anos de experiência, projetos, etc.)
-   
-### Adicionar Novo Projeto
-1. Consulte o guia de contribuição em [`CONTRIBUTING.md`](CONTRIBUTING.md)
-2. Crie `projetos/projeto4.html` baseado nos existentes
-3. Adicione card do projeto em `index.html` na seção `#projetos`
-4. Inclua badges de tecnologias e link
-5. Para melhorias técnicas, abra uma Pull Request seguindo o guia
-
-### Mudar Cores
-1. Edite `style.css` nas variáveis CSS (`:root`)
-2. Ou customize via Tailwind inline classes
-
-## 🔧 Troubleshooting
-
-**Animações não funcionam**
-- Verifique se o script AOS está carregando corretamente
-- Abra o Console do navegador para ver erros
-
-**Fontes não carregam**
-- Certifique-se de ter conexão com internet para carregar Google Fonts
-- Ou baixe as fontes localmente
-
-**GitHub Pages não atualiza**
-- Aguarde alguns minutos para o build completar
-- Force refresh no navegador (Ctrl + Shift + R)
-- Verifique os settings do GitHub Pages
-
-## 📫 Contato
-
-**Anselmo Xavier de Oliveira**
-- LinkedIn: [linkedin.com/in/anselmoaxo](https://www.linkedin.com/in/anselmoaxo)
-- GitHub: [@anselmoaxo](https://github.com/anselmoaxo)
-- Portfolio: [anselmoaxo.github.io/portifolio](https://anselmoaxo.github.io/portifolio)
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Sinta-se livre para usá-lo como inspiração para seu próprio portfólio!
-
----
-
-⭐ **Se este portfólio te ajudou, considere dar uma estrela no repositório!**
-
-Feito com 💙 e muitos dados por Anselmo Xavier
+MIT

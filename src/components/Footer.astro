@@ -1,0 +1,13 @@
+---
+import { contact } from '../data/profile';
+import { useTranslations, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-line">
+  <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-faint sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p>© {year} {contact.fullName}</p>
+    <p><a href={contact.repo} class="hover:text-ink">{t('footer.made')}</a></p>
+  </div>
+</footer>
