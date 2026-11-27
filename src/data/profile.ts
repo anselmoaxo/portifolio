@@ -34,44 +34,44 @@ export const experience: {
     period: { pt: '2010 — atual', en: '2010 — present', es: '2010 — actual' },
     items: [
       {
-        pt: 'Desenvolvimento, evolução e sustentação de sistemas ERP em processos críticos como faturamento (NF-e), estoque, financeiro e gestão administrativa.',
-        en: 'Development, evolution and maintenance of ERP systems in critical processes such as invoicing, inventory, finance and administration.',
-        es: 'Desarrollo, evolución y mantenimiento de sistemas ERP en procesos críticos como facturación, inventario, finanzas y gestión administrativa.',
+        pt: 'Participação na construção de um ERP próprio em plataforma low-code, junto com o proprietário da empresa, da concepção até a operação em uso hoje.',
+        en: 'Helped build an in-house ERP on a low-code platform with the company owner, from concept to the operation in use today.',
+        es: 'Participación en la construcción de un ERP propio en plataforma low-code, junto con el dueño de la empresa, desde la concepción hasta la operación en uso hoy.',
       },
       {
-        pt: 'Modelagem, administração e otimização de bancos PostgreSQL: modelagem relacional, indexação, tuning de consultas e melhorias de performance em produção.',
-        en: 'PostgreSQL modeling, administration and optimization: relational modeling, indexing, query tuning and performance work in production.',
-        es: 'Modelado, administración y optimización de PostgreSQL: modelado relacional, indexación, tuning de consultas y mejoras de rendimiento en producción.',
+        pt: 'Customização e desenvolvimento de rotinas e relatórios em processos como faturamento (NF-e), estoque, financeiro e gestão administrativa.',
+        en: 'Customization and development of routines and reports for processes such as invoicing, inventory, finance and administration.',
+        es: 'Personalización y desarrollo de rutinas e informes en procesos como facturación, inventario, finanzas y gestión administrativa.',
       },
       {
-        pt: 'Consultas SQL para extração, consolidação e análise de dados, apoiando relatórios gerenciais, indicadores e tomada de decisão.',
-        en: 'SQL queries for data extraction, consolidation and analysis, supporting management reports, KPIs and decision-making.',
-        es: 'Consultas SQL para extracción, consolidación y análisis de datos, apoyando informes gerenciales, indicadores y toma de decisiones.',
+        pt: 'Modelagem e administração de bancos PostgreSQL, com SQL avançado (DML/DDL), indexação e tuning de consultas em produção.',
+        en: 'PostgreSQL modeling and administration, with advanced SQL (DML/DDL), indexing and query tuning in production.',
+        es: 'Modelado y administración de bases PostgreSQL, con SQL avanzado (DML/DDL), indexación y tuning de consultas en producción.',
       },
       {
-        pt: 'Integrações entre sistemas e automação de processos, com mais confiabilidade e consistência das informações.',
-        en: 'System integrations and process automation, improving reliability and consistency of information.',
-        es: 'Integraciones entre sistemas y automatización de procesos, con mayor confiabilidad y consistencia de la información.',
+        pt: 'Integração entre sistemas via APIs e web services.',
+        en: 'System integrations through APIs and web services.',
+        es: 'Integración entre sistemas vía APIs y web services.',
       },
       {
-        pt: 'Administração de servidores Linux e Windows, Apache Tomcat, monitoramento e suporte à infraestrutura on-premise.',
-        en: 'Linux and Windows server administration, Apache Tomcat, monitoring and on-premise infrastructure support.',
-        es: 'Administración de servidores Linux y Windows, Apache Tomcat, monitoreo y soporte de infraestructura on-premise.',
+        pt: 'Automação de processos com Python.',
+        en: 'Process automation with Python.',
+        es: 'Automatización de procesos con Python.',
       },
       {
-        pt: 'Levantamento de requisitos, documentação, treinamento de usuários e suporte técnico-funcional, fazendo a ponte entre negócio e tecnologia.',
-        en: 'Requirements gathering, documentation, user training and functional support, bridging business and technology.',
-        es: 'Levantamiento de requisitos, documentación, capacitación de usuarios y soporte técnico-funcional, uniendo negocio y tecnología.',
+        pt: 'Suporte técnico a usuários, levantamento de requisitos e treinamento, fazendo a ponte entre negócio e tecnologia.',
+        en: 'User support, requirements gathering and training, bridging business and technology.',
+        es: 'Soporte técnico a usuarios, levantamiento de requisitos y capacitación, uniendo negocio y tecnología.',
       },
     ],
-    tags: ['PostgreSQL', 'SQL', 'Modelagem de dados', 'ERP', 'Linux', 'Windows Server', 'Apache Tomcat', 'Git'],
+    tags: ['ERP low-code', 'PostgreSQL', 'SQL (DML/DDL)', 'APIs e web services', 'Python', 'Linux', 'Windows Server', 'Apache Tomcat'],
   },
 ];
 
 export const stack = {
-  solid: ['SQL avançado', 'PostgreSQL', 'Modelagem de dados', 'Sistemas ERP', 'Regras de negócio', 'Linux', 'Windows Server', 'Apache Tomcat'],
-  practice: ['Python', 'Apache Airflow', 'dbt', 'ETL / ELT', 'Docker', 'Pandas', 'Git / GitHub', 'Looker Studio', 'Power BI', 'AWS (EC2, S3, RDS, Glue)'],
-  learning: ['Inteligência Artificial', 'n8n', 'LangChain', 'Agentes autônomos', 'Databricks', 'Snowflake', 'BigQuery', 'GCP', 'Azure'],
+  solid: ['Sistemas ERP', 'Plataforma low-code', 'PostgreSQL', 'SQL avançado (DML/DDL)', 'Modelagem de dados', 'Rotinas e relatórios', 'APIs e web services', 'Linux', 'Windows Server', 'Apache Tomcat'],
+  practice: ['Python', 'Apache Airflow', 'dbt', 'AWS', 'PySpark', 'ETL / ELT', 'Docker', 'Pandas', 'Git / GitHub', 'Looker Studio', 'Power BI'],
+  learning: ['Inteligência Artificial', 'n8n', 'LangChain', 'Databricks', 'Snowflake', 'BigQuery', 'GCP', 'Azure'],
 };
 
 export const courses = [
